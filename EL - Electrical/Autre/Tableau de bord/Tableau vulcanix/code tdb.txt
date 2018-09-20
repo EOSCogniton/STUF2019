@@ -1,0 +1,54 @@
+
+int i=0
+
+Init :
+	faire défiler de 1 à 100 
+	delay(200)
+	allumer la LED RAZ motored
+	delay(200)
+	faire défiler EPSA sur l'afficheur rapport ?? sinon 1,2,3,4,5,6
+	int pwm=0
+	for k in range(40):
+		Envoyer pwm sur le bargraphe
+		pwm+=100
+		if pwm>1024 { pwm=0 }
+		delay(50)
+
+
+	allumer problème essence 
+	delay(5000)
+	Tout éteindre
+		
+Void loop :
+
+	Lire_CAN (on définit régime, rapport, temp et alerte_huile)
+
+	if (régime==0) {
+		afficher i sur afficheur rapport
+		allumer i LED sur le compte tour
+		i+=1
+		if (i>6){ i=0 }
+		}
+	else {
+		afficher le rapport 
+		afficher le régime moteur
+		}
+
+	if (alerte_huile) {
+		'La LED d'alerte huile clignote à une fréquence de 2 Hz'
+		}
+
+	if (bug_motored){
+		'faire clignoter la leD bouton poussoir rest_motored'
+		}
+	
+	afficher la Temp : Envoie en binaire  
+
+
+
+
+
+
+
+
+

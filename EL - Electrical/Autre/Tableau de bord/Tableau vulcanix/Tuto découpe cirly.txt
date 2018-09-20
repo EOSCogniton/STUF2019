@@ -1,0 +1,21 @@
+Faire une découpe chez Cirly :
+
+exporter le dessin en dxf 
+
+l'ouvrir avec LibreCAD, le centrer et l'enregistrer sous format dxf R12
+
+ATENTION il ne faut pas que le chemin pour aller jusqu'au fichier soit trop long (pas dans un dossier de dossier de dossier...)
+
+Ouvrir KiCad, lancer un nouveau projet et lancer l'atelier PCBnew
+
+fichier, importer, format dxf, on sélectionne le bon fichier sur la couche edge cut.
+
+
+insérer un logo ou une image pour sérigraphie : https://www.youtube.com/watch?v=_muN1L42o-I
+
+
+On exporte ensuite le pcb new en gerber
+
+c'est finit, on peut vérifier le résultat sur le gerber viewer de Kicad
+
+

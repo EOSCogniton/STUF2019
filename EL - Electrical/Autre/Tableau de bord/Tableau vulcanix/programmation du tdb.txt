@@ -1,0 +1,2 @@
+mec qui explique comment coder un 3 afficheur 7 segments:
+http://z-i-g-z-a-g.fr/convertisseur-binaire-vers-decimal-12-arduino/
