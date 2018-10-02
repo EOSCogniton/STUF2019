@@ -1,0 +1,47 @@
+<SOLUTION>
+<HEADER FRQ="ITERATION">
+ <COLUMN ID="    1">Contact Pair ID</COLUMN>
+ <COLUMN ID="    2">Number of Contact Elements in Contact</COLUMN>
+ <COLUMN ID="    3">Number of Contact Elements in Contact (Sticking)</COLUMN>
+ <COLUMN ID="    4">Max. Chattering Level</COLUMN>
+ <COLUMN ID="    5">Max. Penetration/Min. Gap</COLUMN>
+ <COLUMN ID="    6">Max. Closed Gap</COLUMN>
+ <COLUMN ID="    7">Max. Normal Stiffness</COLUMN>
+ <COLUMN ID="    8">Min. Normal Stiffness</COLUMN>
+ <COLUMN ID="    9">Max. Resulting Pinball</COLUMN>
+ <COLUMN ID="   10">Max. Elastic Slip Distance</COLUMN>
+ <COLUMN ID="   11">Max. Tangential Stiffness</COLUMN>
+ <COLUMN ID="   12">Min. Tangential Stiffness</COLUMN>
+ <COLUMN ID="   13">Max. Sliding Distance</COLUMN>
+ <COLUMN ID="   14">Max. Contact Pressure</COLUMN>
+ <COLUMN ID="   15">Max. Friction Stress</COLUMN>
+ <COLUMN ID="   16">Average Contact Depth</COLUMN>
+ <COLUMN ID="   17">Max. Closed Penetration</COLUMN>
+ <COLUMN ID="   18">Number of Contact Points Have Too Much Penetration</COLUMN>
+ <COLUMN ID="   19">Contacting Area</COLUMN>
+ <COLUMN ID="   20">Max. Contact Damping Pressure</COLUMN>
+ <COLUMN ID="   21">Max. Contact Damping Tangential stress</COLUMN>
+ <COLUMN ID="   22">Max. Sliding Distance including near field</COLUMN>
+ <COLUMN ID="   23">Min. Sliding Distance including near field</COLUMN>
+ <COLUMN ID="   24">Max. fluid penetration pressure on contact surface</COLUMN>
+ <COLUMN ID="   25">Max. fluid penetration pressure on target surface</COLUMN>
+ <COLUMN ID="   26">Total volume loss due to wear on contact surface</COLUMN>
+ <COLUMN ID="   27">Total strain energy due to contact</COLUMN>
+ <COLUMN ID="   28">Frictional dissipation energy</COLUMN>
+ <COLUMN ID="   29">Contact damping dissipation energy</COLUMN>
+ <COLUMN ID="   30">WB contact pair ID</COLUMN>
+ <COLUMN ID="   31">Total contact force due to pressure -x component</COLUMN>
+ <COLUMN ID="   32">Total contact force due to pressure -y component</COLUMN>
+ <COLUMN ID="   33">Total contact force due to pressure -z component</COLUMN>
+ <COLUMN ID="   34">Total contact force due to tangential stress -x component</COLUMN>
+ <COLUMN ID="   35">Total contact force due to tangential stress -y component</COLUMN>
+ <COLUMN ID="   36">Total contact force due to tangential stress -z component</COLUMN>
+ <UNITS>SI</UNITS>
+</HEADER>
+<COLDATA LOAD_STEP="        1" SUBSTEP="        1" ITERATION="        0" TIME="    0.000000    ">
+        4         0         0         0    0.5626032E-16   -0.7469790E-10    0.1720984E+17    0.1720984E+17    0.4163751E-03     0.000000        0.1290738E+16    0.1290738E+16     0.000000         0.000000         0.000000        0.1665500E-02   -0.1045711E-09         0    0.3377212E-02     0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000            36     0.000000         0.000000         0.000000         0.000000         0.000000         0.000000    
+        5        -2         0         0    -17883.00         0.000000         0.000000         0.000000         17883.00         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000        0.1984359E-02     0.000000             0     0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000            36     0.000000         0.000000         0.000000         0.000000         0.000000         0.000000    
+        6        -2         0         0    -21213.00         0.000000         0.000000         0.000000         21213.00         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000        0.1889632E-02     0.000000             0     0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000            39     0.000000         0.000000         0.000000         0.000000         0.000000         0.000000    
+        7         0         0         0    0.4990270E-16   -0.7689049E-11    0.1208882E+17    0.1208882E+17    0.3640281E-03     0.000000        0.9066614E+15    0.9066614E+15     0.000000         0.000000         0.000000        0.1456113E-02   -0.3757602E-10         0    0.2984513E-02     0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000         0.000000            39     0.000000         0.000000         0.000000         0.000000         0.000000         0.000000    
+</COLDATA>
+</SOLUTION>
