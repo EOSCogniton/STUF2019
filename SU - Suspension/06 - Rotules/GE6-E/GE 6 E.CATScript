@@ -1,0 +1,965 @@
+﻿Dim storePath
+
+' Sub to read the Store Path
+Function ReadSPath()
+  os = UCase(Left(CATIA.SystemConfiguration.OperatingSystem, 3))
+  sep = "/"
+  If (os = "WIN") Or (os = "INT") Then
+    sep = "\"
+  End If
+
+  If (Len(storePath) = 0) Then
+    ret = InputBox("Enter Path for CATPart or CATProduct (e.g. c:" + sep + "catfiles" + sep + ")", "Save as")
+    storePath = ret
+  End If
+
+  Set fso = CreateObject("Scripting.FileSystemObject")
+
+  If (Len(storePath) = 0) Or (fso.FolderExists(storePath) = False) Then
+    Set fso = Nothing
+    ReadSPath = Empty
+    Exit Function
+  End If
+
+  If (Mid(storePath, Len(storePath), 1) <> sep) Then
+    storePath = storePath + sep
+  End If
+
+  ReadSPath = storePath
+  Set fso = Nothing
+End Function
+
+' Sub to store a document'
+Sub SaveDocument(document, name)
+  document.SaveAs storePath & name
+End Sub
+
+' Sub to retrieve a name in capital letters'
+Function GetUCaseName(name)
+  ucaseName = Left(name, InStrRev(name, ".") - 1)
+  extension = Right(name, Len(name) - InStr(name, ".") + 1)
+  GetUCaseName = UCase(ucaseName) + extension
+End Function
+
+Function GetBrep(SelectionToBRepDisplayName As String) As String
+  MyBRepName = Replace(SelectionToBRepDisplayName, "Selection_", "")
+  MyBRepName = Left(MyBRepName, InStrRev(MyBRepName, "));"))
+  MyBRepName = MyBRepName + ");WithTemporaryBody;WithoutBuildError;WithDefaultFeatureSupport;MonoFond;MFBRepVersion_CXR15)"
+  GetBrep = MyBRepName
+End Function
+
+Function GetFaceEdgeSelections(document, faceSelection)
+  searchStr = faceSelection.Reference.DisplayName
+  searchStr = Mid(searchStr, InStr(searchStr, "Brp:"))
+  searchStr = Left(searchStr, InStr(searchStr, "Cf11:()") + 6)
+  Set selection = document.Selection
+  selection.Clear
+  selection.Search "Topology.CGMEdge, all"
+  Dim edgeArr(1000)
+  i = 1
+  For j = 1 To selection.Count
+    Set selEdge = selection.Item2(j)
+    edgeRef = selEdge.Reference.DisplayName
+    If (InStr(edgeRef, searchStr)) Then
+      Set edgeArr(i) = selEdge
+      i = i + 1
+    End If
+  Next
+  edgeArr(0) = i - 1
+  GetFaceEdgeSelections = edgeArr
+  selection.Clear
+End Function
+
+Function GetFaceFaceEdgeSelections(document, faceSelection1, faceSelection2)
+  searchStr1 = faceSelection1.Reference.DisplayName
+  searchStr1 = Mid(searchStr1, InStr(searchStr1, "Brp:"))
+  searchStr1 = Left(searchStr1, InStr(searchStr1, "Cf11:()") + 6)
+  searchStr2 = faceSelection2.Reference.DisplayName
+  searchStr2 = Mid(searchStr2, InStr(searchStr2, "Brp:"))
+  searchStr2 = Left(searchStr2, InStr(searchStr2, "Cf11:()") + 6)
+  Set selection = document.Selection
+  selection.Clear
+  selection.Search "Topology.CGMEdge, all"
+  Dim edgeArr(1000)
+  i = 1
+  For j = 1 To selection.Count
+    Set selEdge = selection.Item2(j)
+    edgeRef = selEdge.Reference.DisplayName
+    If (InStr(edgeRef, searchStr1) And InStr(edgeRef, searchStr2)) Then
+      Set edgeArr(i) = selEdge
+      i = i + 1
+    End If
+  Next
+  edgeArr(0) = i - 1
+  GetFaceFaceEdgeSelections = edgeArr
+  selection.Clear
+End Function
+
+  Function GetFaceReferenceByPoint(document, wpart, x, y, z,nx,ny,nz,eps)
+    Set shapeFactory1 = wpart.ShapeFactory
+    Set hybridShapeFactory1 = wpart.HybridShapeFactory
+    Set Body = wpart.MainBody
+    Set Point = hybridShapeFactory1.AddNewPointCoord(x, y, z)
+     Set HybridBody1 = wPart.hybridBodies.item(1)
+     HybridBody1.AppendHybridShape Point
+  wPart.InWorkObject = Point
+  wPart.Update
+
+    Set Selection = document.Selection
+    Selection.Clear
+    Selection.Search ("Topology.CGMFace, all")
+    Set pointReference = wpart.CreateReferenceFromObject(Point)
+    Set SPAWorkbench = document.GetWorkbench("SPAWorkbench")
+    Set pointmeasure = SPAWorkbench.GetMeasurable(Point)
+    mindistance = eps
+    Set targetface1 = Nothing
+    Set targetReferenceface1 = Nothing
+    Set faceSelection = Nothing
+    Set facereference = Nothing
+    Set Face = Nothing
+    Dim varCATSafeArrayVariant(3) As Variant
+    Dim dir1(3) As Variant
+    Dim dir2(3) As Variant
+    Dim i
+    For i = 1 To Selection.Count
+      Set faceSelection = Selection.Item(i)
+      Set facereference = faceSelection.Reference
+      Set Face = faceSelection.Value
+      validface = False
+      If faceSelection.Type = "PlanarFace" Then
+        Face.GetFirstAxis (dir1)
+        Face.GetSecondAxis (dir2)
+        varCATSafeArrayVariant(0) = dir1(1) * dir2(2) - dir1(2) * dir2(1)
+        varCATSafeArrayVariant(1) = dir1(2) * dir2(0) - dir1(0) * dir2(2)
+        varCATSafeArrayVariant(2) = dir1(0) * dir2(1) - dir1(1) * dir2(0)
+        validFace = True
+      ElseIf faceSelection.Type = "CylindricalFace" Then
+        Face.GetDirection (varCATSafeArrayVariant)
+        validface = True
+      End If
+      If validface Then
+        sk = Abs(varCATSafeArrayVariant(0) * nx + varCATSafeArrayVariant(1) * ny + varCATSafeArrayVariant(2) * nz)
+        If sk > 1 - 0.00001 Then
+          Distance = pointmeasure.GetMinimumDistance(facereference)
+          If Distance < mindistance Then
+            Set targetface1 = faceSelection
+            Set targetReferenceface1 = facereference
+            mindistance = Distance
+          End If
+        End If
+      End If
+    Next
+    Selection.Clear
+    Selection.Add (Point)
+    Selection.Delete
+    Set GetFaceReferenceByPoint = targetReferenceface1
+  End Function
+Function toolCall0(wpart,HybridBody1)
+  set backWork = wPart.InWorkObject 
+  wPart.InWorkObject = HybridBody1
+  wPart.Update
+
+  Set hypFact = wPart.HybridShapeFactory
+  Set HybridShapePointCoord0 = hypFact.AddNewPointCoord(0, 0, 0)
+  HybridBody1.AppendHybridShape HybridShapePointCoord0
+  wPart.InWorkObject = HybridShapePointCoord0
+  wPart.Update
+
+  Set HybridShapePointCoord1 = hypFact.AddNewPointCoord(1, 0, 0)
+  HybridBody1.AppendHybridShape HybridShapePointCoord1
+  wPart.InWorkObject = HybridShapePointCoord1
+  wPart.Update
+
+  Set HybridShapePointCoord2 = hypFact.AddNewPointCoord(0, 1, 0)
+  HybridBody1.AppendHybridShape HybridShapePointCoord2
+  wPart.InWorkObject = HybridShapePointCoord2
+  wPart.Update
+
+  Set Reference0 = wPart.CreateReferenceFromGeometry(HybridShapePointCoord0)
+  Set Reference1 = wPart.CreateReferenceFromGeometry(HybridShapePointCoord1)
+  Set Reference2 = wPart.CreateReferenceFromGeometry(HybridShapePointCoord2)
+  Set absPlane = hypFact.AddNewPlane3Points(Reference0, Reference1, Reference2)
+  HybridBody1.AppendHybridShape absPlane
+  wPart.InWorkObject = absPlane
+  wPart.Update
+
+  Set absRef = wPart.CreateReferenceFromGeometry(absPlane)
+  wPart.Update
+
+  wPart.InWorkObject=backWork
+  Set toolCall0=absref
+End Function
+
+Function toolCall1(wpart,body,absref)
+  wPart.InWorkObject = Body
+  Set sketch = Body.Sketches.Add(absRef)
+  wPart.InWorkObject = sketch
+  wPart.Update
+
+  Set factory2d = sketch.OpenEdition
+  Set Axis2D7 = Sketch.AbsoluteAxis
+  Set Line2D8 = Axis2D7.HorizontalReference
+  Line2D8.ReportName = 1
+  Set Line2D9 = Axis2D7.VerticalReference
+  Line2D9.ReportName = 2
+  Set constraints1 = Sketch.Constraints
+
+  Set startPoint = Factory2D.CreatePoint(2, 4.5825756949558)
+  Set endPoint = Factory2D.CreatePoint(-2, 4.5825756949558)
+  Set cir = Factory2D.CreateCircle(8.8817841970013e-16, -4.4408920985006e-15, 5, 1.1592794807274, 1.9823131728624)
+  cir.StartPoint = startPoint
+  cir.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(cir)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set startPoint = Factory2D.CreatePoint(2, 4.5825756949558)
+  Set endPoint = Factory2D.CreatePoint(2, 6.7)
+  Set line = factory2d.CreateLine(2, 4.5825756949558, 2, 6.7)
+  line.StartPoint = startPoint
+  line.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(line)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set startPoint = Factory2D.CreatePoint(2, 6.7)
+  Set endPoint = Factory2D.CreatePoint(1.7, 7)
+  Set cir = Factory2D.CreateCircle(1.7, 6.7, 0.3, 5.9211894646675e-15, 1.5707963267949)
+  cir.StartPoint = startPoint
+  cir.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(cir)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set startPoint = Factory2D.CreatePoint(1.7, 7)
+  Set endPoint = Factory2D.CreatePoint(-1.7, 7)
+  Set line = factory2d.CreateLine(1.7, 7, -1.7, 7)
+  line.StartPoint = startPoint
+  line.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(line)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set startPoint = Factory2D.CreatePoint(-1.7, 7)
+  Set endPoint = Factory2D.CreatePoint(-2, 6.7)
+  Set cir = Factory2D.CreateCircle(-1.7, 6.7, 0.3, 1.5707963267949, 3.1415926535898)
+  cir.StartPoint = startPoint
+  cir.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(cir)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set startPoint = Factory2D.CreatePoint(-2, 6.7)
+  Set endPoint = Factory2D.CreatePoint(-2, 4.5825756949558)
+  Set line = factory2d.CreateLine(-2, 6.7, -2, 4.5825756949558)
+  line.StartPoint = startPoint
+  line.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(line)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set pk1 = Factory2D.CreatePoint(2, 0)
+  Set pk2 = Factory2D.CreatePoint(-2, 0)
+  Set line = Factory2d.CreateLine(2, 0, -2, 0)
+  sketch.CenterLine = line
+  Set ref1 = wpart.CreateReferenceFromObject(pk1)
+  Set ref2 = wpart.CreateReferenceFromObject(pk2)
+  Set ref3 = wpart.CreateReferenceFromObject(line)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  wPart.Update
+
+  Sketch.CloseEdition
+  Set sketch3 = sketch
+  wPart.Update
+  Set toolCall1=sketch3
+End Function
+
+Function toolCall2(wpart,HybridBody1)
+  set backWork = wPart.InWorkObject 
+  wPart.InWorkObject = HybridBody1
+  wPart.Update
+
+  Set hypFact = wPart.HybridShapeFactory
+  Set HybridShapePointCoord0 = hypFact.AddNewPointCoord(0, 0, 0)
+  HybridBody1.AppendHybridShape HybridShapePointCoord0
+  wPart.InWorkObject = HybridShapePointCoord0
+  wPart.Update
+
+  Set HybridShapePointCoord1 = hypFact.AddNewPointCoord(1, 0, 0)
+  HybridBody1.AppendHybridShape HybridShapePointCoord1
+  wPart.InWorkObject = HybridShapePointCoord1
+  wPart.Update
+
+  Set HybridShapePointCoord2 = hypFact.AddNewPointCoord(0, 1, 0)
+  HybridBody1.AppendHybridShape HybridShapePointCoord2
+  wPart.InWorkObject = HybridShapePointCoord2
+  wPart.Update
+
+  Set Reference0 = wPart.CreateReferenceFromGeometry(HybridShapePointCoord0)
+  Set Reference1 = wPart.CreateReferenceFromGeometry(HybridShapePointCoord1)
+  Set Reference2 = wPart.CreateReferenceFromGeometry(HybridShapePointCoord2)
+  Set absPlane = hypFact.AddNewPlane3Points(Reference0, Reference1, Reference2)
+  HybridBody1.AppendHybridShape absPlane
+  wPart.InWorkObject = absPlane
+  wPart.Update
+
+  Set absRef = wPart.CreateReferenceFromGeometry(absPlane)
+  wPart.Update
+
+  wPart.InWorkObject=backWork
+  Set toolCall2=absref
+End Function
+
+Function toolCall3(wpart,body,absref)
+  wPart.InWorkObject = Body
+  Set sketch = Body.Sketches.Add(absRef)
+  wPart.InWorkObject = sketch
+  wPart.Update
+
+  Set factory2d = sketch.OpenEdition
+  Set Axis2D7 = Sketch.AbsoluteAxis
+  Set Line2D8 = Axis2D7.HorizontalReference
+  Line2D8.ReportName = 1
+  Set Line2D9 = Axis2D7.VerticalReference
+  Line2D9.ReportName = 2
+  Set constraints1 = Sketch.Constraints
+
+  Set startPoint = Factory2D.CreatePoint(-3, 3.3)
+  Set endPoint = Factory2D.CreatePoint(-2.7, 3)
+  Set cir = Factory2D.CreateCircle(-2.7, 3.3, 0.3, 3.1415926535898, 4.7123889803847)
+  cir.StartPoint = startPoint
+  cir.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(cir)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set startPoint = Factory2D.CreatePoint(-2.7, 3)
+  Set endPoint = Factory2D.CreatePoint(2.7, 3)
+  Set line = factory2d.CreateLine(-2.7, 3, 2.7, 3)
+  line.StartPoint = startPoint
+  line.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(line)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set startPoint = Factory2D.CreatePoint(2.7, 3)
+  Set endPoint = Factory2D.CreatePoint(3, 3.3)
+  Set cir = Factory2D.CreateCircle(2.7, 3.3, 0.3, 4.7123889803847, 0)
+  cir.StartPoint = startPoint
+  cir.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(cir)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set startPoint = Factory2D.CreatePoint(3, 3.3)
+  Set endPoint = Factory2D.CreatePoint(3, 4)
+  Set line = factory2d.CreateLine(3, 3.3, 3, 4)
+  line.StartPoint = startPoint
+  line.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(line)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set startPoint = Factory2D.CreatePoint(3, 4)
+  Set endPoint = Factory2D.CreatePoint(-3, 4)
+  Set cir = Factory2D.CreateCircle(2.2204460492503e-16, 8.8817841970013e-16, 5, 0.92729521800161, 2.2142974355882)
+  cir.StartPoint = startPoint
+  cir.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(cir)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set startPoint = Factory2D.CreatePoint(-3, 4)
+  Set endPoint = Factory2D.CreatePoint(-3, 3.3)
+  Set line = factory2d.CreateLine(-3, 4, -3, 3.3)
+  line.StartPoint = startPoint
+  line.EndPoint = endPoint
+  Set ref1 = wpart.CreateReferenceFromObject(startPoint)
+  Set ref2 = wpart.CreateReferenceFromObject(endPoint)
+  Set ref3 = wpart.CreateReferenceFromObject(line)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  Set pk1 = Factory2D.CreatePoint(1.5, 0)
+  Set pk2 = Factory2D.CreatePoint(-1.5, 0)
+  Set line = Factory2d.CreateLine(1.5, 0, -1.5, 0)
+  sketch.CenterLine = line
+  Set ref1 = wpart.CreateReferenceFromObject(pk1)
+  Set ref2 = wpart.CreateReferenceFromObject(pk2)
+  Set ref3 = wpart.CreateReferenceFromObject(line)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref1)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref2)
+  Set constraint1 = constraints1.AddMonoEltCst(catCstTypeReference, ref3)
+
+  wPart.Update
+
+  Sketch.CloseEdition
+  Set sketch3 = sketch
+  wPart.Update
+  Set toolCall3=sketch3
+End Function
+
+Sub CreatePart1
+  On Error Resume Next
+
+  Set SaveCaseDoc = CATIA.Documents.Item("GE_6_E_dummy.CATPart")
+
+  If (Err.Number <> 0) Then
+    ucaseName = GetUCaseName("GE_6_E_dummy.CATPart")
+    Set SaveCaseDoc = CATIA.Documents.Item(ucaseName)
+  End If
+
+  Set PartDocument = SaveCaseDoc
+
+  If (IsObject(PartDocument)) Then
+    wPart.Activate
+    Exit Sub
+  End If
+
+  Set fso = CreateObject("Scripting.FileSystemObject")
+
+  If (fso.FileExists(storePath & "GE_6_E_dummy.CATPart")) Then
+    CATIA.Documents.Open(storePath & "GE_6_E_dummy.CATPart")
+    Set fso = Nothing
+    Exit Sub
+  ElseIf (fso.FileExists(storePath & GetUCaseName("GE_6_E_dummy.CATPart"))) Then
+    CATIA.Documents.Open(storePath & GetUCaseName("GE_6_E_dummy.CATPart"))
+    Set fso = Nothing
+    Exit Sub
+  End If
+
+  Set fso = Nothing
+
+  On Error Goto 0
+
+  Set PartDocument = CATIA.Documents.Add("Part")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NN", "Spherical plain bearings_dummy")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NT", "Radial spherical plain bearings")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NB", "GE 6 E_dummy")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NBSYN", "$DESIGNATION._dummy")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LINA", "GE 6 E_dummy")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("PRODUCTID", "183000002")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DESIGNATION", "GE 6 E")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LUBRICATION", "Regular relubrication – grease")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("XXDESIGN", "Steel/steel")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("XXSEAL", "-")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DD", "6.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("D", "14.0000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("B", "6.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("C", "4.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("I", "13.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DK", "10.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DD1", "0.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("R1", "0.300")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("R2", "0.300")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DDAMIN", "7.5")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DDAMAX", "8.0")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DAMIN", "9.5")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DAMAX", "12.6")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("RA", "0.30")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("RB", "0.30")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LOAD1", "3.400")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LOAD2", "17.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("K", "100")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("K0", "500")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("KM", "330")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("MASS", "0.004")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("PIM", "PIM_BLR_001")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("VENDOR", "SKF")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("SUPPLIER", "SKF")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("ARTICLENO", "GE 6 E_dummy")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("BOMINFO", "GE 6 E_dummy")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("CREATOR", "CADENAS GmbH")
+  Partdocument.GetItem(1).PartNumber = "GE 6 E_dummy-GE 6 E_dummy"
+  Partdocument.GetItem(1).Definition = "Cadenas PARTsolutions"
+  Partdocument.GetItem(1).DescriptionRef = "Radial spherical plain bearings"
+  Set mident = Partdocument.GetItem(1).UserRefProperties.CreateString("mident", "{$CADENAS_DATA\23d-libs\skf\bearings_units_and_housings\plain_bearings\spherical_plain_bearings\parts\blr_001_101_dummy.prj},190 {VTYP=3D},{NB=GE 6 E_dummy},{LINA=GE 6 E_dummy},{NN=Spherical plain bearings_dummy},{DATE=17.09.2018 06:41:51},{GEOMDATE=25.05.2018 08:20:28},{VERSION=},{LINEID=4200},{WBVAR=},{WBNUMERIC=}  {NB=GE 6 E_dummy},{LINA=GE 6 E_dummy},{KT=DUMMY},{PRODUCTID=183000002},{DESIGNATION=GE 6 E},{LUBRICATION=Regular relubrication – grease},{XXDESIGN=Steel/steel},{XXSEAL=-},{DD=6.000},{D=14.0000},{B=6.000},{C=4.000},{I=13.000},{DK=10.000},{DD1=0.000},{BB=MIN},{BB1=MIN},{M=MIN},{R1=0.300},{R2=0.300},{DDAMIN=7.5},{DDAMAX=8.0},{DAMIN=9.5},{DAMAX=12.6},{RA=0.30},{RB=0.30},{LOAD1=3.400},{LOAD2=17.000},{K=100},{K0=500},{KM=330},{MASS=0.004},{PIM=PIM_BLR_001},{DESIGN=spb_ge}")
+
+  set wpart=partDocument.Part
+  Dim skCoord(8)
+  Dim Body
+  Set Body = wPart.MainBody
+  Body.Name="GE 6 E_dummy"
+
+  Dim HybridBody1
+  Set HybridBody1 = wPart.HybridBodies.Add
+  HybridBody1.Name="GE 6 E_dummy Geo"
+
+  Partdocument.Selection.Clear
+  Partdocument.Selection.Add HybridBody1
+  Partdocument.Selection.VisProperties.SetShow 1
+  Partdocument.Selection.Clear
+  SaveDocument PartDocument, "GE_6_E_dummy.CATPart"
+End Sub
+
+
+Sub CreatePart2
+  On Error Resume Next
+
+  Set SaveCaseDoc = CATIA.Documents.Item("GE_6_E_or.CATPart")
+
+  If (Err.Number <> 0) Then
+    ucaseName = GetUCaseName("GE_6_E_or.CATPart")
+    Set SaveCaseDoc = CATIA.Documents.Item(ucaseName)
+  End If
+
+  Set PartDocument = SaveCaseDoc
+
+  If (IsObject(PartDocument)) Then
+    wPart.Activate
+    Exit Sub
+  End If
+
+  Set fso = CreateObject("Scripting.FileSystemObject")
+
+  If (fso.FileExists(storePath & "GE_6_E_or.CATPart")) Then
+    CATIA.Documents.Open(storePath & "GE_6_E_or.CATPart")
+    Set fso = Nothing
+    Exit Sub
+  ElseIf (fso.FileExists(storePath & GetUCaseName("GE_6_E_or.CATPart"))) Then
+    CATIA.Documents.Open(storePath & GetUCaseName("GE_6_E_or.CATPart"))
+    Set fso = Nothing
+    Exit Sub
+  End If
+
+  Set fso = Nothing
+
+  On Error Goto 0
+
+  Set PartDocument = CATIA.Documents.Add("Part")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NN", "Spherical plain bearings_or")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NT", "Radial spherical plain bearings")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NB", "GE 6 E_or")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NBSYN", "$DESIGNATION._or")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LINA", "GE 6 E_or")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("PRODUCTID", "183000002")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DESIGNATION", "GE 6 E")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LUBRICATION", "Regular relubrication – grease")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("XXDESIGN", "Steel/steel")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("XXSEAL", "-")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DD", "6.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("D", "14.0000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("B", "6.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("C", "4.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("I", "13.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DK", "10.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DD1", "0.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("R1", "0.300")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("R2", "0.300")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DDAMIN", "7.5")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DDAMAX", "8.0")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DAMIN", "9.5")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DAMAX", "12.6")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("RA", "0.30")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("RB", "0.30")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LOAD1", "3.400")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LOAD2", "17.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("K", "100")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("K0", "500")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("KM", "330")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("MASS", "0.004")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("PIM", "PIM_BLR_001")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("VENDOR", "SKF")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("SUPPLIER", "SKF")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("ARTICLENO", "GE 6 E_or")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("BOMINFO", "GE 6 E_or")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("CREATOR", "CADENAS GmbH")
+  Partdocument.GetItem(1).PartNumber = "GE 6 E_or-GE 6 E_or"
+  Partdocument.GetItem(1).Definition = "Cadenas PARTsolutions"
+  Partdocument.GetItem(1).DescriptionRef = "Radial spherical plain bearings"
+  Set mident = Partdocument.GetItem(1).UserRefProperties.CreateString("mident", "{$CADENAS_DATA\23d-libs\skf\bearings_units_and_housings\plain_bearings\spherical_plain_bearings\parts\blr_001_101_or.prj},181 {VTYP=3D},{NB=GE 6 E_or},{LINA=GE 6 E_or},{NN=Spherical plain bearings_or},{DATE=17.09.2018 06:41:51},{GEOMDATE=25.05.2018 08:23:01},{VERSION=},{LINEID=4200},{WBVAR=},{WBNUMERIC=}  {NB=GE 6 E_or},{LINA=GE 6 E_or},{KT=DUMMY},{PRODUCTID=183000002},{DESIGNATION=GE 6 E},{LUBRICATION=Regular relubrication – grease},{XXDESIGN=Steel/steel},{XXSEAL=-},{DD=6.000},{D=14.0000},{B=6.000},{C=4.000},{I=13.000},{DK=10.000},{DD1=0.000},{BB=MIN},{BB1=MIN},{M=MIN},{R1=0.300},{R2=0.300},{DDAMIN=7.5},{DDAMAX=8.0},{DAMIN=9.5},{DAMAX=12.6},{RA=0.30},{RB=0.30},{LOAD1=3.400},{LOAD2=17.000},{K=100},{K0=500},{KM=330},{MASS=0.004},{PIM=PIM_BLR_001},{DESIGN=spb_ge}")
+
+  set wpart=partDocument.Part
+  Dim skCoord(8)
+  Dim Body
+  Set Body = wPart.MainBody
+  Body.Name="GE 6 E_or"
+
+  Dim HybridBody1
+  Set HybridBody1 = wPart.HybridBodies.Add
+  HybridBody1.Name="GE 6 E_or Geo"
+
+  Set absref=toolCall0(wpart,HybridBody1)
+  Set sketch3=toolCall1(wpart,body,absref)
+  wPart.InWorkObject = Body
+  wPart.Update
+
+  Set shaft = wPart.ShapeFactory.AddNewShaft(sketch3)
+  shaft.firstAngle.value = 0
+  shaft.SecondAngle.value = 360
+  wPart.Update
+
+  Partdocument.Selection.Clear
+  Partdocument.Selection.Add HybridBody1
+  Partdocument.Selection.VisProperties.SetShow 1
+  Partdocument.Selection.Clear
+  SaveDocument PartDocument, "GE_6_E_or.CATPart"
+End Sub
+
+
+Sub CreatePart3
+  On Error Resume Next
+
+  Set SaveCaseDoc = CATIA.Documents.Item("GE_6_E_ir.CATPart")
+
+  If (Err.Number <> 0) Then
+    ucaseName = GetUCaseName("GE_6_E_ir.CATPart")
+    Set SaveCaseDoc = CATIA.Documents.Item(ucaseName)
+  End If
+
+  Set PartDocument = SaveCaseDoc
+
+  If (IsObject(PartDocument)) Then
+    wPart.Activate
+    Exit Sub
+  End If
+
+  Set fso = CreateObject("Scripting.FileSystemObject")
+
+  If (fso.FileExists(storePath & "GE_6_E_ir.CATPart")) Then
+    CATIA.Documents.Open(storePath & "GE_6_E_ir.CATPart")
+    Set fso = Nothing
+    Exit Sub
+  ElseIf (fso.FileExists(storePath & GetUCaseName("GE_6_E_ir.CATPart"))) Then
+    CATIA.Documents.Open(storePath & GetUCaseName("GE_6_E_ir.CATPart"))
+    Set fso = Nothing
+    Exit Sub
+  End If
+
+  Set fso = Nothing
+
+  On Error Goto 0
+
+  Set PartDocument = CATIA.Documents.Add("Part")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NN", "Spherical plain bearings_ir")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NT", "Radial spherical plain bearings")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NB", "GE 6 E_ir")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("NBSYN", "$DESIGNATION._ir")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LINA", "GE 6 E_ir")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("PRODUCTID", "183000002")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DESIGNATION", "GE 6 E")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LUBRICATION", "Regular relubrication – grease")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("XXDESIGN", "Steel/steel")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("XXSEAL", "-")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DD", "6.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("D", "14.0000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("B", "6.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("C", "4.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("I", "13.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DK", "10.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DD1", "0.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("R1", "0.300")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("R2", "0.300")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DDAMIN", "7.5")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DDAMAX", "8.0")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DAMIN", "9.5")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("DAMAX", "12.6")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("RA", "0.30")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("RB", "0.30")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LOAD1", "3.400")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("LOAD2", "17.000")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("K", "100")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("K0", "500")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("KM", "330")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("MASS", "0.004")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("PIM", "PIM_BLR_001")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("VENDOR", "SKF")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("SUPPLIER", "SKF")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("ARTICLENO", "GE 6 E_ir")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("BOMINFO", "GE 6 E_ir")
+  Set unused1 = Partdocument.GetItem(1).UserRefProperties.CreateString("CREATOR", "CADENAS GmbH")
+  Partdocument.GetItem(1).PartNumber = "GE 6 E_ir-GE 6 E_ir"
+  Partdocument.GetItem(1).Definition = "Cadenas PARTsolutions"
+  Partdocument.GetItem(1).DescriptionRef = "Radial spherical plain bearings"
+  Set mident = Partdocument.GetItem(1).UserRefProperties.CreateString("mident", "{$CADENAS_DATA\23d-libs\skf\bearings_units_and_housings\plain_bearings\spherical_plain_bearings\parts\blr_001_101_ir.prj},181 {VTYP=3D},{NB=GE 6 E_ir},{LINA=GE 6 E_ir},{NN=Spherical plain bearings_ir},{DATE=17.09.2018 06:41:50},{GEOMDATE=25.05.2018 08:21:37},{VERSION=},{LINEID=4200},{WBVAR=},{WBNUMERIC=}  {NB=GE 6 E_ir},{LINA=GE 6 E_ir},{KT=DUMMY},{PRODUCTID=183000002},{DESIGNATION=GE 6 E},{LUBRICATION=Regular relubrication – grease},{XXDESIGN=Steel/steel},{XXSEAL=-},{DD=6.000},{D=14.0000},{B=6.000},{C=4.000},{I=13.000},{DK=10.000},{DD1=0.000},{BB=MIN},{BB1=MIN},{M=MIN},{R1=0.300},{R2=0.300},{DDAMIN=7.5},{DDAMAX=8.0},{DAMIN=9.5},{DAMAX=12.6},{RA=0.30},{RB=0.30},{LOAD1=3.400},{LOAD2=17.000},{K=100},{K0=500},{KM=330},{MASS=0.004},{PIM=PIM_BLR_001},{DESIGN=spb_ge}")
+
+  set wpart=partDocument.Part
+  Dim skCoord(8)
+  Dim Body
+  Set Body = wPart.MainBody
+  Body.Name="GE 6 E_ir"
+
+  Dim HybridBody1
+  Set HybridBody1 = wPart.HybridBodies.Add
+  HybridBody1.Name="GE 6 E_ir Geo"
+
+  Set absref=toolCall2(wpart,HybridBody1)
+  Set sketch3=toolCall3(wpart,body,absref)
+  wPart.InWorkObject = Body
+  wPart.Update
+
+  Set shaft = wPart.ShapeFactory.AddNewShaft(sketch3)
+  shaft.firstAngle.value = 0
+  shaft.SecondAngle.value = 360
+  wPart.Update
+
+  Partdocument.Selection.Clear
+  Partdocument.Selection.Add HybridBody1
+  Partdocument.Selection.VisProperties.SetShow 1
+  Partdocument.Selection.Clear
+  SaveDocument PartDocument, "GE_6_E_ir.CATPart"
+End Sub
+
+
+' Create Assembly
+Sub CreateAsm3
+  On Error Resume Next
+
+  Set SaveCaseDoc = CATIA.Documents.Item("GE_6_E.CATProduct")
+
+  If (Err.Number <> 0) Then
+    ucaseName = GetUCaseName("GE_6_E.CATProduct")
+    Set SaveCaseDoc = CATIA.Documents.Item(ucaseName)
+  End If
+
+  Set PartDocument = SaveCaseDoc
+
+  If (IsObject(PartDocument)) Then
+    wPart.Activate
+    Exit Sub
+  End If
+
+  Set fso = CreateObject("Scripting.FileSystemObject")
+
+  If (fso.FileExists(storePath & "GE_6_E.CATProduct")) Then
+    CATIA.Documents.Open(storePath & "GE_6_E.CATProduct")
+    Set fso = Nothing
+    Exit Sub
+  ElseIf (fso.FileExists(storePath & GetUCaseName("GE_6_E.CATProduct"))) Then
+    CATIA.Documents.Open(storePath & GetUCaseName("GE_6_E.CATProduct"))
+    Set fso = Nothing
+    Exit Sub
+  End If
+
+  Set fso = Nothing
+
+  On Error Goto 0
+
+  Dim mat(11)
+  Dim pin(0)
+  Dim docName As String
+  Set ProductDocument = CATIA.Documents.Add("Product")
+  Dim Product
+  Set Product = ProductDocument.Product
+
+  Set unused1 = Product.UserRefProperties.CreateString("NN", "Spherical plain bearings")
+  Set unused1 = Product.UserRefProperties.CreateString("NT", "Radial spherical plain bearings")
+  Set unused1 = Product.UserRefProperties.CreateString("NB", "GE 6 E")
+  Set unused1 = Product.UserRefProperties.CreateString("NBSYN", "$DESIGNATION.")
+  Set unused1 = Product.UserRefProperties.CreateString("LINA", "GE 6 E")
+  Set unused1 = Product.UserRefProperties.CreateString("DESIGNATION", "GE 6 E")
+  Set unused1 = Product.UserRefProperties.CreateString("LUBRICATION", "Regular relubrication – grease")
+  Set unused1 = Product.UserRefProperties.CreateString("XXDESIGN", "Steel/steel")
+  Set unused1 = Product.UserRefProperties.CreateString("XXSEAL", "-")
+  Set unused1 = Product.UserRefProperties.CreateString("DD", "6.000")
+  Set unused1 = Product.UserRefProperties.CreateString("D", "14.0000")
+  Set unused1 = Product.UserRefProperties.CreateString("B", "6.000")
+  Set unused1 = Product.UserRefProperties.CreateString("C", "4.000")
+  Set unused1 = Product.UserRefProperties.CreateString("I", "13.000")
+  Set unused1 = Product.UserRefProperties.CreateString("DK", "10.000")
+  Set unused1 = Product.UserRefProperties.CreateString("DD1", "0.000")
+  Set unused1 = Product.UserRefProperties.CreateString("R1", "0.300")
+  Set unused1 = Product.UserRefProperties.CreateString("R2", "0.300")
+  Set unused1 = Product.UserRefProperties.CreateString("DDAMIN", "7.5")
+  Set unused1 = Product.UserRefProperties.CreateString("DDAMAX", "8.0")
+  Set unused1 = Product.UserRefProperties.CreateString("DAMIN", "9.5")
+  Set unused1 = Product.UserRefProperties.CreateString("DAMAX", "12.6")
+  Set unused1 = Product.UserRefProperties.CreateString("RA", "0.30")
+  Set unused1 = Product.UserRefProperties.CreateString("RB", "0.30")
+  Set unused1 = Product.UserRefProperties.CreateString("LOAD1", "3.400")
+  Set unused1 = Product.UserRefProperties.CreateString("LOAD2", "17.000")
+  Set unused1 = Product.UserRefProperties.CreateString("K", "100")
+  Set unused1 = Product.UserRefProperties.CreateString("K0", "500")
+  Set unused1 = Product.UserRefProperties.CreateString("KM", "330")
+  Set unused1 = Product.UserRefProperties.CreateString("MASS", "0.004")
+  Set unused1 = Product.UserRefProperties.CreateString("VENDOR", "SKF")
+  Set unused1 = Product.UserRefProperties.CreateString("SUPPLIER", "SKF")
+  Set unused1 = Product.UserRefProperties.CreateString("ARTICLENO", "GE 6 E")
+  Set unused1 = Product.UserRefProperties.CreateString("BOMINFO", "GE 6 E")
+  Set unused1 = Product.UserRefProperties.CreateString("CREATOR", "CADENAS GmbH")
+  Product.PartNumber = "GE 6 E-GE 6 E"
+  Product.Definition = "Cadenas PARTsolutions"
+  Product.DescriptionRef = "Radial spherical plain bearings"
+  Set mident = Product.UserRefProperties.CreateString("mident", "{$CADENAS_DATA\23d-libs\skf\bearings_units_and_housings\plain_bearings\spherical_plain_bearings\blr_001_101_asmtab.prj},186 {VTYP=3D},{STYP=ASSTAB},{NB=GE 6 E},{LINA=GE 6 E},{NN=Spherical plain bearings},{DATE=04.07.2018 10:34:04},{GEOMDATE=26.06.2018 13:24:21},{VERSION=},{LINEID=4200},{WBVAR=},{WBNUMERIC=}  {NB=GE 6 E},{LINA=GE 6 E},{KT=DUMMY},{PRODUCTID=183000002},{DESIGNATION=GE 6 E},{LUBRICATION=Regular relubrication – grease},{XXDESIGN=Steel/steel},{XXSEAL=-},{DD=6.000},{D=14.0000},{B=6.000},{C=4.000},{I=13.000},{DK=10.000},{DD1=0.000},{BB=MIN},{BB1=MIN},{M=MIN},{R1=0.300},{R2=0.300},{DDAMIN=7.5},{DDAMAX=8.0},{DAMIN=9.5},{DAMAX=12.6},{RA=0.30},{RB=0.30},{LOAD1=3.400},{LOAD2=17.000},{K=100},{K0=500},{KM=330},{MASS=0.004},{PIM=PIM_BLR_001},{DESIGN=spb_ge},{PPATH=parts/blr_001_101_asmtpl.prj}")
+
+  mat( 0) = 1.000000
+  mat( 1) = 0.000000
+  mat( 2) = 0.000000
+  mat( 3) = 0.000000
+  mat( 4) = 1.000000
+  mat( 5) = 0.000000
+  mat( 6) = 0.000000
+  mat( 7) = 0.000000
+  mat( 8) = 1.000000
+  mat( 9) = 0.000000
+  mat(10) = 0.000000
+  mat(11) = 0.000000
+  On Error Resume Next
+
+  Set SaveCaseDoc = CATIA.Documents.Item("GE_6_E_dummy.CATPart")
+
+  If (Err.Number <> 0) Then
+    ucaseName = GetUCaseName("GE_6_E_dummy.CATPart")
+    Set SaveCaseDoc = CATIA.Documents.Item(ucaseName)
+  End If
+
+  Set newProd = Product.Products.AddComponent(SaveCaseDoc.GetItem(1))
+  NewProd.Move.Apply mat
+
+  mat( 0) = 1.000000
+  mat( 1) = 0.000000
+  mat( 2) = 0.000000
+  mat( 3) = 0.000000
+  mat( 4) = 1.000000
+  mat( 5) = 0.000000
+  mat( 6) = 0.000000
+  mat( 7) = 0.000000
+  mat( 8) = 1.000000
+  mat( 9) = 0.000000
+  mat(10) = 0.000000
+  mat(11) = 0.000000
+  On Error Resume Next
+
+  Set SaveCaseDoc = CATIA.Documents.Item("GE_6_E_or.CATPart")
+
+  If (Err.Number <> 0) Then
+    ucaseName = GetUCaseName("GE_6_E_or.CATPart")
+    Set SaveCaseDoc = CATIA.Documents.Item(ucaseName)
+  End If
+
+  Set newProd = Product.Products.AddComponent(SaveCaseDoc.GetItem(1))
+  NewProd.Move.Apply mat
+
+  mat( 0) = 1.000000
+  mat( 1) = 0.000000
+  mat( 2) = 0.000000
+  mat( 3) = 0.000000
+  mat( 4) = 1.000000
+  mat( 5) = 0.000000
+  mat( 6) = 0.000000
+  mat( 7) = 0.000000
+  mat( 8) = 1.000000
+  mat( 9) = 0.000000
+  mat(10) = 0.000000
+  mat(11) = 0.000000
+  On Error Resume Next
+
+  Set SaveCaseDoc = CATIA.Documents.Item("GE_6_E_ir.CATPart")
+
+  If (Err.Number <> 0) Then
+    ucaseName = GetUCaseName("GE_6_E_ir.CATPart")
+    Set SaveCaseDoc = CATIA.Documents.Item(ucaseName)
+  End If
+
+  Set newProd = Product.Products.AddComponent(SaveCaseDoc.GetItem(1))
+  NewProd.Move.Apply mat
+
+
+
+  On Error Resume Next
+
+  Set SaveCaseDoc = CATIA.Documents.Item("GE_6_E_dummy.CATPart")
+
+  If (Err.Number <> 0) Then
+    ucaseName = GetUCaseName("GE_6_E_dummy.CATPart")
+    Set SaveCaseDoc = CATIA.Documents.Item(ucaseName)
+  End If
+
+  SaveCaseDoc.Close
+
+  On Error Resume Next
+
+  Set SaveCaseDoc = CATIA.Documents.Item("GE_6_E_or.CATPart")
+
+  If (Err.Number <> 0) Then
+    ucaseName = GetUCaseName("GE_6_E_or.CATPart")
+    Set SaveCaseDoc = CATIA.Documents.Item(ucaseName)
+  End If
+
+  SaveCaseDoc.Close
+
+  On Error Resume Next
+
+  Set SaveCaseDoc = CATIA.Documents.Item("GE_6_E_ir.CATPart")
+
+  If (Err.Number <> 0) Then
+    ucaseName = GetUCaseName("GE_6_E_ir.CATPart")
+    Set SaveCaseDoc = CATIA.Documents.Item(ucaseName)
+  End If
+
+  SaveCaseDoc.Close
+  SaveDocument ProductDocument, "GE_6_E.CATProduct"
+End Sub
+
+Sub CreatePSolMain
+  On Error Resume Next
+
+  Set PartDocument = CATIA.Documents.Item("GE_6_E.CATProduct")
+
+  If (IsObject(PartDocument)) Then
+    wPart.Activate
+    Exit Sub
+  End If
+
+  If (IsEmpty(readSPath)) Then
+    Exit Sub
+  End If
+
+  Set fso = CreateObject("Scripting.FileSystemObject")
+
+  If (fso.FileExists(storePath & "GE_6_E.CATProduct")) Then
+    CATIA.Documents.Open(storePath & "GE_6_E.CATProduct")
+    Set fso = Nothing
+    Exit Sub
+  End If
+
+  Set fso = Nothing
+
+  On Error Goto 0
+
+  CreatePart1
+  CreatePart2
+  CreatePart3
+  CreateAsm3
+
+
+End Sub
+
+CreatePSolMain
