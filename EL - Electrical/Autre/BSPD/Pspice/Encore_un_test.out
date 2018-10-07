@@ -1,0 +1,382 @@
+
+**** 10/07/18 11:30:01 *********** Evaluation PSpice (Nov 1999) **************
+
+ * D:\EPSA\STUF2019\EL - Electrical\Autre\BSPD\Pspice\Encore_un_test.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.1 - Web Update 1
+* Sun Oct 07 11:29:56 2018
+
+
+
+** Analysis setup **
+.tran 0ns 13s
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "D:\cours\STI\eea.lib"
+.lib "nom.lib"
+
+.INC "Encore_un_test.net"
+
+**** INCLUDING Encore_un_test.net ****
+* Schematics Netlist *
+
+
+
+R_R1         $N_0002 $N_0001  1k  
+R_R2         $N_0003 0  950  
+X_U1A         $N_0001 $N_0003 $N_0005 0 $N_0004 LM324
+R_R3         $N_0005 $N_0003  50  
+V_V1         $N_0005 0 5V
+R_R6         $N_0007 $N_0006  1k  
+R_R7         $N_0008 0  950  
+X_U3A         $N_0006 $N_0008 $N_0010 0 $N_0009 LM324
+R_R8         $N_0010 $N_0008  50  
+V_V2         $N_0010 0 5V
+C_C1         0 $N_0001  180uF  
+X_U5A         $N_0002 $N_0007 $G_DPWR $G_DGND 7404 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_U4A         $N_0011 $N_0007 $N_0009 $N_0010 $N_0012 $N_0013 $G_DPWR $G_DGND
++  7474 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+V_V3         $N_0014 0 5V
+R_R10         0 $N_0015  10k  
+X_U9A         $N_0016 $N_0011 $G_DPWR $G_DGND 7404 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_U6A         $N_0014 $N_0016 $N_0017 $N_0014 $N_0015 $N_0018 $G_DPWR $G_DGND
++  7474 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+R_R5         0 $N_0016  10k  
+X_U2A         $N_0019 $N_0002 $N_0004 $N_0005 $N_0016 $N_0020 $G_DPWR $G_DGND
++  7474 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+X_U8A         $N_0012 $N_0019 $G_DPWR $G_DGND 7404 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+R_R9         0 $N_0012  10k  
+X_U7A         $N_0016 $N_0012 $N_0017 $G_DPWR $G_DGND 7432 PARAMS:
++ IO_LEVEL=0 MNTYMXDLY=0
+C_C2         0 $N_0006  3  
+U_DSTM1         STIM(1,1)
++ $G_DPWR $G_DGND
++ $N_0002 
++ IO_STM
++ IO_LEVEL=0
++  0s 0  
++ 500ms 1  
++ 700ms 0  
++ 1s 1 
++ 1600ms 0  
+
+**** RESUMING Encore_un_test.cir ****
+.INC "Encore_un_test.als"
+
+
+
+**** INCLUDING Encore_un_test.als ****
+* Schematics Aliases *
+
+.ALIASES
+R_R1            R1(1=$N_0002 2=$N_0001 )
+R_R2            R2(1=$N_0003 2=0 )
+X_U1A           U1A(+=$N_0001 -=$N_0003 V+=$N_0005 V-=0 OUT=$N_0004 )
+R_R3            R3(1=$N_0005 2=$N_0003 )
+V_V1            V1(+=$N_0005 -=0 )
+R_R6            R6(1=$N_0007 2=$N_0006 )
+R_R7            R7(1=$N_0008 2=0 )
+X_U3A           U3A(+=$N_0006 -=$N_0008 V+=$N_0010 V-=0 OUT=$N_0009 )
+R_R8            R8(1=$N_0010 2=$N_0008 )
+V_V2            V2(+=$N_0010 -=0 )
+C_C1            C1(1=0 2=$N_0001 )
+X_U5A           U5A(A=$N_0002 Y=$N_0007 PWR=$G_DPWR GND=$G_DGND )
+X_U4A           U4A(CLRbar=$N_0011 D=$N_0007 CLK=$N_0009 PREbar=$N_0010
++  Q=$N_0012 Qbar=$N_0013 PWR=$G_DPWR GND=$G_DGND )
+V_V3            V3(+=$N_0014 -=0 )
+R_R10           R10(1=0 2=$N_0015 )
+X_U9A           U9A(A=$N_0016 Y=$N_0011 PWR=$G_DPWR GND=$G_DGND )
+X_U6A           U6A(CLRbar=$N_0014 D=$N_0016 CLK=$N_0017 PREbar=$N_0014
++  Q=$N_0015 Qbar=$N_0018 PWR=$G_DPWR GND=$G_DGND )
+R_R5            R5(1=0 2=$N_0016 )
+X_U2A           U2A(CLRbar=$N_0019 D=$N_0002 CLK=$N_0004 PREbar=$N_0005
++  Q=$N_0016 Qbar=$N_0020 PWR=$G_DPWR GND=$G_DGND )
+X_U8A           U8A(A=$N_0012 Y=$N_0019 PWR=$G_DPWR GND=$G_DGND )
+R_R9            R9(1=0 2=$N_0012 )
+X_U7A           U7A(A=$N_0016 B=$N_0012 Y=$N_0017 PWR=$G_DPWR GND=$G_DGND )
+C_C2            C2(1=0 2=$N_0006 )
+U_DSTM1          DSTM1(PIN1=$N_0002 )
+_    _($G_DPWR=$G_DPWR)
+_    _($G_DGND=$G_DGND)
+.ENDALIASES
+
+
+**** RESUMING Encore_un_test.cir ****
+.probe
+
+
+.END
+
+
+**** Generated AtoD and DtoA Interfaces ****
+
+*
+* Analog/Digital interface for node $N_0002
+*
+* Moving X_U2A.UFF1:D1 from analog node $N_0002 to new digital node $N_0002$AtoD
+X$$N_0002_AtoD1
++ $N_0002
++ $N_0002$AtoD
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+* Moving X_U5A.U1:IN1 from analog node $N_0002 to new digital node $N_0002$AtoD2
+X$$N_0002_AtoD2
++ $N_0002
++ $N_0002$AtoD2
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+* Moving U_DSTM1:OUT1 from analog node $N_0002 to new digital node $N_0002$DtoA
+X$$N_0002_DtoA1
++ $N_0002$DtoA
++ $N_0002
++ $G_DPWR
++ $G_DGND
++ DtoA_STM
++       PARAMS: DRVH=   0      DRVL=   0      CAPACITANCE=   0     
+*
+* Analog/Digital interface for node $N_0005
+*
+* Moving X_U2A.UFF1:PREBAR from analog node $N_0005 to new digital node $N_0005$AtoD
+X$$N_0005_AtoD1
++ $N_0005
++ $N_0005$AtoD
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+*
+* Analog/Digital interface for node $N_0007
+*
+* Moving X_U4A.UFF1:D1 from analog node $N_0007 to new digital node $N_0007$AtoD
+X$$N_0007_AtoD1
++ $N_0007
++ $N_0007$AtoD
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+* Moving X_U5A.U1:OUT1 from analog node $N_0007 to new digital node $N_0007$DtoA
+X$$N_0007_DtoA1
++ $N_0007$DtoA
++ $N_0007
++ $G_DPWR
++ $G_DGND
++ DtoA_STD
++       PARAMS: DRVH=  96.4   DRVL= 104    CAPACITANCE=   0     
+*
+* Analog/Digital interface for node $N_0010
+*
+* Moving X_U4A.UFF1:PREBAR from analog node $N_0010 to new digital node $N_0010$AtoD
+X$$N_0010_AtoD1
++ $N_0010
++ $N_0010$AtoD
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+*
+* Analog/Digital interface for node $N_0014
+*
+* Moving X_U6A.UFF1:CLRBAR from analog node $N_0014 to new digital node $N_0014$AtoD
+X$$N_0014_AtoD1
++ $N_0014
++ $N_0014$AtoD
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+* Moving X_U6A.UFF1:PREBAR from analog node $N_0014 to new digital node $N_0014$AtoD2
+X$$N_0014_AtoD2
++ $N_0014
++ $N_0014$AtoD2
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+*
+* Analog/Digital interface for node $N_0015
+*
+* Moving X_U6A.UFF1:Q1 from analog node $N_0015 to new digital node $N_0015$DtoA
+X$$N_0015_DtoA1
++ $N_0015$DtoA
++ $N_0015
++ $G_DPWR
++ $G_DGND
++ DtoA_STD
++       PARAMS: DRVH=  96.4   DRVL= 104    CAPACITANCE=   0     
+*
+* Analog/Digital interface for node $N_0016
+*
+* Moving X_U7A.U1:IN1 from analog node $N_0016 to new digital node $N_0016$AtoD
+X$$N_0016_AtoD1
++ $N_0016
++ $N_0016$AtoD
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+* Moving X_U6A.UFF1:D1 from analog node $N_0016 to new digital node $N_0016$AtoD2
+X$$N_0016_AtoD2
++ $N_0016
++ $N_0016$AtoD2
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+* Moving X_U9A.U1:IN1 from analog node $N_0016 to new digital node $N_0016$AtoD3
+X$$N_0016_AtoD3
++ $N_0016
++ $N_0016$AtoD3
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+* Moving X_U2A.UFF1:Q1 from analog node $N_0016 to new digital node $N_0016$DtoA
+X$$N_0016_DtoA1
++ $N_0016$DtoA
++ $N_0016
++ $G_DPWR
++ $G_DGND
++ DtoA_STD
++       PARAMS: DRVH=  96.4   DRVL= 104    CAPACITANCE=   0     
+*
+* Analog/Digital interface for node $N_0012
+*
+* Moving X_U7A.U1:IN2 from analog node $N_0012 to new digital node $N_0012$AtoD
+X$$N_0012_AtoD1
++ $N_0012
++ $N_0012$AtoD
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+* Moving X_U8A.U1:IN1 from analog node $N_0012 to new digital node $N_0012$AtoD2
+X$$N_0012_AtoD2
++ $N_0012
++ $N_0012$AtoD2
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+* Moving X_U4A.UFF1:Q1 from analog node $N_0012 to new digital node $N_0012$DtoA
+X$$N_0012_DtoA1
++ $N_0012$DtoA
++ $N_0012
++ $G_DPWR
++ $G_DGND
++ DtoA_STD
++       PARAMS: DRVH=  96.4   DRVL= 104    CAPACITANCE=   0     
+*
+* Analog/Digital interface for node $N_0004
+*
+* Moving X_U2A.UFF1:CLK from analog node $N_0004 to new digital node $N_0004$AtoD
+X$$N_0004_AtoD1
++ $N_0004
++ $N_0004$AtoD
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+*
+* Analog/Digital interface for node $N_0009
+*
+* Moving X_U4A.UFF1:CLK from analog node $N_0009 to new digital node $N_0009$AtoD
+X$$N_0009_AtoD1
++ $N_0009
++ $N_0009$AtoD
++ $G_DPWR
++ $G_DGND
++ AtoD_STD
++       PARAMS: CAPACITANCE=   0     
+*
+* Analog/Digital interface power supply subcircuits
+*
+
+X$DIGIFPWR 0 DIGIFPWR
+
+
+**** EXPANSION OF SUBCIRCUIT X$$N_0014_AtoD1 ****
+X$$N_0014_AtoD1.O0 $N_0014 $G_DGND X$$N_0014_AtoD1.DO74 DGTLNET
++ $N_0014$AtoD X$$N_0014_AtoD1.IO_STD
+X$$N_0014_AtoD1.C1 $N_0014 $G_DGND {CAPACITANCE+0.1pF}
+X$$N_0014_AtoD1.D0 $G_DGND $N_0014 X$$N_0014_AtoD1.D74CLMP
+
+ERROR -- EVALUATION VERSION analog Node Limit (64 Nodes) Exceeded!
+
+
+
+
+ABORTING SIMULATION
+**** 10/07/18 11:30:01 *********** Evaluation PSpice (Nov 1999) **************
+
+ * D:\EPSA\STUF2019\EL - Electrical\Autre\BSPD\Pspice\Encore_un_test.sch
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+
+  NUNODS  NCNODS  NUMNOD   NUMEL  DIODES    BJTS   JFETS   MFETS GASFETS   IGBTS
+
+      13      64      13     125      27       9       0       0       0       0
+
+NDIGITAL   NSTOP   NTTAR   NTTBR   NTTOV   IFILL    IOPS  PERSPA
+
+       8      13       0       0       0       0       0   0.000
+
+  NUMTTP  NUMRTP  NUMNIT   DIGTP  DIGEVT  DIGEVL
+
+       0       0       0       0       0       0
+
+                                 SECONDS      ITERATIONS
+
+
+          MATRIX SOLUTION           0.00               0
+
+          MATRIX LOAD               0.00
+
+          DIGITAL SIMULATION        0.00
+
+
+          READIN                     .02
+
+          SETUP                     0.00
+
+          DC SWEEP                  0.00               0
+
+          BIAS POINT                0.00               0
+
+          AC and NOISE              0.00               0
+
+          TRANSIENT ANALYSIS        0.00               0
+
+          OUTPUT                    0.00
+
+          OVERHEAD                   .02
+
+          TOTAL JOB TIME             .03
+
