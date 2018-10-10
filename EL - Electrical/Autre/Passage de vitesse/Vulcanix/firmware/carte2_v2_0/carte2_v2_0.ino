@@ -96,17 +96,17 @@ date_clignotement = millis();
   rapport_recherche = 0;    
   rapport_engage = rapport_recherche;
   
-  pinMode(palette_moins, INPUT);
-  pinMode(palette_plus, INPUT);
-  pinMode(homing, INPUT);
-  pinMode(neutre, INPUT);  
+  pinMode(palette_moins, INPUT_PULLUP);
+  pinMode(palette_plus, INPUT_PULLUP);
+  pinMode(homing, INPUT_PULLUP);
+  pinMode(neutre, INPUT_PULLUP);  
   pinMode(led_homing, OUTPUT);
   pinMode(GND_1, OUTPUT);
   
-  digitalWrite(palette_moins, HIGH);
+  /*digitalWrite(palette_moins, HIGH);
   digitalWrite(palette_plus, HIGH);  
   digitalWrite(homing, HIGH);
-  digitalWrite(neutre, HIGH);
+  digitalWrite(neutre, HIGH);*/ //et l'entrée en mode INPUT_PULLUP
   digitalWrite(led_homing, LOW);
   digitalWrite(GND_1, LOW);
   
