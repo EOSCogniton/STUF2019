@@ -8845,9 +8845,9 @@ Rapport V1.0</text>
 <instance part="IC1" gate="A" x="159.52" y="115.04"/>
 <instance part="LED1" gate="G$1" x="172.16" y="64.26"/>
 <instance part="X1" gate="-1" x="71.92" y="133.78" rot="R180"/>
-<instance part="X1" gate="-2" x="68.866" y="62.058" rot="R180"/>
+<instance part="X1" gate="-2" x="68.866" y="62.12" rot="R180"/>
 <instance part="X1" gate="-3" x="69.04" y="90.06" rot="R180"/>
-<instance part="X1" gate="-4" x="72.28" y="126.12" rot="R180"/>
+<instance part="X1" gate="-4" x="71.264" y="126.18" rot="R180"/>
 <instance part="GND1" gate="1" x="95.44" y="123.64"/>
 <instance part="GND2" gate="1" x="144.28" y="102.34"/>
 <instance part="GND3" gate="1" x="139.2" y="112.5"/>
@@ -8906,7 +8906,7 @@ Rapport V1.0</text>
 <wire x1="85.28" y1="126.18" x2="95.44" y2="126.18" width="0.1524" layer="91"/>
 <pinref part="X1" gate="-4" pin="S"/>
 <wire x1="85.28" y1="126.18" x2="75.72" y2="126.18" width="0.1524" layer="91"/>
-<wire x1="75.72" y1="126.18" x2="74.82" y2="126.12" width="0.1524" layer="91"/>
+<wire x1="75.72" y1="126.18" x2="73.804" y2="126.18" width="0.1524" layer="91"/>
 <junction x="85.28" y="126.18"/>
 </segment>
 <segment>
@@ -8989,7 +8989,7 @@ Rapport V1.0</text>
 <junction x="86.82" y="62.12"/>
 <label x="99.52" y="62.12" size="1.778" layer="95" xref="yes"/>
 <pinref part="X1" gate="-2" pin="S"/>
-<wire x1="71.406" y1="62.058" x2="71.66" y2="62.12" width="0.1524" layer="91"/>
+<wire x1="71.406" y1="62.12" x2="71.66" y2="62.12" width="0.1524" layer="91"/>
 <wire x1="71.66" y1="62.12" x2="86.82" y2="62.12" width="0.1524" layer="91"/>
 </segment>
 <segment>
