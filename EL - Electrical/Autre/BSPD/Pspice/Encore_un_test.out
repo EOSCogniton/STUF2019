@@ -1,5 +1,5 @@
 
-**** 10/07/18 11:30:01 *********** Evaluation PSpice (Nov 1999) **************
+**** 10/14/18 11:59:04 *********** Evaluation PSpice (Nov 1999) **************
 
  * D:\EPSA\STUF2019\EL - Electrical\Autre\BSPD\Pspice\Encore_un_test.sch
 
@@ -327,7 +327,7 @@ ERROR -- EVALUATION VERSION analog Node Limit (64 Nodes) Exceeded!
 
 
 ABORTING SIMULATION
-**** 10/07/18 11:30:01 *********** Evaluation PSpice (Nov 1999) **************
+**** 10/14/18 11:59:04 *********** Evaluation PSpice (Nov 1999) **************
 
  * D:\EPSA\STUF2019\EL - Electrical\Autre\BSPD\Pspice\Encore_un_test.sch
 
@@ -362,7 +362,7 @@ NDIGITAL   NSTOP   NTTAR   NTTBR   NTTOV   IFILL    IOPS  PERSPA
           DIGITAL SIMULATION        0.00
 
 
-          READIN                     .02
+          READIN                     .28
 
           SETUP                     0.00
 
@@ -376,7 +376,7 @@ NDIGITAL   NSTOP   NTTAR   NTTBR   NTTOV   IFILL    IOPS  PERSPA
 
           OUTPUT                    0.00
 
-          OVERHEAD                   .02
+          OVERHEAD                   .03
 
-          TOTAL JOB TIME             .03
+          TOTAL JOB TIME             .31
 

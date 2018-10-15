@@ -1,0 +1,50 @@
+85990707900 x50, pins #20
+85990708900 x10, pins #16
+
+85990703SA  x50, pins #20
+
+85990704MJ  x10, pins #16
+
+8STA01002SN x3, alim boite motored, alim boite avant, liaison BOTS-boite avant selon ancien plan(pas utilisé, en stock)
+
+8STA01099SN boite motored
+
+8STA01208PN ??
+
+8STA01497SN cable motored
+
+8STA01608PN puissance boite avant
+
+8STA01832SN boite avant
+
+8STA10898PA prévu dans un ancien plan de cablage, mais plus besoin. En stock.
+
+8STA11002PN commandé "au cas où", pas utilisé. En stock.
+
+8STA60898SA prévu dans un ancien plan de cablage, mais plus besoin. En stock.
+
+8STA61002PN x3 alim boite motored, alim boite avant, liaison BOTS-boite avant selon ancien plan(pas utilisé, en stock)
+
+8STA61002SN commandé "au cas où", pas utilisé. En stock.
+
+8STA61005PN PPF capteurs roue
+
+8STA61099PN boite motored
+
+8STA61208PA PPF
+
+8STA61208SN ??
+
+8STA61497PN cable motored
+
+8STA61608PN PPF
+
+8STA61608SN puissance boite avant
+
+8STA61832PN cable motored
+
+8STA71005SN PPF capteurs roue
+
+8STA71208SA PPF
+
+8STA71608SN PPF
