@@ -86,8 +86,8 @@
 <hole x="2" y="4" drill="3"/>
 <hole x="2" y="40" drill="3"/>
 <hole x="69" y="40" drill="3"/>
-<text x="12.7" y="35.8775" size="2.1844" layer="25">Afficheur 3
-digit Optimus</text>
+<text x="11.1125" y="35.56" size="2.1844" layer="25">Afficheur 3 digits 
+Optimus V1.0</text>
 <text x="8.5725" y="32.0675" size="1.778" layer="21" rot="R90">+5V</text>
 <text x="6.0325" y="32.0675" size="1.778" layer="21" rot="R90">SDA</text>
 <text x="3.4925" y="32.0675" size="1.778" layer="21" rot="R90">SCL</text>
