@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.1.0">
+<eagle version="9.2.1">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -40,7 +40,7 @@
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
@@ -86,7 +86,9 @@
 <dimension x1="3" y1="0" x2="3" y2="3" x3="-3.65125" y3="1.5" textsize="1.778" layer="48" dtype="diameter"/>
 <dimension x1="0" y1="3" x2="3" y2="3" x3="1.5" y3="-7.21845625" textsize="1.778" layer="48" dtype="diameter"/>
 <dimension x1="3" y1="3" x2="60" y2="3" x3="31.5" y3="-11.483896875" textsize="1.778" layer="48" dtype="diameter"/>
-<dimension x1="53" y1="38" x2="54.73675" y2="38.99181875" x3="61.51006875" y3="42.8599125" textsize="1.778" layer="48" dtype="radius"/>
+<dimension x1="53" y1="38" x2="54.587465625" y2="39.216534375" x3="60.778571875" y3="43.961028125" textsize="1.778" layer="48" dtype="radius"/>
+<dimension x1="48.895" y1="36.21" x2="49.53" y2="40.005" x3="66.675" y3="38.1075" textsize="1.778" layer="47" dtype="vertical"/>
+<dimension x1="53.9" y1="8.89" x2="55" y2="8" x3="54.45" y3="-2.8575" textsize="1.778" layer="47" dtype="horizontal"/>
 </plain>
 <libraries>
 <library name="rcl" urn="urn:adsk.eagle:library:334">
@@ -1554,16 +1556,25 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="500pF" x="4.445" y="8.89" rot="R270">
+<element name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="500pF" x="4.445" y="8.89" smashed="yes" rot="R270">
+<attribute name="NAME" x="5.969" y="11.176" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="SPICEPREFIX" value="C" x="4.445" y="8.89" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="1.651" y="11.176" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="135pF" x="11.43" y="30.1625" rot="R90">
+<element name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="135pF" x="11.43" y="30.1625" smashed="yes" rot="R90">
+<attribute name="NAME" x="9.906" y="27.8765" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="SPICEPREFIX" value="C" x="11.43" y="30.1625" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="14.224" y="27.8765" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="135 pF" x="4.445" y="24.13" rot="R90">
+<element name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="135 pF" x="4.445" y="24.13" smashed="yes" rot="R90">
+<attribute name="NAME" x="2.921" y="21.844" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="SPICEPREFIX" value="C" x="4.445" y="24.13" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="7.239" y="21.844" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="IC1" library="microchip-dspic" package="DIL18" value="MCP23008P" x="13.335" y="12.7" rot="R270"/>
+<element name="IC1" library="microchip-dspic" package="DIL18" value="MCP23008P" x="13.335" y="12.7" smashed="yes" rot="R270">
+<attribute name="NAME" x="10.795" y="24.5618" size="1.778" layer="25" ratio="10"/>
+<attribute name="VALUE" x="12.446" y="22.86" size="1.778" layer="27" ratio="10" rot="R270"/>
+</element>
 <element name="LED1" library="display-kingbright" library_urn="urn:adsk.eagle:library:213" package="SA10-21" package3d_urn="urn:adsk.eagle:package:13078/1" value="7-SEG_SA10-21" x="41.91" y="19.3675" smashed="yes" rot="MR0">
 <attribute name="MF" value="" x="41.91" y="19.3675" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MPN" value="" x="41.91" y="19.3675" size="1.778" layer="28" rot="MR0" display="off"/>
@@ -1572,11 +1583,15 @@ design rules under a new name.</description>
 <attribute name="OC_NEWARK" value="unknown" x="41.91" y="19.3675" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" x="53.0225" y="15.24" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="1k" x="21.2725" y="25.7175">
+<element name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="1k" x="21.2725" y="25.7175" smashed="yes">
+<attribute name="NAME" x="18.7325" y="27.0129" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="21.2725" y="25.7175" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="19.6469" y="25.2349" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="1k" x="4.445" y="16.1925" rot="R90">
+<element name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="1k" x="4.445" y="16.1925" smashed="yes" rot="R90">
+<attribute name="NAME" x="3.1496" y="13.6525" size="0.9906" layer="25" ratio="10" rot="R90"/>
 <attribute name="SPICEPREFIX" value="R" x="4.445" y="16.1925" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="4.9276" y="14.5669" size="0.9906" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="X1" library="con-molex" library_urn="urn:adsk.eagle:library:165" package="22-23-2041" value="22-23-2041" x="21.2725" y="31.4325" smashed="yes" rot="R180">
 <attribute name="MF" value="MOLEX" x="21.2725" y="31.4325" size="1.778" layer="27" rot="R180" display="off"/>

@@ -4,7 +4,7 @@ exporter le dessin en dxf
 
 l'ouvrir avec LibreCAD, le centrer et l'enregistrer sous format dxf R12
 
-ATENTION il ne faut pas que le chemin pour aller jusqu'au fichier soit trop long (pas dans un dossier de dossier de dossier...)
+ATTENTION il ne faut pas que le chemin pour aller jusqu'au fichier soit trop long (pas dans un dossier de dossier de dossier...)
 
 Ouvrir KiCad, lancer un nouveau projet et lancer l'atelier PCBnew
 
