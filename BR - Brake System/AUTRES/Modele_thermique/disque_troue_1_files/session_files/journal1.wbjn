@@ -1,0 +1,22 @@
+﻿# encoding: utf-8
+# Release 18.1
+SetScriptVersion(Version="18.1.463")
+template1 = GetTemplate(
+    TemplateName="Steady-State Thermal",
+    Solver="ANSYS")
+system1 = template1.CreateSystem()
+Save(Overwrite=True)
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.SetFile(FilePath=GetAbsoluteUserPathName("EPSA/freinage/modele/disque_vulcanix.igs"))
+geometry1.Edit()
+modelComponent1 = system1.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1 = system1.GetContainer(ComponentName="Model")
+model1.Edit()
+geometry1.Exit()
+model1.Exit()
+geometry1.SetFile(FilePath=GetAbsoluteUserPathName("EPSA/freinage/modele/disque_essai.igs"))
+modelComponent1.Refresh()
+model1.Edit()
+geometry1.Edit()
+Save(Overwrite=True)
