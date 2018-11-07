@@ -7,7 +7,7 @@
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -24057,12 +24057,14 @@ Source: http://products.nichicon.co.jp/en/pdf/XJA043/e-ud.pdf</description>
 <variantdefs>
 </variantdefs>
 <classes>
-<class number="0" name="default" width="0" drill="0">
+<class number="0" name="default" width="0.6096" drill="0">
+</class>
+<class number="1" name="Vcc12" width="1.016" drill="0">
 </class>
 </classes>
 <parts>
-<part name="DIGITALIN8-13" library="carduino" deviceset="PINHD-1X8" device="CLEANBIG"/>
-<part name="DIGITALIN0-7" library="carduino" deviceset="PINHD-1X8" device="CLEANBIG"/>
+<part name="DIGITALIN8_13" library="carduino" deviceset="PINHD-1X8" device="CLEANBIG"/>
+<part name="DIGITALIN0_7" library="carduino" deviceset="PINHD-1X8" device="CLEANBIG"/>
 <part name="POWER" library="carduino" deviceset="PINHD-1X6" device="CB"/>
 <part name="ANALOGIN" library="carduino" deviceset="PINHD-1X6" device="CB"/>
 <part name="R11" library="resistor" deviceset="R-EU_" device="0204/7" value="14k"/>
@@ -24071,13 +24073,13 @@ Source: http://products.nichicon.co.jp/en/pdf/XJA043/e-ud.pdf</description>
 <part name="R14" library="resistor" deviceset="R-EU_" device="0204/7" value="10k"/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
-<part name="Q1" library="transistors" deviceset="2N700*" device="_TO92" technology="0" value="2N7000"/>
+<part name="Q2" library="transistors" deviceset="2N700*" device="_TO92" technology="0" value="2N7000"/>
 <part name="R1" library="resistor" deviceset="R-EU_" device="0204/7" value="10k"/>
 <part name="R2" library="resistor" deviceset="R-EU_" device="0204/7" value="10k"/>
-<part name="Q2" library="transistors" deviceset="2N700*" device="_TO92" technology="0" value="2N7000"/>
+<part name="Q3" library="transistors" deviceset="2N700*" device="_TO92" technology="0" value="2N7000"/>
 <part name="R3" library="resistor" deviceset="R-EU_" device="0204/7" value="10k"/>
 <part name="R4" library="resistor" deviceset="R-EU_" device="0204/7" value="10k"/>
-<part name="Q3" library="transistors" deviceset="2N700*" device="_TO92" technology="0" value="2N7000"/>
+<part name="Q1" library="transistors" deviceset="2N700*" device="_TO92" technology="0" value="2N7000"/>
 <part name="R5" library="resistor" deviceset="R-EU_" device="0204/7" value="10k"/>
 <part name="R6" library="resistor" deviceset="R-EU_" device="0204/7" value="10k"/>
 <part name="Q4" library="transistors" deviceset="2N700*" device="_TO92" technology="0" value="2N7000"/>
@@ -24103,11 +24105,11 @@ Source: http://products.nichicon.co.jp/en/pdf/XJA043/e-ud.pdf</description>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
-<part name="J1" library="EP_molex_6410_7395" deviceset="22-?-07" device="05-7078"/>
-<part name="J2" library="EP_molex_6410_7395" deviceset="22-?-03" device="05-7038"/>
-<part name="J3" library="EP_molex_6410_7395" deviceset="22-?-02" device="05-7028"/>
+<part name="CONN_MOTOR" library="EP_molex_6410_7395" deviceset="22-?-07" device="05-7078"/>
+<part name="CONN_PALETTE" library="EP_molex_6410_7395" deviceset="22-?-03" device="05-7038"/>
+<part name="CONN_ECU_(DTA)" library="EP_molex_6410_7395" deviceset="22-?-02" device="05-7028"/>
 <part name="J5" library="EP_molex_6410_7395" deviceset="22-?-02" device="05-7028"/>
-<part name="J6" library="EP_molex_6410_7395" deviceset="22-?-02" device="05-7028"/>
+<part name="ALIM_ARDUINO" library="EP_molex_6410_7395" deviceset="22-?-02" device="05-7028"/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 </parts>
@@ -24138,8 +24140,8 @@ Vulcanix 2017/2018</text>
 <text x="-137.16" y="66.04" size="1.778" layer="249">Connection Pins Arduino</text>
 </plain>
 <instances>
-<instance part="DIGITALIN8-13" gate="A" x="-83.82" y="50.8" rot="R180"/>
-<instance part="DIGITALIN0-7" gate="A" x="-83.82" y="22.86" rot="R180"/>
+<instance part="DIGITALIN8_13" gate="A" x="-83.82" y="50.8" rot="R180"/>
+<instance part="DIGITALIN0_7" gate="A" x="-83.82" y="22.86" rot="R180"/>
 <instance part="POWER" gate="A" x="-101.6" y="50.8" rot="MR180"/>
 <instance part="ANALOGIN" gate="A" x="-101.6" y="22.86" smashed="yes" rot="MR180">
 <attribute name="NAME" x="-107.95" y="12.065" size="1.778" layer="95" rot="MR180"/>
@@ -24151,13 +24153,13 @@ Vulcanix 2017/2018</text>
 <instance part="R14" gate="G$1" x="-170.18" y="190.5" rot="R90"/>
 <instance part="GND6" gate="1" x="-185.42" y="180.34"/>
 <instance part="GND7" gate="1" x="-170.18" y="180.34"/>
-<instance part="Q1" gate="G$1" x="-243.84" y="167.64" rot="R270"/>
+<instance part="Q2" gate="G$1" x="-243.84" y="167.64" rot="R270"/>
 <instance part="R1" gate="G$1" x="-259.08" y="175.26" rot="R90"/>
 <instance part="R2" gate="G$1" x="-228.6" y="175.26" rot="R90"/>
-<instance part="Q2" gate="G$1" x="-243.84" y="137.16" rot="R270"/>
+<instance part="Q3" gate="G$1" x="-243.84" y="137.16" rot="R270"/>
 <instance part="R3" gate="G$1" x="-259.08" y="144.78" rot="R90"/>
 <instance part="R4" gate="G$1" x="-228.6" y="144.78" rot="R90"/>
-<instance part="Q3" gate="G$1" x="-243.84" y="198.12" rot="R270"/>
+<instance part="Q1" gate="G$1" x="-243.84" y="198.12" rot="R270"/>
 <instance part="R5" gate="G$1" x="-259.08" y="205.74" rot="R90"/>
 <instance part="R6" gate="G$1" x="-228.6" y="205.74" rot="R90"/>
 <instance part="Q4" gate="G$1" x="-243.84" y="104.14" rot="R270"/>
@@ -24183,24 +24185,24 @@ Vulcanix 2017/2018</text>
 <instance part="GND8" gate="1" x="-96.52" y="101.6"/>
 <instance part="GND5" gate="1" x="-76.2" y="101.6"/>
 <instance part="GND9" gate="1" x="-68.58" y="101.6"/>
-<instance part="J1" gate="-1" x="-165.1" y="96.52"/>
-<instance part="J1" gate="-2" x="-165.1" y="93.98"/>
-<instance part="J1" gate="-3" x="-165.1" y="91.44"/>
-<instance part="J1" gate="-4" x="-165.1" y="88.9"/>
-<instance part="J1" gate="-5" x="-165.1" y="86.36"/>
-<instance part="J1" gate="-6" x="-165.1" y="83.82"/>
-<instance part="J1" gate="-7" x="-165.1" y="81.28"/>
-<instance part="J2" gate="-1" x="-88.9" y="124.46" rot="R90"/>
-<instance part="J2" gate="-2" x="-86.36" y="124.46" rot="R90"/>
-<instance part="J2" gate="-3" x="-83.82" y="124.46" rot="R90"/>
-<instance part="J3" gate="-1" x="-48.26" y="137.16" rot="R180"/>
-<instance part="J3" gate="-2" x="-48.26" y="142.24" rot="R180"/>
+<instance part="CONN_MOTOR" gate="-1" x="-165.1" y="96.52"/>
+<instance part="CONN_MOTOR" gate="-2" x="-165.1" y="93.98"/>
+<instance part="CONN_MOTOR" gate="-3" x="-165.1" y="91.44"/>
+<instance part="CONN_MOTOR" gate="-4" x="-165.1" y="88.9"/>
+<instance part="CONN_MOTOR" gate="-5" x="-165.1" y="86.36"/>
+<instance part="CONN_MOTOR" gate="-6" x="-165.1" y="83.82"/>
+<instance part="CONN_MOTOR" gate="-7" x="-165.1" y="81.28"/>
+<instance part="CONN_PALETTE" gate="-1" x="-88.9" y="124.46" rot="R90"/>
+<instance part="CONN_PALETTE" gate="-2" x="-86.36" y="124.46" rot="R90"/>
+<instance part="CONN_PALETTE" gate="-3" x="-83.82" y="124.46" rot="R90"/>
+<instance part="CONN_ECU_(DTA)" gate="-1" x="-48.26" y="137.16" rot="R180"/>
+<instance part="CONN_ECU_(DTA)" gate="-2" x="-48.26" y="142.24" rot="R180"/>
 <instance part="J5" gate="-1" x="-114.3" y="205.74" rot="R180"/>
 <instance part="J5" gate="-2" x="-114.3" y="210.82" rot="R180"/>
-<instance part="J6" gate="-1" x="-114.3" y="175.26" rot="R180"/>
-<instance part="J6" gate="-2" x="-114.3" y="180.34" rot="R180"/>
+<instance part="ALIM_ARDUINO" gate="-1" x="-114.3" y="175.26" rot="R180"/>
+<instance part="ALIM_ARDUINO" gate="-2" x="-114.3" y="180.34" rot="R180"/>
 <instance part="GND10" gate="1" x="-127" y="43.18" rot="MR0"/>
-<instance part="GND11" gate="1" x="-58.42" y="58.42" rot="MR180"/>
+<instance part="GND11" gate="1" x="-66.04" y="40.64" rot="MR0"/>
 </instances>
 <busses>
 </busses>
@@ -24240,7 +24242,7 @@ Vulcanix 2017/2018</text>
 <segment>
 <wire x1="-111.76" y1="175.26" x2="-109.22" y2="175.26" width="0.1524" layer="91"/>
 <pinref part="GND3" gate="1" pin="GND"/>
-<pinref part="J6" gate="-1" pin="S"/>
+<pinref part="ALIM_ARDUINO" gate="-1" pin="S"/>
 </segment>
 <segment>
 <pinref part="GND4" gate="1" pin="GND"/>
@@ -24268,9 +24270,9 @@ Vulcanix 2017/2018</text>
 <pinref part="POWER" gate="A" pin="2"/>
 </segment>
 <segment>
-<wire x1="-81.28" y1="55.88" x2="-58.42" y2="55.88" width="0.1524" layer="91"/>
 <pinref part="GND11" gate="1" pin="GND"/>
-<pinref part="DIGITALIN8-13" gate="A" pin="7"/>
+<pinref part="DIGITALIN8_13" gate="A" pin="2"/>
+<wire x1="-66.04" y1="43.18" x2="-81.28" y2="43.18" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="IN0_5V" class="0">
@@ -24314,7 +24316,7 @@ Vulcanix 2017/2018</text>
 <segment>
 <wire x1="-167.64" y1="81.28" x2="-170.18" y2="81.28" width="0.1524" layer="91"/>
 <label x="-170.18" y="81.28" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="J1" gate="-7" pin="S"/>
+<pinref part="CONN_MOTOR" gate="-7" pin="S"/>
 </segment>
 </net>
 <net name="IN1_12V" class="0">
@@ -24326,28 +24328,28 @@ Vulcanix 2017/2018</text>
 <segment>
 <wire x1="-167.64" y1="83.82" x2="-185.42" y2="83.82" width="0.1524" layer="91"/>
 <label x="-185.42" y="83.82" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="J1" gate="-6" pin="S"/>
+<pinref part="CONN_MOTOR" gate="-6" pin="S"/>
 </segment>
 </net>
 <net name="OUT1_5V" class="0">
 <segment>
 <pinref part="R1" gate="G$1" pin="1"/>
 <wire x1="-259.08" y1="170.18" x2="-259.08" y2="167.64" width="0.1524" layer="91"/>
-<pinref part="Q1" gate="G$1" pin="S"/>
+<pinref part="Q2" gate="G$1" pin="S"/>
 <wire x1="-259.08" y1="167.64" x2="-254" y2="167.64" width="0.1524" layer="91"/>
 <wire x1="-259.08" y1="167.64" x2="-264.16" y2="167.64" width="0.1524" layer="91"/>
 <junction x="-259.08" y="167.64"/>
 <label x="-264.16" y="167.64" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="-81.28" y1="40.64" x2="-76.2" y2="40.64" width="0.1524" layer="91"/>
-<label x="-76.2" y="40.64" size="1.778" layer="95" rot="MR180" xref="yes"/>
-<pinref part="DIGITALIN8-13" gate="A" pin="1"/>
+<label x="-66.04" y="15.24" size="1.778" layer="95" rot="MR180" xref="yes"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="2"/>
+<wire x1="-66.04" y1="15.24" x2="-81.28" y2="15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="OUT1_12V" class="0">
 <segment>
-<pinref part="Q1" gate="G$1" pin="D"/>
+<pinref part="Q2" gate="G$1" pin="D"/>
 <wire x1="-233.68" y1="167.64" x2="-228.6" y2="167.64" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="-228.6" y1="167.64" x2="-228.6" y2="170.18" width="0.1524" layer="91"/>
@@ -24358,29 +24360,30 @@ Vulcanix 2017/2018</text>
 <segment>
 <wire x1="-167.64" y1="88.9" x2="-185.42" y2="88.9" width="0.1524" layer="91"/>
 <label x="-185.42" y="88.9" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="J1" gate="-4" pin="S"/>
+<pinref part="CONN_MOTOR" gate="-4" pin="S"/>
 </segment>
 </net>
 <net name="OUT2_5V" class="0">
 <segment>
 <pinref part="R3" gate="G$1" pin="1"/>
 <wire x1="-259.08" y1="139.7" x2="-259.08" y2="137.16" width="0.1524" layer="91"/>
-<pinref part="Q2" gate="G$1" pin="S"/>
+<pinref part="Q3" gate="G$1" pin="S"/>
 <wire x1="-259.08" y1="137.16" x2="-254" y2="137.16" width="0.1524" layer="91"/>
 <wire x1="-259.08" y1="137.16" x2="-264.16" y2="137.16" width="0.1524" layer="91"/>
 <junction x="-259.08" y="137.16"/>
 <label x="-264.16" y="137.16" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="-63.5" y="33.02" size="1.778" layer="95" xref="yes"/>
-<pinref part="DIGITALIN0-7" gate="A" pin="8"/>
-<wire x1="-81.28" y1="30.48" x2="-63.5" y2="30.48" width="0.1524" layer="91"/>
-<wire x1="-63.5" y1="30.48" x2="-63.5" y2="33.02" width="0.1524" layer="91"/>
+<label x="-66.04" y="19.05" size="1.778" layer="95" xref="yes"/>
+<wire x1="-68.58" y1="19.05" x2="-66.04" y2="19.05" width="0.1524" layer="91"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="3"/>
+<wire x1="-68.58" y1="19.05" x2="-68.58" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="17.78" x2="-81.28" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="OUT2_12V" class="0">
 <segment>
-<pinref part="Q2" gate="G$1" pin="D"/>
+<pinref part="Q3" gate="G$1" pin="D"/>
 <wire x1="-233.68" y1="137.16" x2="-228.6" y2="137.16" width="0.1524" layer="91"/>
 <pinref part="R4" gate="G$1" pin="1"/>
 <wire x1="-228.6" y1="137.16" x2="-228.6" y2="139.7" width="0.1524" layer="91"/>
@@ -24391,28 +24394,30 @@ Vulcanix 2017/2018</text>
 <segment>
 <wire x1="-167.64" y1="91.44" x2="-170.18" y2="91.44" width="0.1524" layer="91"/>
 <label x="-170.18" y="91.44" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="J1" gate="-3" pin="S"/>
+<pinref part="CONN_MOTOR" gate="-3" pin="S"/>
 </segment>
 </net>
 <net name="OUT0_5V" class="0">
 <segment>
 <pinref part="R5" gate="G$1" pin="1"/>
 <wire x1="-259.08" y1="200.66" x2="-259.08" y2="198.12" width="0.1524" layer="91"/>
-<pinref part="Q3" gate="G$1" pin="S"/>
+<pinref part="Q1" gate="G$1" pin="S"/>
 <wire x1="-259.08" y1="198.12" x2="-254" y2="198.12" width="0.1524" layer="91"/>
 <wire x1="-259.08" y1="198.12" x2="-264.16" y2="198.12" width="0.1524" layer="91"/>
 <junction x="-259.08" y="198.12"/>
 <label x="-264.16" y="198.12" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="-81.28" y1="43.18" x2="-58.42" y2="43.18" width="0.1524" layer="91"/>
-<label x="-58.42" y="43.18" size="1.778" layer="95" rot="MR180" xref="yes"/>
-<pinref part="DIGITALIN8-13" gate="A" pin="2"/>
+<label x="-66.04" y="10.16" size="1.778" layer="95" rot="MR180" xref="yes"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="1"/>
+<wire x1="-81.28" y1="12.7" x2="-68.58" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="-66.04" y1="10.16" x2="-68.58" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="10.16" x2="-68.58" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="OUT0_12V" class="0">
 <segment>
-<pinref part="Q3" gate="G$1" pin="D"/>
+<pinref part="Q1" gate="G$1" pin="D"/>
 <wire x1="-233.68" y1="198.12" x2="-228.6" y2="198.12" width="0.1524" layer="91"/>
 <pinref part="R6" gate="G$1" pin="1"/>
 <wire x1="-228.6" y1="198.12" x2="-228.6" y2="200.66" width="0.1524" layer="91"/>
@@ -24423,7 +24428,7 @@ Vulcanix 2017/2018</text>
 <segment>
 <wire x1="-167.64" y1="86.36" x2="-170.18" y2="86.36" width="0.1524" layer="91"/>
 <label x="-170.18" y="86.36" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="J1" gate="-5" pin="S"/>
+<pinref part="CONN_MOTOR" gate="-5" pin="S"/>
 </segment>
 </net>
 <net name="OUT3_5V" class="0">
@@ -24437,9 +24442,15 @@ Vulcanix 2017/2018</text>
 <label x="-264.16" y="104.14" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="-81.28" y1="27.94" x2="-48.26" y2="27.94" width="0.1524" layer="91"/>
-<label x="-48.26" y="27.94" size="1.778" layer="95" xref="yes"/>
-<pinref part="DIGITALIN0-7" gate="A" pin="7"/>
+<label x="-66.04" y="22.86" size="1.778" layer="95" xref="yes"/>
+<wire x1="-66.04" y1="22.86" x2="-68.58" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="22.86" x2="-68.58" y2="21.59" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="21.59" x2="-72.39" y2="21.59" width="0.1524" layer="91"/>
+<wire x1="-74.93" y1="21.59" x2="-71.12" y2="21.59" width="0.1524" layer="91"/>
+<wire x1="-71.12" y1="21.59" x2="-72.39" y2="21.59" width="0.1524" layer="91"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="4"/>
+<wire x1="-74.93" y1="21.59" x2="-74.93" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="-74.93" y1="20.32" x2="-81.28" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="OUT3_12V" class="0">
@@ -24455,7 +24466,7 @@ Vulcanix 2017/2018</text>
 <segment>
 <wire x1="-167.64" y1="93.98" x2="-185.42" y2="93.98" width="0.1524" layer="91"/>
 <label x="-185.42" y="93.98" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="J1" gate="-2" pin="S"/>
+<pinref part="CONN_MOTOR" gate="-2" pin="S"/>
 </segment>
 </net>
 <net name="OUT4_5V" class="0">
@@ -24469,9 +24480,12 @@ Vulcanix 2017/2018</text>
 <label x="-264.16" y="71.12" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="-81.28" y1="25.4" x2="-66.04" y2="25.4" width="0.1524" layer="91"/>
-<label x="-66.04" y="25.4" size="1.778" layer="95" xref="yes"/>
-<pinref part="DIGITALIN0-7" gate="A" pin="6"/>
+<label x="-66.04" y="26.67" size="1.778" layer="95" xref="yes"/>
+<wire x1="-66.04" y1="26.67" x2="-68.58" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="25.4" x2="-73.66" y2="25.4" width="0.1524" layer="91"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="5"/>
+<wire x1="-81.28" y1="22.86" x2="-73.66" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="-73.66" y1="22.86" x2="-73.66" y2="25.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="OUT4_12V" class="0">
@@ -24487,7 +24501,7 @@ Vulcanix 2017/2018</text>
 <segment>
 <wire x1="-167.64" y1="96.52" x2="-170.18" y2="96.52" width="0.1524" layer="91"/>
 <label x="-170.18" y="96.52" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="J1" gate="-1" pin="S"/>
+<pinref part="CONN_MOTOR" gate="-1" pin="S"/>
 </segment>
 </net>
 <net name="5V" class="0">
@@ -24495,7 +24509,7 @@ Vulcanix 2017/2018</text>
 <pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="-259.08" y1="180.34" x2="-259.08" y2="182.88" width="0.1524" layer="91"/>
 <label x="-259.08" y="185.42" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="Q1" gate="G$1" pin="G"/>
+<pinref part="Q2" gate="G$1" pin="G"/>
 <wire x1="-259.08" y1="182.88" x2="-259.08" y2="185.42" width="0.1524" layer="91"/>
 <wire x1="-246.38" y1="177.8" x2="-246.38" y2="182.88" width="0.1524" layer="91"/>
 <wire x1="-246.38" y1="182.88" x2="-259.08" y2="182.88" width="0.1524" layer="91"/>
@@ -24505,7 +24519,7 @@ Vulcanix 2017/2018</text>
 <pinref part="R5" gate="G$1" pin="2"/>
 <wire x1="-259.08" y1="210.82" x2="-259.08" y2="213.36" width="0.1524" layer="91"/>
 <label x="-259.08" y="218.44" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="Q3" gate="G$1" pin="G"/>
+<pinref part="Q1" gate="G$1" pin="G"/>
 <wire x1="-259.08" y1="213.36" x2="-259.08" y2="218.44" width="0.1524" layer="91"/>
 <wire x1="-246.38" y1="208.28" x2="-246.38" y2="213.36" width="0.1524" layer="91"/>
 <wire x1="-246.38" y1="213.36" x2="-259.08" y2="213.36" width="0.1524" layer="91"/>
@@ -24515,7 +24529,7 @@ Vulcanix 2017/2018</text>
 <pinref part="R3" gate="G$1" pin="2"/>
 <wire x1="-259.08" y1="149.86" x2="-259.08" y2="152.4" width="0.1524" layer="91"/>
 <label x="-259.08" y="157.48" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="Q2" gate="G$1" pin="G"/>
+<pinref part="Q3" gate="G$1" pin="G"/>
 <wire x1="-259.08" y1="152.4" x2="-259.08" y2="157.48" width="0.1524" layer="91"/>
 <wire x1="-246.38" y1="147.32" x2="-246.38" y2="152.4" width="0.1524" layer="91"/>
 <wire x1="-246.38" y1="152.4" x2="-259.08" y2="152.4" width="0.1524" layer="91"/>
@@ -24549,10 +24563,10 @@ Vulcanix 2017/2018</text>
 <segment>
 <wire x1="-86.36" y1="121.92" x2="-86.36" y2="106.68" width="0.1524" layer="91"/>
 <label x="-86.36" y="106.68" size="1.778" layer="95" rot="R270" xref="yes"/>
-<pinref part="J2" gate="-2" pin="S"/>
+<pinref part="CONN_PALETTE" gate="-2" pin="S"/>
 </segment>
 </net>
-<net name="12V" class="0">
+<net name="12V" class="1">
 <segment>
 <pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="-228.6" y1="180.34" x2="-228.6" y2="182.88" width="0.1524" layer="91"/>
@@ -24598,7 +24612,7 @@ Vulcanix 2017/2018</text>
 <segment>
 <wire x1="-111.76" y1="180.34" x2="-109.22" y2="180.34" width="0.1524" layer="91"/>
 <label x="-109.22" y="180.34" size="1.778" layer="95" xref="yes"/>
-<pinref part="J6" gate="-2" pin="S"/>
+<pinref part="ALIM_ARDUINO" gate="-2" pin="S"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -24620,13 +24634,15 @@ Vulcanix 2017/2018</text>
 <junction x="-104.14" y="119.38"/>
 <junction x="-96.52" y="119.38"/>
 <pinref part="R15" gate="G$1" pin="1"/>
-<pinref part="J2" gate="-1" pin="S"/>
+<pinref part="CONN_PALETTE" gate="-1" pin="S"/>
 <wire x1="-88.9" y1="121.92" x2="-88.9" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="-81.28" y1="15.24" x2="-73.66" y2="15.24" width="0.1524" layer="91"/>
-<label x="-73.66" y="15.24" size="1.778" layer="95" xref="yes"/>
-<pinref part="DIGITALIN0-7" gate="A" pin="2"/>
+<label x="-63.5" y="53.34" size="1.778" layer="95" xref="yes"/>
+<pinref part="DIGITALIN8_13" gate="A" pin="7"/>
+<wire x1="-81.28" y1="55.88" x2="-73.66" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="-63.5" y1="53.34" x2="-73.66" y2="53.34" width="0.1524" layer="91"/>
+<wire x1="-73.66" y1="53.34" x2="-73.66" y2="55.88" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PALETTE_DROITE" class="0">
@@ -24640,41 +24656,44 @@ Vulcanix 2017/2018</text>
 <pinref part="R17" gate="G$1" pin="1"/>
 <wire x1="-68.58" y1="119.38" x2="-76.2" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="-76.2" y1="119.38" x2="-76.2" y2="116.84" width="0.1524" layer="91"/>
-<pinref part="J2" gate="-3" pin="S"/>
+<pinref part="CONN_PALETTE" gate="-3" pin="S"/>
 <junction x="-76.2" y="119.38"/>
 <junction x="-68.58" y="119.38"/>
 </segment>
 <segment>
-<wire x1="-81.28" y1="12.7" x2="-73.66" y2="12.7" width="0.1524" layer="91"/>
-<wire x1="-73.66" y1="12.7" x2="-73.66" y2="10.16" width="0.1524" layer="91"/>
-<wire x1="-73.66" y1="10.16" x2="-71.12" y2="10.16" width="0.1524" layer="91"/>
-<label x="-71.12" y="10.16" size="1.778" layer="95" xref="yes"/>
-<pinref part="DIGITALIN0-7" gate="A" pin="1"/>
+<label x="-63.5" y="60.96" size="1.778" layer="95" xref="yes"/>
+<wire x1="-73.66" y1="60.96" x2="-63.5" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="-73.66" y1="60.96" x2="-73.66" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="DIGITALIN8_13" gate="A" pin="8"/>
+<wire x1="-73.66" y1="58.42" x2="-81.28" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SHIFT_CUT" class="0">
 <segment>
-<label x="-50.8" y="22.86" size="1.778" layer="95" xref="yes"/>
-<pinref part="DIGITALIN0-7" gate="A" pin="5"/>
-<wire x1="-81.28" y1="22.86" x2="-66.04" y2="22.86" width="0.1524" layer="91"/>
-<wire x1="-66.04" y1="22.86" x2="-50.8" y2="22.86" width="0.1524" layer="91"/>
+<label x="-67.31" y="34.29" size="1.778" layer="95" xref="yes"/>
+<wire x1="-69.85" y1="34.29" x2="-67.31" y2="34.29" width="0.1524" layer="91"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="8"/>
+<wire x1="-81.28" y1="30.48" x2="-69.85" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="-69.85" y1="30.48" x2="-69.85" y2="34.29" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="-45.72" y1="142.24" x2="-43.18" y2="142.24" width="0.1524" layer="91"/>
 <label x="-43.18" y="142.24" size="1.778" layer="95" xref="yes"/>
-<pinref part="J3" gate="-2" pin="S"/>
+<pinref part="CONN_ECU_(DTA)" gate="-2" pin="S"/>
 </segment>
 </net>
 <net name="SHIFT_POT" class="0">
 <segment>
-<wire x1="-81.28" y1="20.32" x2="-76.2" y2="20.32" width="0.1524" layer="91"/>
-<label x="-76.2" y="20.32" size="1.778" layer="95" xref="yes"/>
-<pinref part="DIGITALIN0-7" gate="A" pin="4"/>
+<label x="-67.31" y="30.48" size="1.778" layer="95" xref="yes"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="7"/>
+<wire x1="-81.28" y1="27.94" x2="-68.58" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="27.94" x2="-68.58" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="30.48" x2="-67.31" y2="30.48" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="-45.72" y1="137.16" x2="-43.18" y2="137.16" width="0.1524" layer="91"/>
 <label x="-43.18" y="137.16" size="1.778" layer="95" xref="yes"/>
-<pinref part="J3" gate="-1" pin="S"/>
+<pinref part="CONN_ECU_(DTA)" gate="-1" pin="S"/>
 </segment>
 </net>
 <net name="N$4" class="0">

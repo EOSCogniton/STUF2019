@@ -56,9 +56,7 @@ MCP_CAN CAN(53);
        3  shiftPot     Inform Gear (Digital PWM)                 Analog OUTPUT
        1  paletteIncrease Pallete for increasing the speed       Digital INPUT
        0  paletteDencrease Pallete for increasing the speed      Digital INPUT
-
-
-                                                                           */
+                                                                              */
 const int motorState0 = 15;//A1
 const int motorState1 = 14;//A0
 const int motorInput0 = 9;
