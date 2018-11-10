@@ -1,8 +1,8 @@
 #include <Wire.h>
 
-int Gear;
+signed Gear;
 
-void VisualizeGear(int Gear){
+void Gear_MAJ(signed Gear){
   Wire.begin(); //creates a Wire object
   Wire.beginTransmission(0x20); //begins talking to the slave device number 0Wire.write(0x00); //selects the IODIRA register
   Wire.write(0x00); //this sets all port A pins to outputs
@@ -33,6 +33,6 @@ void setup() {
 }
 
 void loop() {
-  VisualizeGear(Gear);
+  Gear_MAJ(Gear);
 
 }
