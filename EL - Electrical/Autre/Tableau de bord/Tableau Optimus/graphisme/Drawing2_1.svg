@@ -39,16 +39,16 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="511"
-     inkscape:window-height="403"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
      id="namedview126"
      showgrid="false"
-     inkscape:zoom="2.9698485"
-     inkscape:cx="281.62635"
-     inkscape:cy="167.79206"
-     inkscape:window-x="962"
-     inkscape:window-y="73"
-     inkscape:window-maximized="0"
+     inkscape:zoom="6.8165094"
+     inkscape:cx="286.49027"
+     inkscape:cy="246.02687"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
      inkscape:current-layer="g193"
      inkscape:snap-text-baseline="false" />
   <g
@@ -100,16 +100,16 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="171.89119"
+       x="173.39105"
        y="209.66777"
        id="text1010-9"
        inkscape:transform-center-x="14.388489"
        inkscape:transform-center-y="-1.1990408"><tspan
          sodipodi:role="line"
          id="tspan1008-2"
-         x="171.89119"
+         x="173.39105"
          y="209.66777"
-         style="font-size:4px">Temp/Bat</tspan></text>
+         style="font-size:4px">Display</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -581,5 +581,82 @@
          id="g3937"
          style="fill:none;stroke:#ff0000;stroke-width:0.13;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="99.516052"
+       y="223.46996"
+       id="text1002-11"><tspan
+         sodipodi:role="line"
+         id="tspan1000-5"
+         x="99.516052"
+         y="223.46996"
+         style="font-size:4px">LP On</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="99.516052"
+       y="217.75568"
+       id="text1002-12"><tspan
+         sodipodi:role="line"
+         id="tspan1000-6"
+         x="99.516052"
+         y="217.75568"
+         style="font-size:4px">HP On</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="99.684021"
+       y="228.70805"
+       id="text1002-17"><tspan
+         sodipodi:role="line"
+         id="tspan1000-57"
+         x="99.684021"
+         y="228.70805"
+         style="font-size:4px">Off</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="190.51605"
+       y="189.6449"
+       id="text1002-12-9"><tspan
+         sodipodi:role="line"
+         id="tspan1000-6-7"
+         x="190.51605"
+         y="189.6449"
+         style="font-size:4px">Bat</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="190.92035"
+       y="199.49997"
+       id="text1002-12-98"><tspan
+         sodipodi:role="line"
+         id="tspan1000-6-70"
+         x="190.92035"
+         y="199.49997"
+         style="font-size:4px">Temp</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="480.68402"
+       y="210.0009"
+       id="text1002-12-7"><tspan
+         sodipodi:role="line"
+         id="tspan1000-6-6"
+         x="480.68402"
+         y="210.0009"
+         style="font-size:4px">On</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="480.68402"
+       y="217.62556"
+       id="text1002-17-9"><tspan
+         sodipodi:role="line"
+         id="tspan1000-57-3"
+         x="480.68402"
+         y="217.62556"
+         style="font-size:4px">Off</tspan></text>
   </g>
 </svg>
