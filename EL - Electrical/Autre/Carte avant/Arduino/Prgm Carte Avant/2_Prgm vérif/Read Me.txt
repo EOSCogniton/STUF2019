@@ -1,0 +1,7 @@
+A= Carte Avant
+
+R= Recieve
+T= Transmit
+L= Led
+G= Gear
+B= Button
