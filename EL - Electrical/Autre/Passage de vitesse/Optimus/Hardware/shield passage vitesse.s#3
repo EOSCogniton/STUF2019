@@ -24138,33 +24138,6 @@ Vulcanix 2017/2018</text>
 <wire x1="-30.48" y1="-5.08" x2="-139.7" y2="-5.08" width="0.1524" layer="249"/>
 <wire x1="-139.7" y1="-5.08" x2="-139.7" y2="68.58" width="0.1524" layer="249"/>
 <text x="-137.16" y="66.04" size="1.778" layer="249">Connection Pins Arduino</text>
-<text x="-88.9" y="12.7" size="1.778" layer="97">7
-6
-5
-4
-3
-2
-1
-0</text>
-<text x="-88.9" y="43.18" size="1.778" layer="97">13
-12
-11
-10
- 9
- 8</text>
-<text x="-99.06" y="12.7" size="1.778" layer="97">14 A0
-15 A1
-16 A2
-17 A3
-18 A4
-19 A5
-</text>
-<text x="-99.06" y="43.18" size="1.778" layer="97">RESET
-3.3V
-5V
-GND
-GND
-Vin</text>
 </plain>
 <instances>
 <instance part="DIGITALIN8_13" gate="A" x="-83.82" y="50.8" rot="R180"/>
@@ -24369,9 +24342,9 @@ Vin</text>
 <label x="-264.16" y="167.64" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="-66.04" y="15.24" size="1.778" layer="95" rot="MR180" xref="yes"/>
+<label x="-63.5" y="15.24" size="1.778" layer="95" rot="MR180" xref="yes"/>
 <pinref part="DIGITALIN0_7" gate="A" pin="2"/>
-<wire x1="-66.04" y1="15.24" x2="-81.28" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="-63.5" y1="15.24" x2="-81.28" y2="15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="OUT1_12V" class="0">
@@ -24401,11 +24374,10 @@ Vin</text>
 <label x="-264.16" y="137.16" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="-66.04" y="19.05" size="1.778" layer="95" xref="yes"/>
-<wire x1="-68.58" y1="19.05" x2="-66.04" y2="19.05" width="0.1524" layer="91"/>
-<pinref part="DIGITALIN0_7" gate="A" pin="3"/>
-<wire x1="-68.58" y1="19.05" x2="-68.58" y2="17.78" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="17.78" x2="-81.28" y2="17.78" width="0.1524" layer="91"/>
+<label x="-63.5" y="33.02" size="1.778" layer="95" xref="yes"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="8"/>
+<wire x1="-81.28" y1="30.48" x2="-63.5" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="-63.5" y1="30.48" x2="-63.5" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="OUT2_12V" class="0">
@@ -24435,11 +24407,10 @@ Vin</text>
 <label x="-264.16" y="198.12" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="-66.04" y="10.16" size="1.778" layer="95" rot="MR180" xref="yes"/>
+<label x="-73.66" y="10.16" size="1.778" layer="95" rot="MR180" xref="yes"/>
+<wire x1="-73.66" y1="10.16" x2="-76.2" y2="12.7" width="0.1524" layer="91"/>
 <pinref part="DIGITALIN0_7" gate="A" pin="1"/>
-<wire x1="-81.28" y1="12.7" x2="-68.58" y2="12.7" width="0.1524" layer="91"/>
-<wire x1="-66.04" y1="10.16" x2="-68.58" y2="10.16" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="10.16" x2="-68.58" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="-81.28" y1="12.7" x2="-76.2" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="OUT0_12V" class="0">
@@ -24469,15 +24440,9 @@ Vin</text>
 <label x="-264.16" y="104.14" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="-66.04" y="22.86" size="1.778" layer="95" xref="yes"/>
-<wire x1="-66.04" y1="22.86" x2="-68.58" y2="22.86" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="22.86" x2="-68.58" y2="21.59" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="21.59" x2="-72.39" y2="21.59" width="0.1524" layer="91"/>
-<wire x1="-74.93" y1="21.59" x2="-71.12" y2="21.59" width="0.1524" layer="91"/>
-<wire x1="-71.12" y1="21.59" x2="-72.39" y2="21.59" width="0.1524" layer="91"/>
-<pinref part="DIGITALIN0_7" gate="A" pin="4"/>
-<wire x1="-74.93" y1="21.59" x2="-74.93" y2="20.32" width="0.1524" layer="91"/>
-<wire x1="-74.93" y1="20.32" x2="-81.28" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="-81.28" y1="27.94" x2="-48.26" y2="27.94" width="0.1524" layer="91"/>
+<label x="-48.26" y="27.94" size="1.778" layer="95" xref="yes"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="7"/>
 </segment>
 </net>
 <net name="OUT3_12V" class="0">
@@ -24507,12 +24472,9 @@ Vin</text>
 <label x="-264.16" y="71.12" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="-66.04" y="26.67" size="1.778" layer="95" xref="yes"/>
-<wire x1="-66.04" y1="26.67" x2="-68.58" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="25.4" x2="-73.66" y2="25.4" width="0.1524" layer="91"/>
-<pinref part="DIGITALIN0_7" gate="A" pin="5"/>
-<wire x1="-81.28" y1="22.86" x2="-73.66" y2="22.86" width="0.1524" layer="91"/>
-<wire x1="-73.66" y1="22.86" x2="-73.66" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="-81.28" y1="25.4" x2="-66.04" y2="25.4" width="0.1524" layer="91"/>
+<label x="-66.04" y="25.4" size="1.778" layer="95" xref="yes"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="6"/>
 </segment>
 </net>
 <net name="OUT4_12V" class="0">
@@ -24697,11 +24659,10 @@ Vin</text>
 </net>
 <net name="SHIFT_CUT" class="0">
 <segment>
-<label x="-67.31" y="34.29" size="1.778" layer="95" xref="yes"/>
-<wire x1="-69.85" y1="34.29" x2="-67.31" y2="34.29" width="0.1524" layer="91"/>
-<pinref part="DIGITALIN0_7" gate="A" pin="8"/>
-<wire x1="-81.28" y1="30.48" x2="-69.85" y2="30.48" width="0.1524" layer="91"/>
-<wire x1="-69.85" y1="30.48" x2="-69.85" y2="34.29" width="0.1524" layer="91"/>
+<label x="-50.8" y="22.86" size="1.778" layer="95" xref="yes"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="5"/>
+<wire x1="-81.28" y1="22.86" x2="-66.04" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="-66.04" y1="22.86" x2="-50.8" y2="22.86" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="-45.72" y1="142.24" x2="-43.18" y2="142.24" width="0.1524" layer="91"/>
@@ -24711,11 +24672,9 @@ Vin</text>
 </net>
 <net name="SHIFT_POT" class="0">
 <segment>
-<label x="-67.31" y="30.48" size="1.778" layer="95" xref="yes"/>
-<pinref part="DIGITALIN0_7" gate="A" pin="7"/>
-<wire x1="-81.28" y1="27.94" x2="-68.58" y2="27.94" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="27.94" x2="-68.58" y2="30.48" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="30.48" x2="-67.31" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="-81.28" y1="20.32" x2="-76.2" y2="20.32" width="0.1524" layer="91"/>
+<label x="-76.2" y="20.32" size="1.778" layer="95" xref="yes"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="4"/>
 </segment>
 <segment>
 <wire x1="-45.72" y1="137.16" x2="-43.18" y2="137.16" width="0.1524" layer="91"/>
