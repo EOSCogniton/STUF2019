@@ -1,8 +1,8 @@
 G=81000*10^6; %module de cisaillement en Pa
-D=0.014; %diamètre extérieur barre en m
-d=0.012; %diamètre intérieur barre en m
+D=0.015; %diamètre extérieur barre en m
+d=0.013; %diamètre intérieur barre en m
 L=0.488/2; %demi longueur de la barre en m
-A=0.099; % longueur du bras de levier en m
+A=0.113; % longueur du bras de levier en m
 K_bar=pi*G*(D^4-d^4)/(32*L*A^2 )
 E=210*10^9; % module d'Young en Pa
 h=2*D; % largeur du couteau
@@ -19,6 +19,8 @@ K_arb=K_bar*K_arm/(K_bar+K_arm)
 %   Raideur voulue de 100N/mm
 %   Raideur de 98.4N/mm obtenue
 %   D=0.014m ; d=0.012m ; A=76.5mm
+%   Raideur de 104 avec un nouveau couteau
+%   D=0.015; ; d=0.013m ; A=83mm
 
 % * Pour le KB moyen de la bar arrière :
 %   Raideur voulue de 88N/mm
