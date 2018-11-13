@@ -25,7 +25,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -40,17 +40,17 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1132"
-     inkscape:window-height="888"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
      id="namedview126"
      showgrid="false"
      inkscape:zoom="0.62932504"
-     inkscape:cx="854.45791"
+     inkscape:cx="1117.5174"
      inkscape:cy="857.13687"
-     inkscape:window-x="688"
-     inkscape:window-y="65"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="g339"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g193"
      inkscape:snap-text-baseline="false"
      inkscape:snap-bbox="true"
      units="mm" />
@@ -81,12 +81,12 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
-       x="488.0239"
+       x="487.0238"
        y="-371.57736"
        id="text1010"><tspan
          sodipodi:role="line"
          id="tspan1008"
-         x="488.0239"
+         x="487.0238"
          y="-371.57736"
          style="font-size:15.09183693px;stroke-width:3.77295923">Start</tspan></text>
     <text
@@ -103,14 +103,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
-       x="703.37958"
+       x="705.47943"
        y="-374.5029"
        id="text1010-9"
        inkscape:transform-center-x="54.287187"
        inkscape:transform-center-y="-4.5239291"><tspan
          sodipodi:role="line"
          id="tspan1008-2"
-         x="703.37958"
+         x="705.47943"
          y="-374.5029"
          style="font-size:15.09183693px;stroke-width:3.77295923">Display</tspan></text>
     <text
@@ -236,13 +236,13 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:14.26000309px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
-       x="1551.199"
+       x="1545.199"
        y="-301.45938"
        id="text1010-9-4"
        inkscape:transform-center-x="54.287238"
        inkscape:transform-center-y="-4.523932"><tspan
          sodipodi:role="line"
-         x="1551.199"
+         x="1545.199"
          y="-301.45938"
          style="font-size:15.09183693px;line-height:14.26000309px;stroke-width:3.77295923"
          id="tspan5149"><tspan
@@ -251,7 +251,7 @@
            style="line-height:14.26000309px;stroke-width:3.77295923"
            id="tspan5151" /></tspan><tspan
          sodipodi:role="line"
-         x="1551.199"
+         x="1545.199"
          y="-279.3587"
          style="font-size:15.09183693px;line-height:14.26000309px;stroke-width:3.77295923"
          id="tspan5158"><tspan
@@ -260,26 +260,26 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
-       x="1627.8074"
+       x="1625.8074"
        y="-289.61057"
        id="text1010-9-5"
        inkscape:transform-center-x="54.287135"
        inkscape:transform-center-y="-4.5239322"><tspan
          sodipodi:role="line"
          id="tspan1008-2-2"
-         x="1627.8074"
+         x="1625.8074"
          y="-289.61057"
          style="font-size:15.09183693px;stroke-width:3.77295923">Wet / Dry</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
-       x="1738.9973"
+       x="1734.9973"
        y="-289.61057"
        id="text1010-9-7"
        inkscape:transform-center-x="54.287227"
        inkscape:transform-center-y="-4.5239322"><tspan
          sodipodi:role="line"
-         x="1738.9973"
+         x="1734.9973"
          y="-289.61057"
          style="font-size:15.09183693px;stroke-width:3.77295923"
          id="tspan5092">Log</tspan></text>
