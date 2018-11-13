@@ -24138,6 +24138,33 @@ Vulcanix 2017/2018</text>
 <wire x1="-30.48" y1="-5.08" x2="-139.7" y2="-5.08" width="0.1524" layer="249"/>
 <wire x1="-139.7" y1="-5.08" x2="-139.7" y2="68.58" width="0.1524" layer="249"/>
 <text x="-137.16" y="66.04" size="1.778" layer="249">Connection Pins Arduino</text>
+<text x="-88.9" y="12.7" size="1.778" layer="97">7
+6
+5
+4
+3
+2
+1
+0</text>
+<text x="-88.9" y="43.18" size="1.778" layer="97">13
+12
+11
+10
+ 9
+ 8</text>
+<text x="-99.06" y="12.7" size="1.778" layer="97">14 A0
+15 A1
+16 A2
+17 A3
+18 A4
+19 A5
+</text>
+<text x="-99.06" y="43.18" size="1.778" layer="97">RESET
+3.3V
+5V
+GND
+GND
+Vin</text>
 </plain>
 <instances>
 <instance part="DIGITALIN8_13" gate="A" x="-83.82" y="50.8" rot="R180"/>
@@ -24170,7 +24197,7 @@ Vulcanix 2017/2018</text>
 <instance part="R10" gate="G$1" x="-228.6" y="78.74" rot="R90"/>
 <instance part="C1" gate="G$1" x="-96.52" y="205.74"/>
 <instance part="GND1" gate="1" x="-96.52" y="185.42"/>
-<instance part="GND2" gate="1" x="-134.62" y="45.72" rot="MR0"/>
+<instance part="GND2" gate="1" x="-116.84" y="45.72" rot="MR0"/>
 <instance part="F1" gate="1" x="-104.14" y="210.82"/>
 <instance part="GND3" gate="1" x="-109.22" y="172.72"/>
 <instance part="C4" gate="G$1" x="-104.14" y="114.3"/>
@@ -24201,7 +24228,7 @@ Vulcanix 2017/2018</text>
 <instance part="J5" gate="-2" x="-114.3" y="210.82" rot="R180"/>
 <instance part="ALIM_ARDUINO" gate="-1" x="-114.3" y="175.26" rot="R180"/>
 <instance part="ALIM_ARDUINO" gate="-2" x="-114.3" y="180.34" rot="R180"/>
-<instance part="GND10" gate="1" x="-127" y="43.18" rot="MR0"/>
+<instance part="GND10" gate="1" x="-111.76" y="43.18" rot="MR0"/>
 <instance part="GND11" gate="1" x="-66.04" y="40.64" rot="MR0"/>
 </instances>
 <busses>
@@ -24235,7 +24262,7 @@ Vulcanix 2017/2018</text>
 <junction x="-86.36" y="187.96"/>
 </segment>
 <segment>
-<wire x1="-104.14" y1="48.26" x2="-134.62" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="-104.14" y1="48.26" x2="-116.84" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="GND2" gate="1" pin="GND"/>
 <pinref part="POWER" gate="A" pin="3"/>
 </segment>
@@ -24265,7 +24292,7 @@ Vulcanix 2017/2018</text>
 <pinref part="GND9" gate="1" pin="GND"/>
 </segment>
 <segment>
-<wire x1="-104.14" y1="45.72" x2="-127" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="-104.14" y1="45.72" x2="-111.76" y2="45.72" width="0.1524" layer="91"/>
 <pinref part="GND10" gate="1" pin="GND"/>
 <pinref part="POWER" gate="A" pin="2"/>
 </segment>
@@ -24286,9 +24313,11 @@ Vulcanix 2017/2018</text>
 <junction x="-185.42" y="198.12"/>
 </segment>
 <segment>
-<wire x1="-104.14" y1="17.78" x2="-109.22" y2="17.78" width="0.1524" layer="91"/>
-<label x="-109.22" y="17.78" size="1.778" layer="95" rot="MR0" xref="yes"/>
+<label x="-110.49" y="19.05" size="1.778" layer="95" rot="MR0" xref="yes"/>
 <pinref part="ANALOGIN" gate="A" pin="2"/>
+<wire x1="-104.14" y1="17.78" x2="-109.22" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="-109.22" y1="17.78" x2="-109.22" y2="19.05" width="0.1524" layer="91"/>
+<wire x1="-109.22" y1="19.05" x2="-110.49" y2="19.05" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="IN1_5V" class="0">
@@ -24302,9 +24331,11 @@ Vulcanix 2017/2018</text>
 <junction x="-170.18" y="198.12"/>
 </segment>
 <segment>
-<wire x1="-104.14" y1="15.24" x2="-119.38" y2="15.24" width="0.1524" layer="91"/>
-<label x="-119.38" y="15.24" size="1.778" layer="95" rot="MR0" xref="yes"/>
+<label x="-110.49" y="13.97" size="1.778" layer="95" rot="MR0" xref="yes"/>
 <pinref part="ANALOGIN" gate="A" pin="1"/>
+<wire x1="-104.14" y1="15.24" x2="-109.22" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="-109.22" y1="15.24" x2="-109.22" y2="13.97" width="0.1524" layer="91"/>
+<wire x1="-109.22" y1="13.97" x2="-110.49" y2="13.97" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="IN0_12V" class="0">
@@ -24342,9 +24373,11 @@ Vulcanix 2017/2018</text>
 <label x="-264.16" y="167.64" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="-66.04" y="15.24" size="1.778" layer="95" rot="MR180" xref="yes"/>
+<label x="-66.04" y="13.97" size="1.778" layer="95" rot="MR180" xref="yes"/>
 <pinref part="DIGITALIN0_7" gate="A" pin="2"/>
-<wire x1="-66.04" y1="15.24" x2="-81.28" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="-81.28" y1="15.24" x2="-68.58" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="15.24" x2="-68.58" y2="13.97" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="13.97" x2="-66.04" y2="13.97" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="OUT1_12V" class="0">
@@ -24374,10 +24407,9 @@ Vulcanix 2017/2018</text>
 <label x="-264.16" y="137.16" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="-66.04" y="19.05" size="1.778" layer="95" xref="yes"/>
-<wire x1="-68.58" y1="19.05" x2="-66.04" y2="19.05" width="0.1524" layer="91"/>
+<label x="-66.04" y="17.78" size="1.778" layer="95" xref="yes"/>
+<wire x1="-68.58" y1="17.78" x2="-66.04" y2="17.78" width="0.1524" layer="91"/>
 <pinref part="DIGITALIN0_7" gate="A" pin="3"/>
-<wire x1="-68.58" y1="19.05" x2="-68.58" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="-68.58" y1="17.78" x2="-81.28" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -24442,15 +24474,12 @@ Vulcanix 2017/2018</text>
 <label x="-264.16" y="104.14" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="-66.04" y="22.86" size="1.778" layer="95" xref="yes"/>
-<wire x1="-66.04" y1="22.86" x2="-68.58" y2="22.86" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="22.86" x2="-68.58" y2="21.59" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="21.59" x2="-72.39" y2="21.59" width="0.1524" layer="91"/>
-<wire x1="-74.93" y1="21.59" x2="-71.12" y2="21.59" width="0.1524" layer="91"/>
-<wire x1="-71.12" y1="21.59" x2="-72.39" y2="21.59" width="0.1524" layer="91"/>
+<label x="-66.04" y="21.59" size="1.778" layer="95" xref="yes"/>
+<wire x1="-68.58" y1="20.32" x2="-69.85" y2="20.32" width="0.1524" layer="91"/>
 <pinref part="DIGITALIN0_7" gate="A" pin="4"/>
-<wire x1="-74.93" y1="21.59" x2="-74.93" y2="20.32" width="0.1524" layer="91"/>
-<wire x1="-74.93" y1="20.32" x2="-81.28" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="-66.04" y1="21.59" x2="-68.58" y2="21.59" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="21.59" x2="-68.58" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="-81.28" y1="20.32" x2="-69.85" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="OUT3_12V" class="0">
@@ -24480,12 +24509,11 @@ Vulcanix 2017/2018</text>
 <label x="-264.16" y="71.12" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="-66.04" y="26.67" size="1.778" layer="95" xref="yes"/>
-<wire x1="-66.04" y1="26.67" x2="-68.58" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="25.4" x2="-73.66" y2="25.4" width="0.1524" layer="91"/>
+<label x="-66.04" y="25.4" size="1.778" layer="95" xref="yes"/>
 <pinref part="DIGITALIN0_7" gate="A" pin="5"/>
-<wire x1="-81.28" y1="22.86" x2="-73.66" y2="22.86" width="0.1524" layer="91"/>
-<wire x1="-73.66" y1="22.86" x2="-73.66" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="-81.28" y1="22.86" x2="-68.58" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="22.86" x2="-68.58" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="-66.04" y1="25.4" x2="-68.58" y2="25.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="OUT4_12V" class="0">
@@ -24638,10 +24666,10 @@ Vulcanix 2017/2018</text>
 <wire x1="-88.9" y1="121.92" x2="-88.9" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<label x="-63.5" y="53.34" size="1.778" layer="95" xref="yes"/>
+<label x="-67.31" y="53.34" size="1.778" layer="95" xref="yes"/>
 <pinref part="DIGITALIN8_13" gate="A" pin="7"/>
 <wire x1="-81.28" y1="55.88" x2="-73.66" y2="55.88" width="0.1524" layer="91"/>
-<wire x1="-63.5" y1="53.34" x2="-73.66" y2="53.34" width="0.1524" layer="91"/>
+<wire x1="-67.31" y1="53.34" x2="-73.66" y2="53.34" width="0.1524" layer="91"/>
 <wire x1="-73.66" y1="53.34" x2="-73.66" y2="55.88" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -24661,8 +24689,8 @@ Vulcanix 2017/2018</text>
 <junction x="-68.58" y="119.38"/>
 </segment>
 <segment>
-<label x="-63.5" y="60.96" size="1.778" layer="95" xref="yes"/>
-<wire x1="-73.66" y1="60.96" x2="-63.5" y2="60.96" width="0.1524" layer="91"/>
+<label x="-67.31" y="60.96" size="1.778" layer="95" xref="yes"/>
+<wire x1="-73.66" y1="60.96" x2="-67.31" y2="60.96" width="0.1524" layer="91"/>
 <wire x1="-73.66" y1="60.96" x2="-73.66" y2="58.42" width="0.1524" layer="91"/>
 <pinref part="DIGITALIN8_13" gate="A" pin="8"/>
 <wire x1="-73.66" y1="58.42" x2="-81.28" y2="58.42" width="0.1524" layer="91"/>
@@ -24670,11 +24698,11 @@ Vulcanix 2017/2018</text>
 </net>
 <net name="SHIFT_CUT" class="0">
 <segment>
-<label x="-67.31" y="34.29" size="1.778" layer="95" xref="yes"/>
-<wire x1="-69.85" y1="34.29" x2="-67.31" y2="34.29" width="0.1524" layer="91"/>
+<label x="-67.31" y="33.02" size="1.778" layer="95" xref="yes"/>
+<wire x1="-68.58" y1="33.02" x2="-67.31" y2="33.02" width="0.1524" layer="91"/>
 <pinref part="DIGITALIN0_7" gate="A" pin="8"/>
-<wire x1="-81.28" y1="30.48" x2="-69.85" y2="30.48" width="0.1524" layer="91"/>
-<wire x1="-69.85" y1="30.48" x2="-69.85" y2="34.29" width="0.1524" layer="91"/>
+<wire x1="-81.28" y1="30.48" x2="-68.58" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="30.48" x2="-68.58" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="-45.72" y1="142.24" x2="-43.18" y2="142.24" width="0.1524" layer="91"/>
@@ -24684,11 +24712,11 @@ Vulcanix 2017/2018</text>
 </net>
 <net name="SHIFT_POT" class="0">
 <segment>
-<label x="-67.31" y="30.48" size="1.778" layer="95" xref="yes"/>
+<label x="-67.31" y="29.21" size="1.778" layer="95" xref="yes"/>
 <pinref part="DIGITALIN0_7" gate="A" pin="7"/>
 <wire x1="-81.28" y1="27.94" x2="-68.58" y2="27.94" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="27.94" x2="-68.58" y2="30.48" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="30.48" x2="-67.31" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="27.94" x2="-68.58" y2="29.21" width="0.1524" layer="91"/>
+<wire x1="-68.58" y1="29.21" x2="-67.31" y2="29.21" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="-45.72" y1="137.16" x2="-43.18" y2="137.16" width="0.1524" layer="91"/>
