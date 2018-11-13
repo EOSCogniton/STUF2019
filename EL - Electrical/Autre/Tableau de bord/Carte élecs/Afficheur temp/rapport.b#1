@@ -54,7 +54,7 @@
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
@@ -97,6 +97,10 @@ Optimus V1.0</text>
 <dimension x1="67.50019375" y1="40" x2="70.49980625" y2="40" x3="69" y3="46.355" textsize="1.778" layer="21" dtype="diameter"/>
 <dimension x1="2" y1="40" x2="2.2" y2="43" x3="8.5725" y3="41.5" textsize="1.778" layer="21" dtype="vertical"/>
 <dimension x1="2" y1="4" x2="-4" y2="6.35" x3="-1" y3="-2.8575" textsize="1.778" layer="21" dtype="horizontal"/>
+<dimension x1="72.35" y1="27.94" x2="75" y2="28.2575" x3="73.675" y3="26.67" textsize="1.778" layer="47" dtype="horizontal"/>
+<dimension x1="70.485" y1="31.5" x2="71.755" y2="43" x3="88.5825" y3="37.25" textsize="1.778" layer="47" dtype="vertical"/>
+<dimension x1="68.8975" y1="31.7" x2="68.2625" y2="12.7" x3="87.9475" y3="22.2" textsize="1.778" layer="47" dtype="vertical"/>
+<dimension x1="34.925" y1="22.86" x2="72.425" y2="22.86" x3="53.675" y3="-5.3975" textsize="1.778" layer="47" dtype="vertical"/>
 </plain>
 <libraries>
 <library name="rcl" urn="urn:adsk.eagle:library:334">
