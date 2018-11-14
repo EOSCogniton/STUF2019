@@ -19,7 +19,7 @@
 
 #include "Arduino.h"
 
-
+boolean PassageVitesseIsPossible(int rapportEngager);
 /**************************************************************************/
 /*!
     @brief  Find if the changement of speed is possible
@@ -28,7 +28,6 @@
                false - otherwise
 */
 /**************************************************************************/
-boolean PassageVitesseIsPossible(int rapportEngager);
 
 
    

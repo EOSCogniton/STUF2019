@@ -40,22 +40,20 @@
     @endcode
 */
 /**************************************************************************/
-boolean MotorIsLost(boolean motorState0, boolean motorState1);
+boolean MotorIsLost(boolean OUT1, boolean OUT2);
 
 /**************************************************************************/
 /*!
-    @brief  Indicate if the motor is arrested 
+    @brief  Indicate if there is no homing
     (Status = [motorState0 motorState1]
-              [1 0] Position reached, stopped or homming done
               [0 1] No homing )
     @param[in] boolean motorState0
     @param[in] boolean motorState1
-    @return    true - if ( (motorState0 == 1  AND motorState1 == 0) OR
-                           (motorState0 == 0  AND motorState1 == 1) )     
+    @return    true - if (motorState0 == 0  AND motorState1 == 1)   
                false - otherwise
 */
 /**************************************************************************/
-boolean MotorIsArrested(boolean motorState0, boolean motorState1);
+boolean NoHoming(boolean OUT1, boolean OUT2);
 
 /**************************************************************************/
 /*!
@@ -66,7 +64,16 @@ boolean MotorIsArrested(boolean motorState0, boolean motorState1);
                false - otherwise
 */
 /**************************************************************************/
-boolean MotorIsTurning(boolean motorState0, boolean motorState1);
+boolean MotorIsTurning(boolean OUT1, boolean OUT2);
 
-   
+/**************************************************************************/
+/*!
+    @brief  Indicate if the wanted position is reached or if the homing is done (depend of the motor command)
+    @param[in] boolean motorState0
+    @param[in] boolean motorState1
+    @return    true - if (motorState0 == 1  AND motorState1 == 0)     
+               false - otherwise
+*/
+/**************************************************************************/
+boolean PositionReachedOrHomingDone(boolean OUT1, boolean OUT2);
 #endif /* inclusion guards - FONCT_MOT_H */
