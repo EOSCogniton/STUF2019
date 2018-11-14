@@ -25,9 +25,9 @@ boolean MotorIsLost(boolean OUT1, boolean OUT2) //Indicate if the motor is in er
   return false;
 }
 
-boolean MotorIsArrested(boolean OUT1, boolean OUT2) //Indicate if the motor is arrested
+boolean NoHoming(boolean OUT1, boolean OUT2) //Indicate if there is no homing
 {
-  if ((OUT1==1 and OUT2==0) or (OUT1==0 and OUT2==1))
+  if (OUT1==0 and OUT2==1)
   {
     return true;
   }
@@ -42,3 +42,13 @@ boolean MotorIsTurning(boolean OUT1, boolean OUT2)// Indicate if the motor is tu
   }
   return false;
 }
+
+boolean PositionReachedOrHomingDone(boolean OUT1, boolean OUT2)
+{
+  if (OUT1==1 and OUT2==0)
+  {
+    return true;
+  }
+  return false;  
+}
+

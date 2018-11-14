@@ -49,6 +49,8 @@ boolean stateNeutre;
 boolean stateNeutreBefore;
 boolean error;
 const int neutrePosition = 2;
+const int homingPosition=1;
+boolean positionReached=true;
 
 //Table which will contain the combination of the motor input for each speed
 boolean motorPosition[16][4];//We use only 4 input motor to command it. The 5 is always 0
@@ -211,6 +213,7 @@ void loop()
     {
       if(PassageVitesseIsPossible(PositionEngager)) //On teste si le changement de vitesse est possible
       {
+        digitalWrite(shiftCut, LOW); //On coupe l'injection
         wantedPosition = PositionEngager+1;
       }
     }
@@ -225,10 +228,8 @@ void loop()
     {
       if(PassageVitesseIsPossible(PositionEngager)) //On teste si le changement de vitesse est possible
       {
-        //if (diffTime>200)
-          {
-            wantedPosition = PositionEngager-1;
-          }
+        digitalWrite(shiftCut, LOW); 
+        wantedPosition = PositionEngager-1;
       }
     }
     statePaletteIncreaseBefore = statePaletteIncrease;
@@ -240,30 +241,50 @@ void loop()
   {
     if(!stateNeutre)
     {
+      digitalWrite(shiftCut, LOW); 
       wantedPosition = neutrePosition;
     }
     stateNeutreBefore = !stateNeutre;
   }
   
   //Gestion bouton homing
-//  stateHoming= fct();
+  //stateHoming=;
   if(stateHoming != stateHomingBefore)
   {
     if(!stateHoming)
     {
-      //action_homing();
+      wantedPosition=homingPosition;
     }
     stateHomingBefore = !stateHomingBefore;
   }
   
-  EngageVitesse(wantedPosition);
-  
-  outMotor1 = digitalRead(motorState1);
-  outMotor2 = digitalRead(motorState2);
-  if (MotorIsLost(outMotor1,outMotor2))
+  do //Loop to put the correct position 
   {
-    error = true;
-  }
+    EngageVitesse(wantedPosition);
+    positionReached=true;
+    outMotor1 = digitalRead(motorState1);
+    outMotor2 = digitalRead(motorState2);
+    while(not(PositionReachedOrHomingDone(outMotor1,outMotor2))) //while the motor doesn't reach its position
+    {
+      outMotor1 = digitalRead(motorState1);
+      outMotor2 = digitalRead(motorState2);
+      if (MotorIsLost(outMotor1,outMotor2)) //error
+      {
+        //On nettoie l'erreur
+        digitalWrite(motorInput0,LOW);
+        digitalWrite(motorInput1,LOW);
+        digitalWrite(motorInput2,LOW);
+        digitalWrite(motorInput3,LOW);
+        digitalWrite(motorInput4,LOW);
+    
+        EngageVitesse(homingPosition); // Homing position for the motor
+        positionReached=false;
+      }
+      outMotor1 = digitalRead(motorState1);
+      outMotor2 = digitalRead(motorState2);
+    }
+  }while(not(positionReached));
+  digitalWrite(shiftCut, HIGH);//Open the injection
 }
 
 void EngageVitesse(int wantedPosition) //Function which pass the speed
