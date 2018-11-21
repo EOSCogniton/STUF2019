@@ -207,13 +207,17 @@ void loop()
 { 
   //Control of pallet+
   statePaletteIncrease = digitalRead(paletteIncrease);
-  if (statePaletteIncrease != statePaletteIncreaseBefore)
+  //If we only test if the state of the palette have changed or if we only test if the state is now 1, the test is going to be true 2 times:
+  // when the pilot presses the palette and when it is released. We want to change the speed only  one time for each press
+
+  //0 -> 1 = Detect the rising edge of signal statePaletteIncrease;
+  if (statePaletteIncrease != statePaletteIncreaseBefore)// Check if state have changed
   {
-    if (!statePaletteIncrease) //Le test précédent va être vrai 2 fois de suite: au moment ou le pilote appuie sur la palette et quand il la relache. Mais on n'a passé qu'une vitesse
+    if (!statePaletteIncrease) // Check if state changed to 1, so we have the rising edge 0 -> 1 
     {
-      if(PassageVitesseIsPossible(PositionEngager)) //On teste si le changement de vitesse est possible
+      if(PassageVitesseIsPossible(PositionEngager)) 
       {
-        digitalWrite(shiftCut, LOW); //On coupe l'injection
+        digitalWrite(shiftCut, LOW); //Stop injection
         wantedPosition = PositionEngager+1;
       }
     }
@@ -222,13 +226,17 @@ void loop()
   
   //Control of pallet-
   statePaletteDecrease = digitalRead(paletteDecrease);
-  if (statePaletteDecrease != statePaletteDecreaseBefore)
+  //If we only test if the state of the palette have changed or if we only test if the state is now 1, the test is going to be true 2 times:
+  // when the pilot presses the palette and when it is released. We want to change the speed only  one time for each press
+  
+  //0 -> 1 = Detect the rising edge of signal statePaletteDecrease;
+  if (statePaletteDecrease != statePaletteDecreaseBefore)// Check if state have changed
   {
-    if (!statePaletteDecrease) //Le test précédent va être vrai 2 fois de suite: au moment ou le pilote appuie sur la palette et quand il la relache. Il ne faut donc pas passer 2 vitesses pour un appui
+    if (!statePaletteDecrease) // Check if state changed to 1, so we have the rising edge 0 -> 1
     {
-      if(PassageVitesseIsPossible(PositionEngager)) //On teste si le changement de vitesse est possible
+      if(PassageVitesseIsPossible(PositionEngager))
       {
-        digitalWrite(shiftCut, LOW); 
+        digitalWrite(shiftCut, LOW); //Stop injection 
         wantedPosition = PositionEngager-1;
       }
     }
