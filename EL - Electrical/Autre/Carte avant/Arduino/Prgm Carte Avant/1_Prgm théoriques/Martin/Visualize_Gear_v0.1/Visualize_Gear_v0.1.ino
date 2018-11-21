@@ -2,7 +2,7 @@
 
 Adafruit_MCP23008 mcp;
 
-signed Gear;
+signed Gear=0;
 int Init_Seven_Segments;
 const int PINS_GEAR[5][7]={
   {0,0,0,1,0,0,0},
