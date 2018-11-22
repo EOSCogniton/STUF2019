@@ -13,12 +13,10 @@ K_arb=K_bar*K_arm/(K_bar+K_arm)
 % Conclusions sur l'influence des paramètres
 % * On veut minimiser l'influence du bras,
 %   donc maximiser sa raideur, ie épaisseur importante
-%   5mm semble pas mal
+%   2mm semble pas mal
 
 % * Ensemble de valeurs qui marchent pour le KB moyen de la bar avant :
 %   Raideur voulue de 100N/mm
-%   Raideur de 98.4N/mm obtenue
-%   D=0.014m ; d=0.012m ; A=76.5mm
 %   Raideur de 104 avec un nouveau couteau
 %   D=0.015; ; d=0.013m ; A=83mm
 
