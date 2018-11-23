@@ -9614,6 +9614,10 @@ http://www.st.com&lt;p&gt;
 <attribute name="VALUE" x="45.72" y="129.54" size="1.778" layer="96"/>
 </instance>
 <instance part="IC9" gate="P" x="139.7" y="129.54" smashed="yes"/>
+<instance part="IC5" gate="A" x="193.04" y="91.44" smashed="yes">
+<attribute name="NAME" x="185.42" y="102.235" size="1.778" layer="95"/>
+<attribute name="VALUE" x="185.42" y="81.28" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
