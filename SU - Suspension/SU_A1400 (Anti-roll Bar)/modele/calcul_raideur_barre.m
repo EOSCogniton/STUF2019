@@ -1,8 +1,8 @@
 G=81000*10^6; %module de cisaillement en Pa
-D=0.008; %diamètre extérieur barre en m
-d=0.007; %diamètre intérieur barre en m
+D=0.012; %diamètre extérieur barre en m
+d=0.009; %diamètre intérieur barre en m
 L=0.488/2; %demi longueur de la barre en m
-A=0.053; % longueur du bras de levier en m
+A=0.146; % longueur du bras de levier en m
 K_bar=pi*G*(D^4-d^4)/(32*L*A^2 )
 E=210*10^9; % module d'Young en Pa
 h=2*D; % largeur du couteau
