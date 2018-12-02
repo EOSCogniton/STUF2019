@@ -8793,7 +8793,6 @@ DIN A4, landscape with location and doc. field</description>
 <part name="P+1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="P+2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="500pF"/>
-<part name="P+3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="135pF"/>
 <part name="GND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="135 pF"/>
@@ -8811,6 +8810,7 @@ DIN A4, landscape with location and doc. field</description>
 <part name="RF" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="470"/>
 <part name="RG" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="470"/>
 <part name="FRAME1" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A4L-LOC" device=""/>
+<part name="P+3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8857,7 +8857,6 @@ Rapport V1.0</text>
 <instance part="P+1" gate="1" x="97.98" y="136.34"/>
 <instance part="P+2" gate="1" x="177.3" y="127.74"/>
 <instance part="C1" gate="G$1" x="85.28" y="131.26"/>
-<instance part="P+3" gate="1" x="184.86" y="79"/>
 <instance part="C2" gate="G$1" x="86.82" y="87.52"/>
 <instance part="GND4" gate="1" x="86.82" y="79.9"/>
 <instance part="C3" gate="G$1" x="86.82" y="59.58"/>
@@ -8898,6 +8897,7 @@ Rapport V1.0</text>
 <instance part="FRAME1" gate="G$1" x="0" y="0" smashed="yes">
 <attribute name="SHEET" x="230.505" y="5.08" size="2.54" layer="94"/>
 </instance>
+<instance part="P+3" gate="1" x="185.682" y="78.21"/>
 </instances>
 <busses>
 </busses>
@@ -8973,15 +8973,15 @@ Rapport V1.0</text>
 <segment>
 <pinref part="LED1" gate="G$1" pin="DP"/>
 <pinref part="P+3" gate="1" pin="+5V"/>
-<wire x1="182.32" y1="56.64" x2="184.86" y2="56.64" width="0.1524" layer="91"/>
-<wire x1="184.86" y1="56.64" x2="184.86" y2="76.46" width="0.1524" layer="91"/>
+<wire x1="182.32" y1="56.64" x2="185.682" y2="56.64" width="0.1524" layer="91"/>
+<wire x1="185.682" y1="56.64" x2="185.682" y2="75.67" width="0.1524" layer="91"/>
 <pinref part="LED1" gate="G$1" pin="COM@2"/>
-<wire x1="182.32" y1="69.34" x2="184.86" y2="69.34" width="0.1524" layer="91"/>
-<wire x1="184.86" y1="69.34" x2="184.86" y2="76.46" width="0.1524" layer="91"/>
-<junction x="184.86" y="76.46"/>
+<wire x1="182.32" y1="69.34" x2="185.642" y2="69.32" width="0.1524" layer="91"/>
+<wire x1="185.642" y1="69.32" x2="185.682" y2="75.67" width="0.1524" layer="91"/>
+<junction x="185.682" y="75.67"/>
 <pinref part="LED1" gate="G$1" pin="COM@1"/>
-<wire x1="182.32" y1="71.88" x2="184.86" y2="71.88" width="0.1524" layer="91"/>
-<wire x1="184.86" y1="71.88" x2="184.86" y2="76.46" width="0.1524" layer="91"/>
+<wire x1="182.32" y1="71.88" x2="185.682" y2="71.88" width="0.1524" layer="91"/>
+<wire x1="185.682" y1="71.88" x2="185.682" y2="75.67" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SCL" class="0">
