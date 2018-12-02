@@ -8723,8 +8723,9 @@ DIN A4, landscape with location and doc. field</description>
 <part name="P+10" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="R2DP" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="470"/>
 <part name="P+11" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
-<part name="R3AB" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="470"/>
+<part name="R3AB" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="230"/>
 <part name="P+12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
+<part name="R3AB1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="230"/>
 </parts>
 <sheets>
 <sheet>
@@ -8929,6 +8930,10 @@ Temp V1.0</text>
 </instance>
 <instance part="P+12" gate="1" x="46.99" y="36.83" smashed="yes">
 <attribute name="VALUE" x="44.45" y="31.75" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R3AB1" gate="G$1" x="100.33" y="149.86" smashed="yes" rot="R180">
+<attribute name="NAME" x="108.22" y="151.9414" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="97.64" y="152.162" size="1.778" layer="96" rot="R180"/>
 </instance>
 </instances>
 <busses>
@@ -9219,7 +9224,11 @@ Temp V1.0</text>
 <pinref part="R3AB" gate="G$1" pin="2"/>
 <wire x1="95.25" y1="152.4" x2="93.98" y2="152.4" width="0.1524" layer="91"/>
 <label x="93.98" y="148.59" size="1.778" layer="95" rot="R180" xref="yes"/>
-<wire x1="93.98" y1="152.4" x2="93.98" y2="148.59" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="152.4" x2="93.98" y2="149.86" width="0.1524" layer="91"/>
+<pinref part="R3AB1" gate="G$1" pin="2"/>
+<wire x1="93.98" y1="149.86" x2="93.98" y2="148.59" width="0.1524" layer="91"/>
+<wire x1="95.25" y1="149.86" x2="93.98" y2="149.86" width="0.1524" layer="91"/>
+<junction x="93.98" y="149.86"/>
 </segment>
 </net>
 <net name="GP11" class="0">
@@ -9403,10 +9412,13 @@ Temp V1.0</text>
 <pinref part="R3AB" gate="G$1" pin="1"/>
 <pinref part="LED2" gate="DIG1" pin="A"/>
 <wire x1="105.41" y1="152.4" x2="107.95" y2="152.4" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$16" class="0">
+<segment>
 <pinref part="LED2" gate="DIG1" pin="B"/>
 <wire x1="107.95" y1="149.86" x2="105.41" y2="149.86" width="0.1524" layer="91"/>
-<wire x1="105.41" y1="149.86" x2="105.41" y2="152.4" width="0.1524" layer="91"/>
-<junction x="105.41" y="152.4"/>
+<pinref part="R3AB1" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>
