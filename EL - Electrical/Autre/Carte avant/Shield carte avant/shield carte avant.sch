@@ -18011,9 +18011,9 @@ Details see: &lt;a href="http://katalog.we-online.de/en/pbs/WE-TI?"&gt;http://ka
 <wire x1="-22.86" y1="157.48" x2="-144.78" y2="157.48" width="0.1524" layer="249"/>
 <wire x1="-144.78" y1="157.48" x2="-144.78" y2="228.6" width="0.1524" layer="249"/>
 <text x="-142.24" y="223.52" size="2.54" layer="249">ALIMENTATION 12V</text>
-<wire x1="-157.48" y1="68.58" x2="-91.44" y2="68.58" width="0.1524" layer="249"/>
-<wire x1="-91.44" y1="68.58" x2="-91.44" y2="-5.08" width="0.1524" layer="249"/>
-<wire x1="-91.44" y1="-5.08" x2="-157.48" y2="-5.08" width="0.1524" layer="249"/>
+<wire x1="-157.48" y1="68.58" x2="-86.36" y2="68.58" width="0.1524" layer="249"/>
+<wire x1="-86.36" y1="68.58" x2="-86.36" y2="-5.08" width="0.1524" layer="249"/>
+<wire x1="-86.36" y1="-5.08" x2="-157.48" y2="-5.08" width="0.1524" layer="249"/>
 <wire x1="-157.48" y1="-5.08" x2="-157.48" y2="68.58" width="0.1524" layer="249"/>
 <text x="-144.78" y="63.5" size="2.54" layer="249">Connection Pins Arduino</text>
 <wire x1="-144.78" y1="137.16" x2="-22.86" y2="137.16" width="0.1524" layer="97"/>
@@ -18243,14 +18243,6 @@ Details see: &lt;a href="http://katalog.we-online.de/en/pbs/WE-TI?"&gt;http://ka
 </net>
 <net name="5V" class="0">
 <segment>
-<pinref part="J1" gate="-1" pin="S"/>
-<wire x1="-38.1" y1="50.8" x2="-45.72" y2="50.8" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="J1" gate="-6" pin="S"/>
-<wire x1="-38.1" y1="25.4" x2="-45.72" y2="25.4" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="IC1" gate="A" pin="FB"/>
 <wire x1="-81.28" y1="121.92" x2="-45.72" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="C3" gate="G$1" pin="2"/>
@@ -18262,51 +18254,81 @@ Details see: &lt;a href="http://katalog.we-online.de/en/pbs/WE-TI?"&gt;http://ka
 <label x="-40.64" y="116.84" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="J1" gate="-10" pin="S"/>
-<wire x1="-38.1" y1="5.08" x2="-45.72" y2="5.08" width="0.1524" layer="91"/>
-<label x="-45.72" y="5.08" size="1.778" layer="95" rot="R180" xref="yes"/>
+<pinref part="J1" gate="-8" pin="S"/>
+<wire x1="-38.1" y1="15.24" x2="-45.72" y2="15.24" width="0.1524" layer="91"/>
+<label x="-45.72" y="15.24" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="N$6" class="0">
+<net name="D6" class="0">
 <segment>
-<pinref part="J1" gate="-2" pin="S"/>
-<wire x1="-38.1" y1="45.72" x2="-45.72" y2="45.72" width="0.1524" layer="91"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="6"/>
+<label x="-93.98" y="25.4" size="1.778" layer="95" xref="yes"/>
+<wire x1="-111.76" y1="25.4" x2="-93.98" y2="25.4" width="0.1524" layer="91"/>
 </segment>
-</net>
-<net name="N$7" class="0">
 <segment>
-<pinref part="J1" gate="-3" pin="S"/>
-<wire x1="-38.1" y1="40.64" x2="-45.72" y2="40.64" width="0.1524" layer="91"/>
+<pinref part="J1" gate="-6" pin="S"/>
+<wire x1="-38.1" y1="25.4" x2="-45.72" y2="25.4" width="0.1524" layer="91"/>
+<label x="-45.72" y="25.4" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="N$8" class="0">
+<net name="D5" class="0">
 <segment>
-<pinref part="J1" gate="-4" pin="S"/>
-<wire x1="-38.1" y1="35.56" x2="-45.72" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="5"/>
+<wire x1="-111.76" y1="22.86" x2="-104.14" y2="22.86" width="0.1524" layer="91"/>
+<label x="-104.14" y="22.86" size="1.778" layer="95" xref="yes"/>
 </segment>
-</net>
-<net name="N$9" class="0">
 <segment>
 <pinref part="J1" gate="-5" pin="S"/>
 <wire x1="-38.1" y1="30.48" x2="-45.72" y2="30.48" width="0.1524" layer="91"/>
+<label x="-45.72" y="30.48" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="N$11" class="0">
+<net name="D4" class="0">
 <segment>
-<pinref part="J1" gate="-7" pin="S"/>
-<wire x1="-38.1" y1="20.32" x2="-45.72" y2="20.32" width="0.1524" layer="91"/>
+<pinref part="J1" gate="-4" pin="S"/>
+<wire x1="-38.1" y1="35.56" x2="-45.72" y2="35.56" width="0.1524" layer="91"/>
+<label x="-45.72" y="35.56" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
-</net>
-<net name="N$12" class="0">
 <segment>
-<pinref part="J1" gate="-8" pin="S"/>
-<wire x1="-38.1" y1="15.24" x2="-45.72" y2="15.24" width="0.1524" layer="91"/>
+<pinref part="DIGITALIN0_7" gate="A" pin="4"/>
+<label x="-93.98" y="20.32" size="1.778" layer="95" xref="yes"/>
+<wire x1="-93.98" y1="20.32" x2="-111.76" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$13" class="0">
+<net name="D3" class="0">
+<segment>
+<pinref part="DIGITALIN0_7" gate="A" pin="3"/>
+<wire x1="-111.76" y1="17.78" x2="-104.14" y2="17.78" width="0.1524" layer="91"/>
+<label x="-104.14" y="17.78" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="J1" gate="-3" pin="S"/>
+<wire x1="-38.1" y1="40.64" x2="-45.72" y2="40.64" width="0.1524" layer="91"/>
+<label x="-45.72" y="40.64" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="D1" class="0">
+<segment>
+<pinref part="DIGITALIN0_7" gate="A" pin="1"/>
+<wire x1="-111.76" y1="12.7" x2="-104.14" y2="12.7" width="0.1524" layer="91"/>
+<label x="-104.14" y="12.7" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="J1" gate="-1" pin="S"/>
+<wire x1="-38.1" y1="50.8" x2="-45.72" y2="50.8" width="0.1524" layer="91"/>
+<label x="-45.72" y="50.8" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="A4" class="0">
 <segment>
 <pinref part="J1" gate="-9" pin="S"/>
 <wire x1="-38.1" y1="10.16" x2="-45.72" y2="10.16" width="0.1524" layer="91"/>
+<label x="-45.72" y="10.16" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="ANALOGIN" gate="A" pin="4"/>
+<wire x1="-134.62" y1="22.86" x2="-142.24" y2="22.86" width="0.1524" layer="91"/>
+<label x="-142.24" y="22.86" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -18325,6 +18347,42 @@ Details see: &lt;a href="http://katalog.we-online.de/en/pbs/WE-TI?"&gt;http://ka
 <pinref part="J5" gate="-1" pin="S"/>
 <pinref part="F1" gate="1" pin="1"/>
 <wire x1="-111.76" y1="210.82" x2="-109.22" y2="210.82" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="A5" class="0">
+<segment>
+<pinref part="J1" gate="-10" pin="S"/>
+<wire x1="-38.1" y1="5.08" x2="-45.72" y2="5.08" width="0.1524" layer="91"/>
+<label x="-45.72" y="5.08" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="ANALOGIN" gate="A" pin="5"/>
+<label x="-149.86" y="25.4" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="-134.62" y1="25.4" x2="-149.86" y2="25.4" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="D2" class="0">
+<segment>
+<pinref part="DIGITALIN0_7" gate="A" pin="2"/>
+<label x="-93.98" y="15.24" size="1.778" layer="95" xref="yes"/>
+<wire x1="-93.98" y1="15.24" x2="-111.76" y2="15.24" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="J1" gate="-2" pin="S"/>
+<wire x1="-38.1" y1="45.72" x2="-45.72" y2="45.72" width="0.1524" layer="91"/>
+<label x="-45.72" y="45.72" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="D7" class="0">
+<segment>
+<pinref part="DIGITALIN0_7" gate="A" pin="7"/>
+<wire x1="-111.76" y1="27.94" x2="-104.14" y2="27.94" width="0.1524" layer="91"/>
+<label x="-104.14" y="27.94" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="J1" gate="-7" pin="S"/>
+<wire x1="-38.1" y1="20.32" x2="-45.72" y2="20.32" width="0.1524" layer="91"/>
+<label x="-45.72" y="20.32" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>
