@@ -8688,10 +8688,6 @@ DIN A4, landscape with location and doc. field</description>
 <part name="GND3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="P+1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="500pF"/>
-<part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="135pF"/>
-<part name="GND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="135 pF"/>
-<part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="P+4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="P+6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="1k"/>
@@ -8789,20 +8785,6 @@ Temp v1.4</text>
 <instance part="C1" gate="G$1" x="199.58" y="56.33" smashed="yes">
 <attribute name="NAME" x="201.104" y="56.711" size="1.778" layer="95"/>
 <attribute name="VALUE" x="201.104" y="51.631" size="1.778" layer="96"/>
-</instance>
-<instance part="C2" gate="G$1" x="208.74" y="140.86" smashed="yes">
-<attribute name="NAME" x="210.264" y="141.241" size="1.778" layer="95"/>
-<attribute name="VALUE" x="210.264" y="136.161" size="1.778" layer="96"/>
-</instance>
-<instance part="GND4" gate="1" x="208.74" y="133.24" smashed="yes">
-<attribute name="VALUE" x="206.2" y="130.7" size="1.778" layer="96"/>
-</instance>
-<instance part="C3" gate="G$1" x="208.74" y="112.92" smashed="yes">
-<attribute name="NAME" x="210.264" y="113.301" size="1.778" layer="95"/>
-<attribute name="VALUE" x="210.264" y="108.221" size="1.778" layer="96"/>
-</instance>
-<instance part="GND5" gate="1" x="208.74" y="105.3" smashed="yes">
-<attribute name="VALUE" x="206.2" y="102.76" size="1.778" layer="96"/>
 </instance>
 <instance part="P+4" gate="1" x="208.74" y="156.1" smashed="yes">
 <attribute name="VALUE" x="206.2" y="151.02" size="1.778" layer="96" rot="R90"/>
@@ -8949,14 +8931,6 @@ Temp v1.4</text>
 <junction x="199.58" y="51.25"/>
 </segment>
 <segment>
-<pinref part="GND4" gate="1" pin="GND"/>
-<pinref part="C2" gate="G$1" pin="2"/>
-</segment>
-<segment>
-<pinref part="C3" gate="G$1" pin="2"/>
-<pinref part="GND5" gate="1" pin="GND"/>
-</segment>
-<segment>
 <pinref part="IC1" gate="A" pin="A2"/>
 <pinref part="GND3" gate="1" pin="GND"/>
 <wire x1="60.96" y1="36.83" x2="42.68" y2="36.83" width="0.1524" layer="91"/>
@@ -9075,7 +9049,6 @@ Temp v1.4</text>
 <label x="57.15" y="78.74" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="C2" gate="G$1" pin="1"/>
 <junction x="208.74" y="143.4"/>
 <pinref part="R1" gate="G$1" pin="1"/>
 <label x="221.44" y="143.4" size="1.778" layer="95" xref="yes"/>
@@ -9098,7 +9071,6 @@ Temp v1.4</text>
 <segment>
 <wire x1="208.74" y1="115.46" x2="221.44" y2="115.46" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="2"/>
-<pinref part="C3" gate="G$1" pin="1"/>
 <junction x="208.74" y="115.46"/>
 <label x="221.44" y="115.46" size="1.778" layer="95" xref="yes"/>
 <pinref part="X1" gate="-2" pin="S"/>
