@@ -8698,7 +8698,7 @@ DIN A4, landscape with location and doc. field</description>
 <part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="1k"/>
 <part name="P+5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="R1A" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="470"/>
-<part name="FRAME1" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A4L-LOC" device=""/>
+<part name="FRAME1" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A4L-LOC" device="" value="Temp display"/>
 <part name="LED2" library="display-kingbright" library_urn="urn:adsk.eagle:library:213" deviceset="B?56-11*WA" device="A" package3d_urn="urn:adsk.eagle:package:13080/1" technology="E"/>
 <part name="R1B" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="470"/>
 <part name="R1C" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="470"/>
@@ -8731,7 +8731,7 @@ DIN A4, landscape with location and doc. field</description>
 <sheet>
 <plain>
 <text x="167.14" y="9.16" size="5.08" layer="94">Afficheur 
-Temp v1.0</text>
+Temp v1.4</text>
 <text x="216.44" y="20.32" size="2.54" layer="94">EPSA Saison 2018/2019</text>
 <wire x1="180.8" y1="166.26" x2="180.8" y2="95.14" width="0.1524" layer="97"/>
 <wire x1="231.6" y1="95.14" x2="231.6" y2="166.26" width="0.1524" layer="97"/>

@@ -8723,15 +8723,15 @@ DIN A4, landscape with location and doc. field</description>
 <part name="P+10" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="R2DP" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="470"/>
 <part name="P+11" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
-<part name="R3AB" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="230"/>
+<part name="R3A" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="230"/>
 <part name="P+12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
-<part name="R3AB1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="230"/>
+<part name="R3B" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="230"/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 <text x="167.14" y="9.16" size="5.08" layer="94">Afficheur 
-Temp V1.0</text>
+Temp v1.0</text>
 <text x="216.44" y="20.32" size="2.54" layer="94">EPSA Saison 2018/2019</text>
 <wire x1="180.8" y1="166.26" x2="180.8" y2="95.14" width="0.1524" layer="97"/>
 <wire x1="231.6" y1="95.14" x2="231.6" y2="166.26" width="0.1524" layer="97"/>
@@ -8924,16 +8924,16 @@ Temp V1.0</text>
 <instance part="P+11" gate="1" x="134.62" y="158.75" smashed="yes">
 <attribute name="VALUE" x="132.08" y="153.67" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R3AB" gate="G$1" x="100.33" y="152.4" smashed="yes" rot="R180">
-<attribute name="NAME" x="108.22" y="154.4814" size="1.778" layer="95" rot="R180"/>
-<attribute name="VALUE" x="97.64" y="154.702" size="1.778" layer="96" rot="R180"/>
+<instance part="R3A" gate="G$1" x="97.79" y="152.4" smashed="yes" rot="R180">
+<attribute name="NAME" x="105.68" y="154.4814" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="95.1" y="154.702" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="P+12" gate="1" x="46.99" y="36.83" smashed="yes">
-<attribute name="VALUE" x="44.45" y="31.75" size="1.778" layer="96" rot="R90"/>
+<instance part="P+12" gate="1" x="52.07" y="36.83" smashed="yes">
+<attribute name="VALUE" x="49.53" y="31.75" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R3AB1" gate="G$1" x="100.33" y="149.86" smashed="yes" rot="R180">
-<attribute name="NAME" x="108.22" y="151.9414" size="1.778" layer="95" rot="R180"/>
-<attribute name="VALUE" x="97.64" y="152.162" size="1.778" layer="96" rot="R180"/>
+<instance part="R3B" gate="G$1" x="97.79" y="149.86" smashed="yes" rot="R180">
+<attribute name="NAME" x="105.68" y="151.9414" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="95.1" y="152.162" size="1.778" layer="96" rot="R180"/>
 </instance>
 </instances>
 <busses>
@@ -9060,7 +9060,7 @@ Temp V1.0</text>
 <segment>
 <pinref part="P+12" gate="1" pin="+5V"/>
 <pinref part="IC1" gate="A" pin="A1"/>
-<wire x1="46.99" y1="34.29" x2="60.96" y2="34.29" width="0.1524" layer="91"/>
+<wire x1="52.07" y1="34.29" x2="60.96" y2="34.29" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SCL" class="0">
@@ -9221,14 +9221,14 @@ Temp V1.0</text>
 <label x="88.9" y="26.67" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="R3AB" gate="G$1" pin="2"/>
-<wire x1="95.25" y1="152.4" x2="93.98" y2="152.4" width="0.1524" layer="91"/>
-<label x="93.98" y="148.59" size="1.778" layer="95" rot="R180" xref="yes"/>
-<wire x1="93.98" y1="152.4" x2="93.98" y2="149.86" width="0.1524" layer="91"/>
-<pinref part="R3AB1" gate="G$1" pin="2"/>
-<wire x1="93.98" y1="149.86" x2="93.98" y2="148.59" width="0.1524" layer="91"/>
-<wire x1="95.25" y1="149.86" x2="93.98" y2="149.86" width="0.1524" layer="91"/>
-<junction x="93.98" y="149.86"/>
+<pinref part="R3A" gate="G$1" pin="2"/>
+<wire x1="92.71" y1="152.4" x2="88.9" y2="152.4" width="0.1524" layer="91"/>
+<label x="88.9" y="147.32" size="1.778" layer="95" rot="R270" xref="yes"/>
+<wire x1="88.9" y1="152.4" x2="88.9" y2="149.86" width="0.1524" layer="91"/>
+<pinref part="R3B" gate="G$1" pin="2"/>
+<wire x1="88.9" y1="149.86" x2="88.9" y2="147.32" width="0.1524" layer="91"/>
+<wire x1="92.71" y1="149.86" x2="88.9" y2="149.86" width="0.1524" layer="91"/>
+<junction x="88.9" y="149.86"/>
 </segment>
 </net>
 <net name="GP11" class="0">
@@ -9409,16 +9409,16 @@ Temp V1.0</text>
 </net>
 <net name="N$17" class="0">
 <segment>
-<pinref part="R3AB" gate="G$1" pin="1"/>
+<pinref part="R3A" gate="G$1" pin="1"/>
 <pinref part="LED2" gate="DIG1" pin="A"/>
-<wire x1="105.41" y1="152.4" x2="107.95" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="102.87" y1="152.4" x2="107.95" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$16" class="0">
 <segment>
 <pinref part="LED2" gate="DIG1" pin="B"/>
-<wire x1="107.95" y1="149.86" x2="105.41" y2="149.86" width="0.1524" layer="91"/>
-<pinref part="R3AB1" gate="G$1" pin="1"/>
+<wire x1="107.95" y1="149.86" x2="102.87" y2="149.86" width="0.1524" layer="91"/>
+<pinref part="R3B" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>
