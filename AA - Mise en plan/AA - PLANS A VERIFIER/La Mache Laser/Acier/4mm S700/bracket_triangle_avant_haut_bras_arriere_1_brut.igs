@@ -1,9 +1,9 @@
 START RECORD GO HERE.                                                   S      1
 1H,,1H;,20HCNEXT - IGES PRODUCT,51Hbracket_triangle_avant_haut_bras_arriG      1
-ere_1_plan.igs,44HIBM CATIA IGES - CATIA Version 5 Release 19 ,27HCATIA G      2
+ere_1_brut.igs,44HIBM CATIA IGES - CATIA Version 5 Release 19 ,27HCATIA G      2
 Version 5 Release 19 ,32,75,6,75,15,42Hbracket_triangle_avant_haut_bras_G      3
-arriere_1,1.0,2,2HMM,1000,1.0,15H20181205.145614,0.001,10000.0,5Hpaulc, G      4
-15HLAPTOP-KQBJ9ECS,11,0,15H20181205.145614,;                            G      5
+arriere_1,1.0,2,2HMM,1000,1.0,15H20181205.152353,0.001,10000.0,5Hpaulc, G      4
+15HLAPTOP-KQBJ9ECS,11,0,15H20181205.152353,;                            G      5
      406       1       0       0       0       0       0       000010201D      1
      406       0       0       1      15                               0D      2
      110       2       0       0       0       0       0       001010001D      3
