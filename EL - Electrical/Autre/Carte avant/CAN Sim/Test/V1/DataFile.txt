@@ -1,0 +1,12 @@
+Data,Value
+
+RPM,13102
+Throttle,0
+W_Temp,27
+A_Temp,25
+KPH,244
+O_Press,196
+F_Press,58
+O_Temp,58
+Volts,0
+Gear,1
