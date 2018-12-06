@@ -8793,10 +8793,6 @@ DIN A4, landscape with location and doc. field</description>
 <part name="P+1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="P+2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="500pF"/>
-<part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="135pF"/>
-<part name="GND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-025X050" package3d_urn="urn:adsk.eagle:package:23629/2" value="135 pF"/>
-<part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="P+4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="P+6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0204/7" package3d_urn="urn:adsk.eagle:package:23498/1" value="1k"/>
@@ -8882,20 +8878,6 @@ Rapport V1.0</text>
 <attribute name="NAME" x="86.804" y="131.641" size="1.778" layer="95"/>
 <attribute name="VALUE" x="86.804" y="126.561" size="1.778" layer="96"/>
 </instance>
-<instance part="C2" gate="G$1" x="86.82" y="87.52" smashed="yes">
-<attribute name="NAME" x="88.344" y="87.901" size="1.778" layer="95"/>
-<attribute name="VALUE" x="88.344" y="82.821" size="1.778" layer="96"/>
-</instance>
-<instance part="GND4" gate="1" x="86.82" y="79.9" smashed="yes">
-<attribute name="VALUE" x="84.28" y="77.36" size="1.778" layer="96"/>
-</instance>
-<instance part="C3" gate="G$1" x="86.82" y="59.58" smashed="yes">
-<attribute name="NAME" x="88.344" y="59.961" size="1.778" layer="95"/>
-<attribute name="VALUE" x="88.344" y="54.881" size="1.778" layer="96"/>
-</instance>
-<instance part="GND5" gate="1" x="86.82" y="51.96" smashed="yes">
-<attribute name="VALUE" x="84.28" y="49.42" size="1.778" layer="96"/>
-</instance>
 <instance part="P+4" gate="1" x="86.82" y="102.76" smashed="yes">
 <attribute name="VALUE" x="84.28" y="97.68" size="1.778" layer="96" rot="R90"/>
 </instance>
@@ -8979,14 +8961,6 @@ Rapport V1.0</text>
 <wire x1="146.82" y1="117.58" x2="139.2" y2="117.58" width="0.1524" layer="91"/>
 <junction x="139.2" y="117.58"/>
 </segment>
-<segment>
-<pinref part="GND4" gate="1" pin="GND"/>
-<pinref part="C2" gate="G$1" pin="2"/>
-</segment>
-<segment>
-<pinref part="C3" gate="G$1" pin="2"/>
-<pinref part="GND5" gate="1" pin="GND"/>
-</segment>
 </net>
 <net name="+5V" class="0">
 <segment>
@@ -9037,12 +9011,10 @@ Rapport V1.0</text>
 <segment>
 <wire x1="86.82" y1="62.12" x2="99.52" y2="62.12" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="2"/>
-<pinref part="C3" gate="G$1" pin="1"/>
 <junction x="86.82" y="62.12"/>
 <label x="99.52" y="62.12" size="1.778" layer="95" xref="yes"/>
 <pinref part="X1" gate="-2" pin="S"/>
-<wire x1="71.406" y1="62.12" x2="71.66" y2="62.12" width="0.1524" layer="91"/>
-<wire x1="71.66" y1="62.12" x2="86.82" y2="62.12" width="0.1524" layer="91"/>
+<wire x1="71.406" y1="62.12" x2="86.82" y2="62.12" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="A" pin="SCL"/>
@@ -9107,7 +9079,6 @@ Rapport V1.0</text>
 <wire x1="134.12" y1="122.66" x2="141.74" y2="122.66" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C2" gate="G$1" pin="1"/>
 <junction x="86.82" y="90.06"/>
 <pinref part="R1" gate="G$1" pin="1"/>
 <label x="99.52" y="90.06" size="1.778" layer="95" xref="yes"/>
