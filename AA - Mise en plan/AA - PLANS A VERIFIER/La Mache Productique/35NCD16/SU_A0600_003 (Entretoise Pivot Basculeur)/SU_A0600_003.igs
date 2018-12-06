@@ -1,9 +1,9 @@
 START RECORD GO HERE.                                                   S      1
-1H,,1H;,20HCNEXT - IGES PRODUCT,30HEntretoise pivot basculeur.igs,44HIBMG      1
- CATIA IGES - CATIA Version 5 Release 19 ,27HCATIA Version 5 Release 19 G      2
-,32,75,6,75,15,26HEntretoise pivot basculeur,1.0,2,2HMM,1000,1.0,15H2018G      3
-1206.140241,0.001,10000.0,13HPierre-Alexis,15HDESKTOP-TIMQER0,11,0,15H20G      4
-181206.140241,;                                                         G      5
+1H,,1H;,20HCNEXT - IGES PRODUCT,16HSU_A0600_003.igs,44HIBM CATIA IGES - G      1
+CATIA Version 5 Release 19 ,27HCATIA Version 5 Release 19 ,32,75,6,75,  G      2
+15,26HEntretoise pivot basculeur,1.0,2,2HMM,1000,1.0,15H20181206.145422,G      3
+0.001,10000.0,13HPierre-Alexis,15HDESKTOP-TIMQER0,11,0,15H20181206.14542G      4
+2,;                                                                     G      5
      406       1       0       0       0       0       0       000010201D      1
      406       0       0       1      15                               0D      2
      110       2       0       0       0       0       0       001010001D      3
