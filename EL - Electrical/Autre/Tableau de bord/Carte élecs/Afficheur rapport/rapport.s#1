@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.1.0">
+<eagle version="9.2.1">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.01" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
@@ -8842,30 +8842,77 @@ Rapport V1.0</text>
 <text x="216.44" y="10.32" size="2.54" layer="94">Bob Aubouin (BAT)</text>
 </plain>
 <instances>
-<instance part="IC1" gate="A" x="159.52" y="115.04"/>
-<instance part="LED1" gate="G$1" x="172.16" y="64.26"/>
+<instance part="IC1" gate="A" x="159.52" y="115.04" smashed="yes">
+<attribute name="NAME" x="149.36" y="128.756" size="1.778" layer="95"/>
+<attribute name="VALUE" x="149.36" y="99.292" size="1.778" layer="96"/>
+</instance>
+<instance part="LED1" gate="G$1" x="172.16" y="64.26" smashed="yes">
+<attribute name="NAME" x="167.08" y="73.785" size="1.778" layer="95"/>
+<attribute name="VALUE" x="167.08" y="52.83" size="1.778" layer="96"/>
+</instance>
 <instance part="X1" gate="-1" x="71.92" y="133.78" smashed="yes" rot="R180">
 <attribute name="NAME" x="69.38" y="134.542" size="1.524" layer="95" rot="R180"/>
 <attribute name="VALUE" x="75.984" y="131.113" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="X1" gate="-2" x="68.866" y="62.12" rot="R180"/>
-<instance part="X1" gate="-3" x="69.04" y="90.06" rot="R180"/>
-<instance part="X1" gate="-4" x="71.264" y="126.18" rot="R180"/>
-<instance part="GND1" gate="1" x="95.44" y="123.64"/>
-<instance part="GND2" gate="1" x="144.28" y="102.34"/>
-<instance part="GND3" gate="1" x="139.2" y="112.5"/>
-<instance part="P+1" gate="1" x="97.98" y="136.34"/>
-<instance part="P+2" gate="1" x="177.3" y="127.74"/>
-<instance part="C1" gate="G$1" x="85.28" y="131.26"/>
-<instance part="C2" gate="G$1" x="86.82" y="87.52"/>
-<instance part="GND4" gate="1" x="86.82" y="79.9"/>
-<instance part="C3" gate="G$1" x="86.82" y="59.58"/>
-<instance part="GND5" gate="1" x="86.82" y="51.96"/>
-<instance part="P+4" gate="1" x="86.82" y="102.76"/>
-<instance part="P+6" gate="1" x="86.82" y="74.82"/>
-<instance part="R1" gate="G$1" x="86.82" y="95.14" rot="R90"/>
-<instance part="R2" gate="G$1" x="86.82" y="67.2" rot="R270"/>
-<instance part="P+5" gate="1" x="134.12" y="115.04"/>
+<instance part="X1" gate="-2" x="68.866" y="62.12" smashed="yes" rot="R180">
+<attribute name="NAME" x="66.326" y="62.882" size="1.524" layer="95" rot="R180"/>
+</instance>
+<instance part="X1" gate="-3" x="69.04" y="90.06" smashed="yes" rot="R180">
+<attribute name="NAME" x="66.5" y="90.822" size="1.524" layer="95" rot="R180"/>
+</instance>
+<instance part="X1" gate="-4" x="71.264" y="126.18" smashed="yes" rot="R180">
+<attribute name="NAME" x="68.724" y="126.942" size="1.524" layer="95" rot="R180"/>
+</instance>
+<instance part="GND1" gate="1" x="95.44" y="123.64" smashed="yes">
+<attribute name="VALUE" x="92.9" y="121.1" size="1.778" layer="96"/>
+</instance>
+<instance part="GND2" gate="1" x="144.28" y="102.34" smashed="yes">
+<attribute name="VALUE" x="141.74" y="99.8" size="1.778" layer="96"/>
+</instance>
+<instance part="GND3" gate="1" x="139.2" y="112.5" smashed="yes">
+<attribute name="VALUE" x="136.66" y="109.96" size="1.778" layer="96"/>
+</instance>
+<instance part="P+1" gate="1" x="97.98" y="136.34" smashed="yes">
+<attribute name="VALUE" x="95.44" y="131.26" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="P+2" gate="1" x="177.3" y="127.74" smashed="yes">
+<attribute name="VALUE" x="174.76" y="122.66" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="C1" gate="G$1" x="85.28" y="131.26" smashed="yes">
+<attribute name="NAME" x="86.804" y="131.641" size="1.778" layer="95"/>
+<attribute name="VALUE" x="86.804" y="126.561" size="1.778" layer="96"/>
+</instance>
+<instance part="C2" gate="G$1" x="86.82" y="87.52" smashed="yes">
+<attribute name="NAME" x="88.344" y="87.901" size="1.778" layer="95"/>
+<attribute name="VALUE" x="88.344" y="82.821" size="1.778" layer="96"/>
+</instance>
+<instance part="GND4" gate="1" x="86.82" y="79.9" smashed="yes">
+<attribute name="VALUE" x="84.28" y="77.36" size="1.778" layer="96"/>
+</instance>
+<instance part="C3" gate="G$1" x="86.82" y="59.58" smashed="yes">
+<attribute name="NAME" x="88.344" y="59.961" size="1.778" layer="95"/>
+<attribute name="VALUE" x="88.344" y="54.881" size="1.778" layer="96"/>
+</instance>
+<instance part="GND5" gate="1" x="86.82" y="51.96" smashed="yes">
+<attribute name="VALUE" x="84.28" y="49.42" size="1.778" layer="96"/>
+</instance>
+<instance part="P+4" gate="1" x="86.82" y="102.76" smashed="yes">
+<attribute name="VALUE" x="84.28" y="97.68" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="P+6" gate="1" x="86.82" y="74.82" smashed="yes">
+<attribute name="VALUE" x="84.28" y="69.74" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R1" gate="G$1" x="86.82" y="95.14" smashed="yes" rot="R90">
+<attribute name="NAME" x="85.3214" y="91.33" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="90.122" y="91.33" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R2" gate="G$1" x="86.82" y="67.2" smashed="yes" rot="R270">
+<attribute name="NAME" x="88.3186" y="71.01" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="83.518" y="71.01" size="1.778" layer="96" rot="R270"/>
+</instance>
+<instance part="P+5" gate="1" x="134.12" y="115.04" smashed="yes">
+<attribute name="VALUE" x="131.58" y="109.96" size="1.778" layer="96" rot="R90"/>
+</instance>
 <instance part="RA" gate="G$1" x="152.28" y="71.88" smashed="yes" rot="R180">
 <attribute name="NAME" x="160.17" y="73.9614" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="149.59" y="74.182" size="1.778" layer="96" rot="R180"/>
@@ -8897,7 +8944,9 @@ Rapport V1.0</text>
 <instance part="FRAME1" gate="G$1" x="0" y="0" smashed="yes">
 <attribute name="SHEET" x="230.505" y="5.08" size="2.54" layer="94"/>
 </instance>
-<instance part="P+3" gate="1" x="185.682" y="78.21"/>
+<instance part="P+3" gate="1" x="185.682" y="78.21" smashed="yes">
+<attribute name="VALUE" x="183.142" y="73.13" size="1.778" layer="96" rot="R90"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -9154,6 +9203,11 @@ Rapport V1.0</text>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="104,1,146.82,104.88,IC1,VSS,GND,,,"/>
+<approved hash="104,1,172.22,125.2,IC1,VDD,+5V,,,"/>
+<approved hash="113,1,130.071,89.431,FRAME1,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 <compatibility>
