@@ -12,6 +12,9 @@ Adafruit_MCP23008 mcp;
 // Set CS to pin 10
 MCP_CAN CAN0(10); 
 
+// Switch Pins
+int TV_PIN=1;
+
 
 
 // Recieve variables init
@@ -86,7 +89,7 @@ const int PINS_R2[10][8]{
 
 void setup(){
     // PIN Settup
-    pinMode(1,INPUT);
+    pinMode(TV_PIN,INPUT);
 
 
     // CAN Init
@@ -184,8 +187,8 @@ void Gear_MAJ(signed Gear){
   }
 }
 
-void Seven_Seg_Calc(int Switch_Temp_Volt,int W_Temp,int Volts){
-  switch(Switch_Temp_Volt){
+void Seven_Seg_Calc(int Switch_TV,int W_Temp,int Volts){
+  switch(Switch_TV){
     case 0: //Water Temperature
       TV_MAJ(1,W_Temp%10,6);
       W_Temp=W_Temp/10;
@@ -231,7 +234,7 @@ void TV_MAJ(int Microcontroller_Number,int Digit,int Point){
 void loop(){
   
     // Read the Switch position
-    Switch_TV=digitalRead(1);
+    Switch_TV=digitalRead(TV_PIN);
     
     // On met les variables à jour
     // If CAN0_INT pin is low, read receive buffer
