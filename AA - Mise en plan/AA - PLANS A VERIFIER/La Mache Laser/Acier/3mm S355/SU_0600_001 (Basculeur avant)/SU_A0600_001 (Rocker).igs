@@ -1,9 +1,9 @@
 START RECORD GO HERE.                                                   S      1
 1H,,1H;,20HCNEXT - IGES PRODUCT,25HSU_A0600_001 (Rocker).igs,44HIBM CATIG      1
 A IGES - CATIA Version 5 Release 19 ,27HCATIA Version 5 Release 19 ,32, G      2
-75,6,75,15,14HFront_Rocker.1,1.0,2,2HMM,1000,1.0,15H20181212.104815,    G      3
-0.001,10000.0,13HPierre-Alexis,15HDESKTOP-TIMQER0,11,0,15H20181212.10481G      4
-5,;                                                                     G      5
+75,6,75,15,14HFront_Rocker.1,1.0,2,2HMM,1000,1.0,15H20181212.105434,    G      3
+0.001,10000.0,13HPierre-Alexis,15HDESKTOP-TIMQER0,11,0,15H20181212.10543G      4
+4,;                                                                     G      5
      406       1       0       0       0       0       0       000010201D      1
      406       0       0       1      15                               0D      2
      110       2       0       0       0       0       0       001010001D      3
