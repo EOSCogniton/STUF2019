@@ -101,8 +101,5 @@ void setup() {
 }
 
 void loop() {
-  for(int i=0;i<=100;i++){
-      W_Temp=i;
-      Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
-  }
+  Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
 }

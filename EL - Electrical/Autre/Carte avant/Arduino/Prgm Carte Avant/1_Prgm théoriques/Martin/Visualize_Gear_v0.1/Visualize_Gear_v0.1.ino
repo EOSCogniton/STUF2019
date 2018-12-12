@@ -1,38 +1,35 @@
-#include <Wire.h>
+#include "Adafruit_MCP23008.h"
 
-signed Gear;
+Adafruit_MCP23008 mcp;
+
+signed Gear=0;
+int Init_Seven_Segments;
+const int PINS_GEAR[5][7]={
+  {0,0,0,1,0,0,0},
+  {0,1,1,1,1,1,0},
+  {1,0,0,0,1,0,0},
+  {0,0,1,0,1,0,0},
+  {0,1,1,0,0,1,0},
+};
 
 void Gear_MAJ(signed Gear){
-  Wire.begin(); //creates a Wire object
-  Wire.beginTransmission(0x20); //begins talking to the slave device number 0Wire.write(0x00); //selects the IODIRA register
-  Wire.write(0x00); //this sets all port A pins to outputs
-  Wire.write(0x09); //selects the GPIO pins (code 09 corresponds to GIPO)
-  switch(Gear){
-    case 0:
-      Wire.write(01110111); // turns on pins 0, 1, 2, 4, 5 and 6 of GPIO
-      break;
-    case 1:
-      Wire.write(01000001);
-      break;
-    case 2:
-      Wire.write(01101110);
-      break;
-    case 3:
-      Wire.write(01101011);
-      break;
-    case 4:
-      Wire.write(01011001);
-      break;
+  mcp.begin(0);
+  for(int i=0;i<=6;i++){
+    mcp.pinMode(i,OUTPUT);
+    mcp.digitalWrite(i,PINS_GEAR[Gear][i]);
   }
-  Wire.endTransmission(0x20); //ends communication with the device
 }
 
 void setup() {
-  // put your setup code here, to run once:
-
+  for(Init_Seven_Segments=0;Init_Seven_Segments<=2;Init_Seven_Segments++){ //This shuts off all segments at the begining
+    mcp.begin(Init_Seven_Segments);
+    for(int i=0;i<=7;i++){
+      mcp.pinMode(i,OUTPUT);
+      mcp.digitalWrite(i,1);
+    }
+  }
 }
 
 void loop() {
   Gear_MAJ(Gear);
-
 }

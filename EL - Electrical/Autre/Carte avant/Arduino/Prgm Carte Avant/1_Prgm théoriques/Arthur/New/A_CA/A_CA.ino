@@ -8,14 +8,15 @@
 MCP_CAN CAN0(10); 
 const int DATAPIN = 1;
 const int CLOCKPIN = 3;
+// Set Transmission Pin
+const int TRANS_PIN_4 = 4; // à vérif
 
 
-char Print[128];  
 
 
-int RAZ_PIN=4; // RAZ Passage de vitesse
-int H_PIN=5;   // Homing
-int N_PIN=12;   // Neutre
+int RAZ_PIN=7; // RAZ Passage de vitesse
+int H_PIN=9;   // Homing
+int N_PIN=8;   // Neutre
 
 
 int Switch_RAZ;
@@ -55,14 +56,6 @@ void setup() {
 }
 
 void Send_CA(int Switch_RAZ, int Switch_H, int Switch_N){
-    Switch_RAZ=digitalRead(RAZ_PIN);
-    Switch_H=digitalRead(H_PIN);
-    Switch_N=digitalRead(N_PIN);
-
-    sprintf(Print, "Switch_RAZ = %1d   Switch_H = %1d   Switch_N = %1d", Switch_RAZ, Switch_H, Switch_N);
-    Serial.print("\n");
-    Serial.print(Print);
-    
     // Def des messages
     byte Modif[8]={0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     byte Null[8]={0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -93,8 +86,8 @@ void Send_CA(int Switch_RAZ, int Switch_H, int Switch_N){
 
 void loop() {
     // put your main code here, to run repeatedly:
-    
+    Switch_RAZ=digitalRead(RAZ_PIN);
+    Switch_H=digitalRead(H_PIN);
+    Switch_N=digitalRead(N_PIN);
     Send_CA(Switch_RAZ, Switch_H, Switch_N);
-
-    delay(100);
 }

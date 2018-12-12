@@ -14,10 +14,10 @@ const int CLOCKPIN = 3;
 
 // Data variables
 // R_ID=0x2000
-signed Rpm=10000;
+signed Rpm;
 
 // R_ID=0x2003
-signed Gear=2;
+signed Gear;
 
 // Led cst
 const int NUM_PIXELS = 16; // Defines the number of pixels in the strip
