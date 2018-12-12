@@ -47,6 +47,7 @@ void Transmit_Discrete(){
     tmillis=millis();
     if ((digitalRead(TRANS_PIN_4)==HIGH) * ((tmillis>(T_D_Millis+T_Time)))){
         Serial.print("\n");
+
         T_D_Millis=millis();
         Send=CAN0.sendMsgBuf(T_ID, 1, 8, Trans);
         if(Send == CAN_OK){
