@@ -5,10 +5,11 @@
 // Data variables
 
 // R_ID=0x2003
-signed Gear;
+int Gear;
 
 void setup(){
-                             
+    Serial.begin(115200);
+    Serial.println("OK");                       
 }
 
 void Gear_MAJ(signed Gear){
@@ -38,5 +39,10 @@ void Gear_MAJ(signed Gear){
 
 void loop(){
     // MAJ Gear
-    Gear_MAJ(Gear);
+    Serial.print("Void loop");
+    for(int Gear=0; Gear<=4; Gear++){
+        Gear_MAJ(Gear);
+        Serial.println(Gear);
+    }
+    
 }
