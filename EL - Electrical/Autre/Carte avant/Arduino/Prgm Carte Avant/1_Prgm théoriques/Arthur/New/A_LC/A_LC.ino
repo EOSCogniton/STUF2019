@@ -8,7 +8,7 @@ boolean Led_LC=0;
 
 
 void State_LC(int Switch_LC, int Speed){
-    if(State_LC==1 && Speed<Limit_LC){
+    if(Switch_LC==1 && Speed<Limit_LC){
         Led_LC=1;
         digitalWrite(LC_LED_PIN,HIGH);
     }
