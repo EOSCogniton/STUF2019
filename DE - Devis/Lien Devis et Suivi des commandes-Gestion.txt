@@ -6,6 +6,7 @@ Démarche à suivre pour les commandes :
 1 - Obtenir la validation de la direction sur la pièce 
 2 - Faire faire le devis en précisant exactement l'adresse de facturation et l'adresse de livraison précisées ci-dessous
 3 - Envoyez le devis par mail au directeur financier (yohan.reguiai@ecl17.ec-lyon.fr) et en copie Nicolas Gameiro, Paco Tanchon et Maxime Proriol en mettant dans objet [EPSA][Commandes][Nom fournisseur] avec le devis en PJ et selon le modèle donné ci-dessous.
+-->> Remplir la feuille Bilan de ce google sheet et la feuille correspondant au fournisseur
 
 4 - Si vous récupérez la pièce, transmettre impérativement le bon de livraison au directeur financier pour que le fournisseur soit payé.
 -- A reception, le responsable logistique (Nicolas Gameiro) doit vérifier que la commande est bien celle prévue.
