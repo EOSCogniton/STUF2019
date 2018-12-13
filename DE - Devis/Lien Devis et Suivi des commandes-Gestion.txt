@@ -1,1 +1,40 @@
-https://docs.google.com/spreadsheets/d/1dFsDULN_BRkt7M6iw3LuBv0PUnbLKBRawQQca6SQHqA/edit#gid=895913547
+Lien Google Sheet des commandes :
+https://docs.google.com/spreadsheets/d/1DuXNIFscYgMUS6rk1SeFziMAtlYMNAzKQjLC3L5LYxQ/edit?fbclid=IwAR23nLD48c3_440bcktcIRrq-ljWR1nKYP5QxLcCNpBEpx0rovy0rXswLF4#gid=403990313
+
+------------------------------------------------------------------------------------
+Démarche à suivre pour les commandes :
+1 - Obtenir la validation de la direction sur la pièce 
+2 - Faire faire le devis en précisant exactement l'adresse de facturation et l'adresse de livraison précisées ci-dessous
+3 - Envoyez le devis par mail au directeur financier (yohan.reguiai@ecl17.ec-lyon.fr) et en copie Nicolas Gameiro, Paco Tanchon et Maxime Proriol en mettant dans objet [EPSA][Commandes][Nom fournisseur] avec le devis en PJ et selon le modèle donné ci-dessous.
+
+4 - Si vous récupérez la pièce, transmettre impérativement le bon de livraison au directeur financier pour que le fournisseur soit payé.
+-- A reception, le responsable logistique (Nicolas Gameiro) doit vérifier que la commande est bien celle prévue.
+
+------------------------------------------------------------------------------------
+
+--- Lorsque vous demandez un devis, les informations suivantes doivent exactement apparaître :
+
+Adresse de facturation:
+  Ecole Centrale de Lyon
+  Service Facturation Bat Z2 
+  36 avenue Guy de Collongue 69134 ECULLY
+
+Adresse de livraison:
+  Ecole Centrale de Lyon
+  MS-GM-GC Bat H10 Béatrice Chervet
+  36 avenue Guy de Collongue 69134 ECULLY
+
+------------------------------------------------------------------------------------
+
+
+Modèle de mail à envoyé à Yohan REGUIAI, avec en copie Nicolas GAMEIRO, Paco TANCHON, Maxime PRORIOL. N'oubliez pas le devis en PJ.
+En objet : [EPSA][Commandes][XXX(Nom fournisseur)]
+
+- Département concerné : XXX (IHM, LAS, ...)
+- Personne responsable : XXX
+- Fournisseur : XXX
+- Désignation : XXX (pièces les plus chères)                                                 - Description rapide de la commande : XXX (les noms des pièces n'étant pas toujours clairs sur les devis)
+- Prix TTC : XXX
+- Réduction obtenue : XXX
+
+--------------------------------------------------------------------------------------
