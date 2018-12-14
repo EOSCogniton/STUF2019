@@ -1,7 +1,7 @@
 int KPH=31;
 
-int LC_SWITCH_PIN=5; // Pin à cahnger
-int LC_LED_PIN=7;
+int LC_SWITCH_PIN=7; // Pin à cahnger
+int LC_LED_PIN=8;
 int Switch_LC=0;
 int Limit_LC=30; // Max LC Speed
 boolean Led_LC=0;
