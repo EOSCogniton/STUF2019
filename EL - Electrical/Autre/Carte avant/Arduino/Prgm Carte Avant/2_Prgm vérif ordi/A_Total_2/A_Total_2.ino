@@ -16,14 +16,13 @@ MCP_CAN CAN0(10);
 const int DATAPIN = 4;
 const int CLOCKPIN = 5;
 // T-V
-const int TV_PIN=1;
+const int TV_PIN=3;
 // Carte Arrière Comm
-const int RAZ_PIN=11; // RAZ Passage de vitesse
 const int H_PIN=12;   // Homing
-const int N_PIN=13;   // Neutre
+const int N_PIN=6;   // Neutre
 // Launch Control
-int LC_SWITCH_PIN=9; // Pin à cahnger
-int LC_LED_PIN=6;
+int LC_SWITCH_PIN=7; // Pin à cahnger
+int LC_LED_PIN=8;
 
 
 
@@ -60,7 +59,7 @@ signed Gear;
 
 // Gear display
 int Init_Seven_Segments;
-const int PINS_GEAR[5][7]={
+const boolean PINS_GEAR[5][7]={
   {0,0,0,1,0,0,0},
   {0,1,1,1,1,1,0},
   {1,0,0,0,1,0,0},
@@ -76,7 +75,7 @@ int Switch_TV;
 
 
 //0 turns on, 1 turns off
-const int PINS_R1[10][8]={
+const boolean PINS_R1[10][8]={
   {1,0,0,0,0,0,0,0},  //0
   {1,0,1,1,1,1,0,0},  //1
   {0,1,0,0,1,0,0,0},  //2
@@ -89,7 +88,7 @@ const int PINS_R1[10][8]={
   {0,0,0,1,0,0,0,0},  //9
 // G C D E F A B PD     Pins of the 7 segments corresponding to the x1 (PD is the point of x10)
 };
-const int PINS_R2[10][8]{
+const boolean PINS_R2[10][8]{
   {0,0,0,0,1,0,0,0},  //0
   {0,1,0,1,1,0,1,1},  //1
   {0,0,0,1,0,1,0,0},  //2
@@ -133,7 +132,6 @@ Adafruit_DotStar STRIP = Adafruit_DotStar(NUM_PIXELS, DATAPIN, CLOCKPIN, DOTSTAR
 
 
 // Carte Arrière Comm
-int Switch_RAZ;
 int Switch_H;
 int Switch_N;
 
@@ -160,7 +158,6 @@ void setup(){
     // PIN Settup
     pinMode(TV_PIN,INPUT);
 
-    pinMode(RAZ_PIN,INPUT);
     pinMode(H_PIN,INPUT);
     pinMode(N_PIN,INPUT);
 
@@ -411,11 +408,10 @@ void Led_MAJ (int Led_Number,int Gear){
 }
 
 void Send_CA(){
-    Switch_RAZ=digitalRead(RAZ_PIN);
     Switch_H=digitalRead(H_PIN);
     Switch_N=digitalRead(N_PIN);
 
-    sprintf(Print, "Switch_RAZ = %1d   Switch_H = %1d   Switch_N = %1d", Switch_RAZ, Switch_H, Switch_N);
+    sprintf(Print, "Switch_H = %1d   Switch_N = %1d", Switch_H, Switch_N);
     Serial.print("\n");
     Serial.print(Print);
     
@@ -426,23 +422,17 @@ void Send_CA(){
     tmillis=millis();
     if(tmillis>(T_D_Millis+T_Time)){ // Envoie discret de période T_Time
         T_D_Millis=millis();
-        if(Switch_RAZ==0){
+        if(Switch_H==0){
             CAN0.sendMsgBuf(0x1000, 1, 8, Null);
         }
-        if(Switch_RAZ==1){
+        if(Switch_H==1){
             CAN0.sendMsgBuf(0x1000, 1, 8, Modif);
         }
-        if(Switch_H==0){
+        if(Switch_N==0){
             CAN0.sendMsgBuf(0x1001, 1, 8, Null);
         }
-        if(Switch_H==1){
-            CAN0.sendMsgBuf(0x1001, 1, 8, Modif);
-        }
-        if(Switch_N==0){
-            CAN0.sendMsgBuf(0x1002, 1, 8, Null);
-        }
         if(Switch_N==1){
-            CAN0.sendMsgBuf(0x1002, 1, 8, Modif);
+            CAN0.sendMsgBuf(0x1001, 1, 8, Modif);
         }
     }
 }
