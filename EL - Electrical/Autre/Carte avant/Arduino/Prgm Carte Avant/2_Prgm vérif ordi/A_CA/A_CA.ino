@@ -13,12 +13,10 @@ const int CLOCKPIN = 3;
 char Print[128];  
 
 
-int RAZ_PIN=4; // RAZ Passage de vitesse
-int H_PIN=5;   // Homing
-int N_PIN=12;   // Neutre
+const int H_PIN=12;   // Homing
+const int N_PIN=6;   // Neutre
 
 
-int Switch_RAZ;
 int Switch_H;
 int Switch_N;
 
@@ -31,7 +29,6 @@ int T_Time=1000;
 
 void setup() {
     // put your setup code here, to run once:
-    pinMode(RAZ_PIN,INPUT);
     pinMode(H_PIN,INPUT);
     pinMode(N_PIN,INPUT);
 
@@ -54,12 +51,11 @@ void setup() {
     pinMode(CAN0_INT, INPUT);  
 }
 
-void Send_CA(int Switch_RAZ, int Switch_H, int Switch_N){
-    Switch_RAZ=digitalRead(RAZ_PIN);
+void Send_CA(int Switch_H, int Switch_N){
     Switch_H=digitalRead(H_PIN);
     Switch_N=digitalRead(N_PIN);
 
-    sprintf(Print, "Switch_RAZ = %1d   Switch_H = %1d   Switch_N = %1d", Switch_RAZ, Switch_H, Switch_N);
+    sprintf(Print, "Switch_H = %1d   Switch_N = %1d", Switch_H, Switch_N);
     Serial.print("\n");
     Serial.print(Print);
     
@@ -70,23 +66,17 @@ void Send_CA(int Switch_RAZ, int Switch_H, int Switch_N){
     tmillis=millis();
     if(tmillis>(T_D_Millis+T_Time)){ // Envoie discret de période T_Time
         T_D_Millis=millis();
-        if(Switch_RAZ==0){
+        if(Switch_H==0){
             CAN0.sendMsgBuf(0x1000, 1, 8, Null);
         }
-        if(Switch_RAZ==1){
+        if(Switch_H==1){
             CAN0.sendMsgBuf(0x1000, 1, 8, Modif);
         }
-        if(Switch_H==0){
+        if(Switch_N==0){
             CAN0.sendMsgBuf(0x1001, 1, 8, Null);
         }
-        if(Switch_H==1){
-            CAN0.sendMsgBuf(0x1001, 1, 8, Modif);
-        }
-        if(Switch_N==0){
-            CAN0.sendMsgBuf(0x1002, 1, 8, Null);
-        }
         if(Switch_N==1){
-            CAN0.sendMsgBuf(0x1002, 1, 8, Modif);
+            CAN0.sendMsgBuf(0x1001, 1, 8, Modif);
         }
     }
 }
@@ -94,7 +84,7 @@ void Send_CA(int Switch_RAZ, int Switch_H, int Switch_N){
 void loop() {
     // put your main code here, to run repeatedly:
     
-    Send_CA(Switch_RAZ, Switch_H, Switch_N);
+    Send_CA(Switch_H, Switch_N);
 
     delay(100);
 }
