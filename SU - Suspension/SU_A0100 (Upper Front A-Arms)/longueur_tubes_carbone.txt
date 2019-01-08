@@ -1,0 +1,23 @@
+Triangle supérieur avant
+_ bras avant : 229,5 mm
+_ bras arrière : 229,54
+
+Triangle inférieur avant :
+_ bras avant : 370,32
+_ bras arrière : 372,59
+
+Triangle supérieur arrière :
+_ bras avant : 359,68
+_ bras arrière : 137,87
+
+Triangle inférieur arrière :
+_ bras avant : 428,32
+_ bras arrière : 256,97
+
+Biellette de suspension avant : 290,92
+
+Biellette de suspension arrière : 96,77
+
+Biellette de direction : 294,4
+
+Biellette de pince : 243,52
