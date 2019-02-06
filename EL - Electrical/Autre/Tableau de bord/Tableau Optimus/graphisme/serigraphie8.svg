@@ -44,17 +44,17 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1001"
-     inkscape:window-height="1008"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
      id="namedview138"
      showgrid="false"
      units="mm"
-     inkscape:zoom="0.93099239"
-     inkscape:cx="577.22192"
-     inkscape:cy="253.59253"
-     inkscape:window-x="-7"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
+     inkscape:zoom="3.0548188"
+     inkscape:cx="323.00049"
+     inkscape:cy="266.6866"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
      inkscape:current-layer="g193" />
   <g
      transform="matrix(1.0059456,0,0,1.0059456,-47.074811,1665.3769)"
@@ -268,14 +268,14 @@
     <text
        id="text1002-11"
        y="-421.0621"
-       x="268.92984"
+       x="290.79993"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
        xml:space="preserve"><tspan
          style="font-size:15.09183693px;stroke-width:3.77295923"
          y="-421.0621"
-         x="268.92984"
+         x="290.79993"
          id="tspan1000-5"
-         sodipodi:role="line">LP On</tspan></text>
+         sodipodi:role="line">Off</tspan></text>
     <text
        id="text1002-12"
        y="-444.21085"
@@ -290,14 +290,14 @@
     <text
        id="text1002-17"
        y="-399.70996"
-       x="289.83691"
+       x="269.95502"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
        xml:space="preserve"><tspan
          style="font-size:15.09183693px;stroke-width:3.77295923"
          y="-399.70996"
-         x="289.83691"
+         x="269.95502"
          id="tspan1000-57"
-         sodipodi:role="line">Off</tspan></text>
+         sodipodi:role="line">LP On</tspan></text>
     <text
        id="text1002-12-9"
        y="-338.17963"
