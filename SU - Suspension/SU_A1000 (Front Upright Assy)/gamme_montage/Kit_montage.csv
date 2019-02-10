@@ -1,0 +1,30 @@
+KIT de montage;
+SU_1000_001 (Front Left Upright);1
+WT_0100_001 (Oz Magnesium Rim);1
+WT_0100_002 (Tire Hoosier 13);1
+WT_0200_001 (Front Hub);1
+BR_0100_001_MM (Brake Caliper);1
+BR_0200_001 (Break Disc);1
+SU_10002 (Upper Arm Bracket);1
+SU_10003 (Upper Arm Wedge);1
+S71910 ACD/P4A_PART1-S71910 ACD;2
+WT_02003 (Front Bearing Washer);1
+MB 10-MB 10;1
+KM 10-KM 10;1
+WT_02004 (Speed Sensor Disc Spacer);2
+entretoise_upper_front_bearing_support.1;6
+roue dente capteur vitesse;1
+Speed Sensor;1
+WT_02006 (Speed Sensor Disc Spacer 3mm);1
+Speed_sensor_washer;2
+VISSERIE;
+rondelle_M8.1;2
+ISO 4762 SCREW M8x20 STEEL HEXAGON SOCKET HEAD CAP.2;2
+6x50CHC;2
+ecrou_M6_NS;5
+rondelle_M6;10
+6x55CHC;1
+6x40CHC;2
+5x20CHC;6
+ecrou_M5_NS;6
+rondelle_M5;12
