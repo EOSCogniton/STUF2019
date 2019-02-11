@@ -49,9 +49,9 @@
      id="namedview138"
      showgrid="false"
      units="mm"
-     inkscape:zoom="1.1805788"
-     inkscape:cx="858.27934"
-     inkscape:cy="400.07987"
+     inkscape:zoom="3.0548188"
+     inkscape:cx="323.00049"
+     inkscape:cy="266.6866"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -61,12 +61,12 @@
      id="g193">
     <text
        id="text1002"
-       y="-365.02005"
+       y="-367.00824"
        x="331.64203"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
        xml:space="preserve"><tspan
          style="font-size:15.09183693px;stroke-width:3.77295923"
-         y="-365.02005"
+         y="-367.00824"
          x="331.64203"
          id="tspan1000"
          sodipodi:role="line">Contact</tspan></text>
@@ -94,14 +94,14 @@
     <text
        id="text1010-3"
        y="-255.67018"
-       x="436.52615"
+       x="444.47891"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
        xml:space="preserve"><tspan
          style="font-size:15.09183693px;stroke-width:3.77295923"
          y="-255.67018"
-         x="436.52615"
+         x="444.47891"
          id="tspan1008-0"
-         sodipodi:role="line">Gear shift</tspan></text>
+         sodipodi:role="line">Neutral</tspan></text>
     <text
        inkscape:transform-center-y="-4.5239291"
        inkscape:transform-center-x="54.287187"
@@ -117,15 +117,15 @@
          sodipodi:role="line">Display</tspan></text>
     <text
        id="text1002-1"
-       y="-365.02005"
-       x="445.4975"
+       y="-367.00824"
+       x="433.56836"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
        xml:space="preserve"><tspan
          id="tspan1144"
          style="font-size:15.09183693px;stroke-width:3.77295923"
-         y="-365.02005"
-         x="445.4975"
-         sodipodi:role="line">Neutral</tspan></text>
+         y="-367.00824"
+         x="433.56836"
+         sodipodi:role="line">Gear reset</tspan></text>
     <text
        id="text1002-3"
        y="-255.67018"
@@ -230,13 +230,13 @@
        inkscape:transform-center-y="-4.523932"
        inkscape:transform-center-x="54.287238"
        id="text1010-9-4"
-       y="-365.02005"
+       y="-367.00824"
        x="529.34052"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:14.26000309px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
        xml:space="preserve"><tspan
          id="tspan5158"
          style="font-size:15.09183693px;line-height:14.26000309px;stroke-width:3.77295923"
-         y="-365.02005"
+         y="-367.00824"
          x="529.34052"
          sodipodi:role="line">Traction control</tspan></text>
     <text
@@ -268,14 +268,14 @@
     <text
        id="text1002-11"
        y="-421.0621"
-       x="268.92984"
+       x="290.79993"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
        xml:space="preserve"><tspan
          style="font-size:15.09183693px;stroke-width:3.77295923"
          y="-421.0621"
-         x="268.92984"
+         x="290.79993"
          id="tspan1000-5"
-         sodipodi:role="line">LP On</tspan></text>
+         sodipodi:role="line">Off</tspan></text>
     <text
        id="text1002-12"
        y="-444.21085"
@@ -290,14 +290,14 @@
     <text
        id="text1002-17"
        y="-399.70996"
-       x="289.83691"
+       x="269.95502"
        style="font-style:normal;font-weight:normal;font-size:45.27550888px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77295923"
        xml:space="preserve"><tspan
          style="font-size:15.09183693px;stroke-width:3.77295923"
          y="-399.70996"
-         x="289.83691"
+         x="269.95502"
          id="tspan1000-57"
-         sodipodi:role="line">Off</tspan></text>
+         sodipodi:role="line">LP On</tspan></text>
     <text
        id="text1002-12-9"
        y="-338.17963"
