@@ -709,10 +709,10 @@
     "gpsCfg": {
       "alt": 1,
       "dist": 1,
-      "dop": 1,
+      "dop": 0,
       "pos": 1,
-      "qual": 1,
-      "sats": 1,
+      "qual": 0,
+      "sats": 0,
       "speed": 1,
       "sr": 10
     },
