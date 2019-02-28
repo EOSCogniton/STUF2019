@@ -138,10 +138,13 @@ void loop(){
 
         // Variables are received and processed
         Recieve();
-        Send_CA();
+
         Engine_Failure(W_Temp,A_Temp,O_Press);
         Tachometer(Rpm,Gear);
+        
         State_LC(Kph);
+
+        Send_CA();
         
     }
 }
