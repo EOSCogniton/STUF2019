@@ -46,6 +46,7 @@ unsigned long Current_Led_Millis;
 
 //Engine failure
 Fail_Init=0;
+Fail_Blink_Count=0;
 Fail_Disp;
 
 // Function to turn on the LEDs needed
@@ -63,17 +64,20 @@ void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press){
     if(W_Temp>135 || A_Temp>60 || O_Press<1){
         if(Fail_Init==0){
             Start_Led_Millis=millis();
+            Fail_Blink_Count++;
             Fail_Disp=1;
-        }else{
+        }else if(Fail_Blink_Count<=30){
             Current_Led_Millis=millis();
             if(Current_Led_Millis-Start_Led_Millis>Blink_Time){
                Fail_Init=1;
+               Fail_Blink_Count++;
                Fail_Disp=abs(Fail_Disp-1);
             }
         }
     }else{
-        Fail_Disp=0;
         Fail_Init=0;
+        Fail_Blink_Count=0;
+        Fail_Disp=0;
     }
 }
 
@@ -82,8 +86,7 @@ void Tachometer (int Rpm,int Gear){
     Rpm_Ratio_Corr = Rpm-RPM_MIN_MAX[0][Gear];
     if(Rpm_Ratio_Corr>(NUM_PIXELS+1)*Rpm_Ratio){
         Led_Update(NUM_PIXELS+1,Gear,0);
-    }
-    else{
+    }else{
         for(int i=0 ; i<=NUM_PIXELS ; i++){
             if(i*Rpm_Ratio<=Rpm_Ratio_Corr && Rpm_Ratio_Corr<=(i+1)*Rpm_Ratio){
                 Led_Update(i,Gear,0);
