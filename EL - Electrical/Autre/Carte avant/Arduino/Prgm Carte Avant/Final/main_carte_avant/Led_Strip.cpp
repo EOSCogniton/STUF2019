@@ -23,8 +23,6 @@
 ***************************************************************************/
 #include "Led_Strip.h"
 
-
-
 /**************************************************************************/
 //    Internal variables and constants used ONLY by the functions in this file
 /**************************************************************************/
@@ -47,17 +45,15 @@ unsigned long Start_Led_Millis;
 unsigned long Current_Led_Millis;
 
 //Engine failure
-boolean Engine_Fail=0;
-int Fail_Count=0;
-int Fail_Blink_Count=0;
-int Fail_Blink_Led; // 0=off - 1=on
-
-// Led Strip Init
-Adafruit_DotStar STRIP = Adafruit_DotStar(NUM_PIXELS, DATAPIN, CLOCKPIN, DOTSTAR_BRG);
+Fail_Init=0;
+Fail_Blink_Count=0;
+Fail_Disp;
 
 // Function to turn on the LEDs needed
 // Strip.setPixelColor(index, green, red, blue);
 
+// Led Strip Init
+Adafruit_DotStar STRIP = Adafruit_DotStar(NUM_PIXELS, DATAPIN, CLOCKPIN, DOTSTAR_BRG);
 
 
 /**************************************************************************/
@@ -65,13 +61,23 @@ Adafruit_DotStar STRIP = Adafruit_DotStar(NUM_PIXELS, DATAPIN, CLOCKPIN, DOTSTAR
 /**************************************************************************/
 
 void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press){
-    if(W_Temp>125 || A_Temp>60 || O_Press<1){
-        Led_Update(17,Gear,1);
-        Engine_Fail=1;
-        Fail_Count++;
-    } else {
-        Engine_Fail=0;
+    if(W_Temp>135 || A_Temp>60 || O_Press<1){
+        if(Fail_Init==0){
+            Start_Led_Millis=millis();
+            Fail_Blink_Count++;
+            Fail_Disp=1;
+        }else if(Fail_Blink_Count<=30){
+            Current_Led_Millis=millis();
+            if(Current_Led_Millis-Start_Led_Millis>Blink_Time){
+               Fail_Init=1;
+               Fail_Blink_Count++;
+               Fail_Disp=abs(Fail_Disp-1);
+            }
+        }
+    }else{
+        Fail_Init=0;
         Fail_Blink_Count=0;
+        Fail_Disp=0;
     }
 }
 
@@ -80,8 +86,7 @@ void Tachometer (int Rpm,int Gear){
     Rpm_Ratio_Corr = Rpm-RPM_MIN_MAX[0][Gear];
     if(Rpm_Ratio_Corr>(NUM_PIXELS+1)*Rpm_Ratio){
         Led_Update(NUM_PIXELS+1,Gear,0);
-    }
-    else{
+    }else{
         for(int i=0 ; i<=NUM_PIXELS ; i++){
             if(i*Rpm_Ratio<=Rpm_Ratio_Corr && Rpm_Ratio_Corr<=(i+1)*Rpm_Ratio){
                 Led_Update(i,Gear,0);
@@ -91,34 +96,15 @@ void Tachometer (int Rpm,int Gear){
 }
 
 void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
-    if(Engine_Fail==1){
-        // Engine failure Led Blink
-        if(Led_Number==17){
-            for(int i=0 ; i<NUM_PIXELS ; i++){
-                STRIP.setPixelColor(i,0,255,0); 
-            }
-            STRIP.show();
-            if(Fail_Blink_Count==0){
-                Start_Led_Millis=millis();
-                Fail_Blink_Led=1;
-                Fail_Blink_Count=1;
-            }
-            if(Fail_Blink_Count<=20){
-                Current_Led_Millis=millis();
-                if(Current_Led_Millis-Start_Led_Millis>Fail_Blink_Count*Blink_Time){
-                    Fail_Blink_Led=abs(Fail_Blink_Led-1);
-                    Fail_Blink_Count++;
-                    if(Fail_Blink_Led==0){
-                        STRIP.setBrightness(0);
-                        STRIP.show();
-                    }
-                    else if(Fail_Blink_Led==1){
-                        STRIP.setBrightness(255);
-                        STRIP.show();
-                    }
-                }
-            }
+    
+    Serial.print("\n");
+    Serial.print(Engine_Fail);
+    
+    if(Fail_Disp==1){
+        for(int i=0 ; i<NUM_PIXELS ; i++){
+            STRIP.setPixelColor(i,255,0,0); 
         }
+        STRIP.show();
     }else{
         if(Gear>=1){
             // Shift Led Blink
@@ -134,7 +120,7 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
                 }
                 if(Gear_Blink_Count<=10){  //It's going to blink half the number writen
                     Current_Led_Millis=millis();
-                    if(Current_Led_Millis-Start_Led_Millis>Gear_Blink_Count*Blink_Time){
+                    if(Current_Led_Millis-Start_Led_Millis>Blink_Time){
                         Gear_Blink_Led=abs(Gear_Blink_Led-1);
                         Gear_Blink_Count++;
                         if(Gear_Blink_Led==0){
@@ -149,8 +135,24 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
                 }
             }
             else if(Led_Number>=12 && Led_Number<=16){
-                Gear_Blink_Count=0;
-                for(int i=0 ; i<NUM_PIXELS ; i++){
+                Blink_Count=0;
+                for(int i=0 ; i<6 ; i++){
+                    if(i<=Led_Number){
+                        STRIP.setPixelColor(i,255,0,0);
+                    }
+                    else{
+                        STRIP.setPixelColor(i,0,0,0);
+                    }
+                }
+                for(int i=6 ; i<12 ; i++){
+                    if(i<=Led_Number){
+                        STRIP.setPixelColor(i,255,255,0);
+                    }
+                    else{
+                        STRIP.setPixelColor(i,0,0,0);
+                    }
+                }
+                for(int i=12 ; i<NUM_PIXELS ; i++){
                     if(i<=Led_Number){
                         STRIP.setPixelColor(i,0,255,0);
                     }
@@ -160,8 +162,15 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
                 }
             }
             else if(Led_Number>=6 && Led_Number<=11){
-                Gear_Blink_Count=0;
-                for(int i=0 ; i<NUM_PIXELS ; i++){
+                for(int i=0 ; i<6 ; i++){
+                    if(i<=Led_Number){
+                        STRIP.setPixelColor(i,255,0,0);
+                    }
+                    else{
+                        STRIP.setPixelColor(i,0,0,0);
+                    }
+                }
+                for(int i=6 ; i<NUM_PIXELS ; i++){
                     if(i<=Led_Number){
                         STRIP.setPixelColor(i,255,255,0);
                     }
