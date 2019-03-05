@@ -28,6 +28,8 @@ extern signed O_Press;
 //    Functions
 /**************************************************************************/
 
+void Led_Init();
+
 void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press);
 /*
     @brief      Engine_Failure checks, from certain values from the engine,

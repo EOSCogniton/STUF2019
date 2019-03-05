@@ -38,16 +38,15 @@ const int RPM_MIN_MAX[2][5] = {
 int Led_Number;
 int Rpm_Ratio;
 int Rpm_Ratio_Corr;
-int Blink_Time=75;
+int Blink_Time=300;
 int Gear_Blink_Count=0;
 int Gear_Blink_Led; // 0=off - 1=on
 unsigned long Start_Led_Millis;
 unsigned long Current_Led_Millis;
 
 //Engine failure
-Fail_Init=0;
-Fail_Blink_Count=0;
-Fail_Disp;
+int Fail_Init=0;
+int Fail_Disp=0;
 
 // Function to turn on the LEDs needed
 // Strip.setPixelColor(index, green, red, blue);
@@ -55,29 +54,30 @@ Fail_Disp;
 // Led Strip Init
 Adafruit_DotStar STRIP = Adafruit_DotStar(NUM_PIXELS, DATAPIN, CLOCKPIN, DOTSTAR_BRG);
 
-
 /**************************************************************************/
 //    Functions
 /**************************************************************************/
+
+void Led_Init(){
+    STRIP.begin();
+    STRIP.show();
+}
 
 void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press){
     if(W_Temp>135 || A_Temp>60 || O_Press<1){
         if(Fail_Init==0){
             Start_Led_Millis=millis();
-            Fail_Blink_Count++;
             Fail_Disp=1;
-        }else if(Fail_Blink_Count<=30){
+        }else{
             Current_Led_Millis=millis();
             if(Current_Led_Millis-Start_Led_Millis>Blink_Time){
                Fail_Init=1;
-               Fail_Blink_Count++;
                Fail_Disp=abs(Fail_Disp-1);
             }
         }
     }else{
-        Fail_Init=0;
-        Fail_Blink_Count=0;
         Fail_Disp=0;
+        Fail_Init=0;
     }
 }
 
@@ -86,7 +86,8 @@ void Tachometer (int Rpm,int Gear){
     Rpm_Ratio_Corr = Rpm-RPM_MIN_MAX[0][Gear];
     if(Rpm_Ratio_Corr>(NUM_PIXELS+1)*Rpm_Ratio){
         Led_Update(NUM_PIXELS+1,Gear,0);
-    }else{
+    }
+    else{
         for(int i=0 ; i<=NUM_PIXELS ; i++){
             if(i*Rpm_Ratio<=Rpm_Ratio_Corr && Rpm_Ratio_Corr<=(i+1)*Rpm_Ratio){
                 Led_Update(i,Gear,0);
@@ -98,7 +99,8 @@ void Tachometer (int Rpm,int Gear){
 void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
     
     Serial.print("\n");
-    Serial.print(Engine_Fail);
+    Serial.print("Fail_Disp = ");
+    Serial.print(Fail_Disp);
     
     if(Fail_Disp==1){
         for(int i=0 ; i<NUM_PIXELS ; i++){
@@ -135,7 +137,7 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
                 }
             }
             else if(Led_Number>=12 && Led_Number<=16){
-                Blink_Count=0;
+                Gear_Blink_Count=0;
                 for(int i=0 ; i<6 ; i++){
                     if(i<=Led_Number){
                         STRIP.setPixelColor(i,255,0,0);

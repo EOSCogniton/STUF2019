@@ -53,7 +53,6 @@
 Adafruit_MCP23008 mcp;
 
 
-
 /**************************************************************************/
 //    Variables used by various functions in various .h files
 /**************************************************************************/
@@ -68,7 +67,7 @@ signed A_Temp;
 //    R_ID=0x2001
 signed Lambda; // x1000
 signed Kph; // x10
-signed O_Press;
+signed O_Press=2;
 
 //    R_ID=0x2002
 signed F_Press;
@@ -83,8 +82,6 @@ int Init_Seven_Segments;
 
 //  Temp Voltage (TV) display
 int Switch_TV;
-
-
 
 /**************************************************************************/
 //    Setup and loop
@@ -123,8 +120,9 @@ void setup(){
         }
         Serial.println("7 Segment Init Successfully!");
     }
-    //STRIP.begin();
-    //STRIP.show();
+
+    Led_Init();
+
 }
 
 
