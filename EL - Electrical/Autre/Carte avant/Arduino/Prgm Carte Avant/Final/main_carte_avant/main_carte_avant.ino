@@ -139,6 +139,7 @@ void loop(){
 
         Engine_Failure(W_Temp,A_Temp,O_Press);
         Tachometer(Rpm,Gear);
+        Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
         
         State_LC(Kph);
 
