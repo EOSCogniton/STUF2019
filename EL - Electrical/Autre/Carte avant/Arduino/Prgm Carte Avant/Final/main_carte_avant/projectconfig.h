@@ -1,7 +1,6 @@
 #ifndef PROJECTCONFIG_H //if not define symbol PROJECTCONFIG_H
 #define PROJECTCONFIG_H
 
-
 /**************************************************************************/
 
 //                        IMPORTANT !!!!!!
