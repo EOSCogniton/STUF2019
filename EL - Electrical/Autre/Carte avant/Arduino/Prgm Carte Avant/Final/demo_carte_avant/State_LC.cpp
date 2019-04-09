@@ -37,7 +37,7 @@ void State_LC(int Kph){
     
     if(Switch_LC==1 && Kph<Limit_LC){
         Led_LC=1;
-        digitalWrite(LC_LED_PIN,HIGH);
+        digitalWrite(LC_LED_PIN,LOW);
     }
     if(Kph>Limit_LC){
         Led_LC=0;
