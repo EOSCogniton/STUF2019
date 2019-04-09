@@ -138,6 +138,7 @@ void loop(){
         for(Rpm=0;Rpm<=100;Rpm++){
             Gear_Update(Gear);
             Tachometer((Rpm*50+9000),Gear);
+            delay(100);
         }
     }
 }
