@@ -41,7 +41,7 @@ const boolean PINS_EPSA[4][7]={
 //    Functions
 /**************************************************************************/
 void Gear_Init(){
-    for(int i=0;i<=4;i++){
+    for(int i=0;i<=3;i++){
         mcp.begin(0);
         for(int j=0;j<=6;j++){
             mcp.pinMode(j,OUTPUT);
