@@ -90,6 +90,7 @@ int Switch_TV;
 void setup(){
 
     // Gear Init
+    
     Gear_Init();
   
     // PIN Settup
@@ -131,23 +132,12 @@ void setup(){
 
 
 void loop(){
-    // Read the Switch position
-    Switch_TV=digitalRead(TV_PIN);
-    
-    // Variables are updated
-    // If CAN0_INT pin is low, read receive buffer
-    if(!digitalRead(CAN0_INT)){   
+    // Code de demo
 
-        // Variables are received and processed
-        Recieve();
-
-        Engine_Failure(W_Temp,A_Temp,O_Press);
-        Tachometer(Rpm,Gear);
-        Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
-        
-        State_LC(Kph);
-
-        Send_CA();
-        
+    for(Gear=1;Gear<=4;Gear++){
+        for(Rpm=0;Rpm<=100;Rpm++){
+            Gear_Update(Gear);
+            Tachometer((Rpm*50+9000),Gear);
+        }
     }
 }
