@@ -45,7 +45,7 @@ void Gear_Init(){
         mcp.begin(0);
         for(int j=0;j<=6;j++){
             mcp.pinMode(j,OUTPUT);
-            mcp.digitalWrite(i,PINS_EPSA[j][i]);
+            mcp.digitalWrite(j,PINS_EPSA[i][j]);
         }
         delay(1000);
     }  
