@@ -29,8 +29,8 @@ const int N_PIN=6;   // Neutre
 const int MOTORED_FAIL_LED_PIN= A0;
 const int STATE_FAIL_MOTORED_PIN= A2;
 
-digitalWrite(MOTORED_FAIL_LED_PIN,LOW);
-digitalWrite(STATE_FAIL_MOTORED_PIN,LOW);
+// digitalWrite(MOTORED_FAIL_LED_PIN,LOW);
+// digitalWrite(STATE_FAIL_MOTORED_PIN,LOW);
 
 // Launch Control
 const int LC_SWITCH_PIN = 7; // Pin à cahnger
