@@ -98,6 +98,13 @@ void setup(){
     pinMode(LC_SWITCH_PIN,INPUT); 
     pinMode(LC_LED_PIN,OUTPUT);
 
+    // Motored
+    pinMode(MOTORED_FAIL_LED_PIN,OUTPUT);
+    pinMode(STATE_FAIL_MOTORED_PIN,OUTPUT);
+
+    digitalWrite(MOTORED_FAIL_LED_PIN,LOW);
+    digitalWrite(STATE_FAIL_MOTORED_PIN,LOW);
+
     
     // CAN Init
     Serial.begin(115200);
