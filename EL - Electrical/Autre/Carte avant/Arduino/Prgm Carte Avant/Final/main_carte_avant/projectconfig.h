@@ -25,9 +25,13 @@ const int TV_PIN=3;
 const int H_PIN=12;   // Homing
 const int N_PIN=6;   // Neutre
 
+// Motoreducteur
+const int MOTORED_FAIL_LED_PIN= A0;
+const int STATE_FAIL_MOTORED_PIN= A2;
+
 // Launch Control
 const int LC_SWITCH_PIN = 7; // Pin à cahnger
-const int LC_LED_PIN = 8;
+const int LC_LED_PIN = A1;
 
 
 
