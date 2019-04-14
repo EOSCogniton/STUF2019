@@ -74,8 +74,12 @@ signed F_Press;
 signed O_Temp;
 signed Volts; // x10
 
-//    R_ID=0x2003
+//    R_ID=0x1002
 signed Gear;
+
+//    R_ID=0x2007
+signed ECU;
+signed Led_LC;
 
 //  Gear display
 int Init_Seven_Segments;

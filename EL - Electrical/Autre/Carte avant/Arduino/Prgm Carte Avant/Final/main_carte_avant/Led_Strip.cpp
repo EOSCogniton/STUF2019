@@ -28,6 +28,7 @@
 /**************************************************************************/
 
 // Led constants
+const int Bright=255;
 const int NUM_PIXELS = 16; // Defines the number of pixels in the strip
 const int RPM_MIN_MAX[2][5] = {
   {    0, 9800, 9800, 9800, 9800},
@@ -134,7 +135,7 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
                         STRIP.show();
                     }
                     else if(Gear_Blink_Led==1){
-                        STRIP.setBrightness(255);
+                        STRIP.setBrightness(Bright);
                         Serial.print("Led On");
                         STRIP.show();
                     }
@@ -142,7 +143,7 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
             }
         }
         else if(Fail_Disp==1){
-            STRIP.setBrightness(255);
+            STRIP.setBrightness(Bright);
             Gear_Blink_Count=0;
             for(int i=0 ; i<NUM_PIXELS ; i++){
                 STRIP.setPixelColor(i,0,255,0); 
@@ -150,7 +151,7 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
             STRIP.show();
         }
         else if(Led_Number>=12 && Led_Number<=16){
-            STRIP.setBrightness(255);
+            STRIP.setBrightness(Bright);
             Gear_Blink_Count=0;
             for(int i=0 ; i<6 ; i++){
                 if(i<=Led_Number){
@@ -178,7 +179,7 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
             }
         }
         else if(Led_Number>=6 && Led_Number<=11){
-            STRIP.setBrightness(255);
+            STRIP.setBrightness(Bright);
             for(int i=0 ; i<6 ; i++){
                 if(i<=Led_Number){
                     STRIP.setPixelColor(i,255,0,0);
@@ -197,7 +198,7 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
             }
         }
         else if(Led_Number<=5){
-            STRIP.setBrightness(255);
+            STRIP.setBrightness(Bright);
             Gear_Blink_Count=0;
             for(int i=0 ; i<NUM_PIXELS ; i++){
                 if(i<=Led_Number){
@@ -209,17 +210,17 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
             }
         }
         else if(Led_Number==0){
-            STRIP.setBrightness(255);
+            STRIP.setBrightness(Bright);
             for(int i=0; i<NUM_PIXELS ; i++){
                 STRIP.setPixelColor(i,0,0,0);
             }
         }
     }
     else if(Gear==0){
-        STRIP.setBrightness(255);
+        STRIP.setBrightness(Bright);
         for(int i=0 ; i<NUM_PIXELS ; i++){
             if(i<=Led_Number){
-                STRIP.setPixelColor(i,255,0,0);
+                STRIP.setPixelColor(i,255,255,255);
             }
             else{
                 STRIP.setPixelColor(i,0,0,0);

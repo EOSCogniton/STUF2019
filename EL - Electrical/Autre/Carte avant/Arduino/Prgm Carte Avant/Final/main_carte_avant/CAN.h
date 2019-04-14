@@ -11,6 +11,7 @@
 #include <mcp_can.h>
 #include "projectconfig.h"
 #include "Gear_Update.h"
+#include "State_LC.h"
 #include "Temp_Volt.h"
 
 
@@ -37,8 +38,12 @@ extern signed F_Press;
 extern signed O_Temp;
 extern signed Volts; // x10
 
-// R_ID=0x2003
+//    R_ID=0x1002
 extern signed Gear;
+
+//    R_ID=0x2007
+extern signed ECU;
+extern signed Led_LC;
 
 // Temp Voltage (TV) display
 extern int Switch_TV;
