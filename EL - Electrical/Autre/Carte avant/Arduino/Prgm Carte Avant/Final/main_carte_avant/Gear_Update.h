@@ -26,7 +26,7 @@ extern const boolean PINS_GEAR[5][7];
 /**************************************************************************/
 void Gear_Init();
 
-void Gear_Update(signed Gear);
+void Gear_Update(signed Gear, signed Error);
 /*
     @brief      Grear_Update receives the gear the engine is in and, from
                 PINS_GEAR, determines which segments it has to illuminate

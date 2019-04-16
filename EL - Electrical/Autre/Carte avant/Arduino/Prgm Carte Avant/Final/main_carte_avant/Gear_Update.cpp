@@ -26,6 +26,11 @@ const boolean PINS_GEAR[5][7]={
   {0,1,1,0,0,1,0},
 };
 
+// Error display
+const boolean PINS_ERROR[1][7]={
+  {0,1,1,0,1,1,0}
+};
+
 // EPSA display
 
 const boolean PINS_EPSA[4][7]={
@@ -53,12 +58,23 @@ void Gear_Init(){
 
 
 
-void Gear_Update(signed Gear){
-    mcp.begin(0);
-    for(int i=0;i<=6;i++){
-        mcp.pinMode(i,OUTPUT);
-        mcp.digitalWrite(i,PINS_GEAR[Gear][i]);
+void Gear_Update(signed Gear, signed Error){
+    if(Error==0){
+        mcp.begin(0);
+        for(int i=0;i<=6;i++){
+            mcp.pinMode(i,OUTPUT);
+            mcp.digitalWrite(i,PINS_GEAR[Gear][i]);
+        }
     }
+    else{
+        digitalWrite(A0,HIGH);
+        mcp.begin(0);
+        for(int i=0;i<=6;i++){
+            mcp.pinMode(i,OUTPUT);
+            mcp.digitalWrite(i,PINS_ERROR[1][i]);
+        }
+    }
+    
 }
 
 

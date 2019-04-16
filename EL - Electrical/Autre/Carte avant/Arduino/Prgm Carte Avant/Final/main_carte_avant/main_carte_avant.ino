@@ -76,6 +76,7 @@ signed Volts; // x10
 
 //    R_ID=0x1002
 signed Gear;
+signed Error;
 
 //    R_ID=0x2007
 signed ECU;

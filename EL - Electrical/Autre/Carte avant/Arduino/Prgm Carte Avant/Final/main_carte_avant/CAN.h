@@ -40,6 +40,7 @@ extern signed Volts; // x10
 
 //    R_ID=0x1002
 extern signed Gear;
+extern signed Error;
 
 //    R_ID=0x2007
 extern signed ECU;

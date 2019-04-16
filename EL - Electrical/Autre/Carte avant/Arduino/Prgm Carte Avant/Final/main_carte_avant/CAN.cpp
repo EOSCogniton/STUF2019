@@ -100,12 +100,13 @@ void Data_Update(unsigned char Data[8]){
     }
     if(R_ID==0x1002){
         Gear=Data[0];
+        Error=Data[1];
         
         sprintf(Print, "Gear = %1d", Gear);
         Serial.print("\n");
         Serial.print(Print);
 
-        Gear_Update(Gear);
+        Gear_Update(Gear, Error);
     }
     if(R_ID==0x2007){
         ECU=Data[6]+256*Data[7];
