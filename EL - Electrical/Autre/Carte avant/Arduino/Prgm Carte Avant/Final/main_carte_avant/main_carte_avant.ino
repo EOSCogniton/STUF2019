@@ -88,6 +88,10 @@ int Switch_TV;
 /**************************************************************************/
 
 void setup(){
+
+    // Gear Init
+    Gear_Init();
+  
     // PIN Settup
     pinMode(TV_PIN,INPUT);
 
