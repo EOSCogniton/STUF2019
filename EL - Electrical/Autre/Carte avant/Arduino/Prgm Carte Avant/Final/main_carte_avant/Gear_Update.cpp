@@ -59,6 +59,9 @@ void Gear_Init(){
 
 
 void Gear_Update(signed Gear, signed Error){
+    Serial.println("/n");
+    Serial.println("Gear : ");
+    Serial.println(Gear);
     if(Error==0){
       digitalWrite(A0,LOW);
         mcp.begin(0);
