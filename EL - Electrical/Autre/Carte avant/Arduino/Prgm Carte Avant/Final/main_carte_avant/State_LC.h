@@ -16,7 +16,7 @@
 //    Functions
 /**************************************************************************/
 
-void State_LC(int Kph);
+void State_LC(bool Led_LC);
 /*
     @brief      Explication
     @param[in]  Parametres

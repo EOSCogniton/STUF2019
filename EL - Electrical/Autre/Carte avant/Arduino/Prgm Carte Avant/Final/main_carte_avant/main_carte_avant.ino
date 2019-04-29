@@ -74,8 +74,13 @@ signed F_Press;
 signed O_Temp;
 signed Volts; // x10
 
-//    R_ID=0x2003
+//    R_ID=0x1002
 signed Gear;
+signed Error;
+
+//    R_ID=0x2007
+signed ECU;
+signed Led_LC;
 
 //  Gear display
 int Init_Seven_Segments;
@@ -88,13 +93,16 @@ int Switch_TV;
 /**************************************************************************/
 
 void setup(){
+
+   
+  
     // PIN Settup
-    pinMode(TV_PIN,INPUT);
+    pinMode(TV_PIN,INPUT_PULLUP);
 
-    pinMode(H_PIN,INPUT);
-    pinMode(N_PIN,INPUT);
+    pinMode(H_PIN,INPUT_PULLUP);
+    pinMode(N_PIN,INPUT_PULLUP);
 
-    pinMode(LC_SWITCH_PIN,INPUT); 
+    pinMode(LC_SWITCH_PIN,INPUT_PULLUP);
     pinMode(LC_LED_PIN,OUTPUT);
 
     
@@ -122,6 +130,8 @@ void setup(){
     }
 
     Led_Init();
+     // Gear Init
+    Gear_Init();
 
 }
 
@@ -129,17 +139,18 @@ void setup(){
 void loop(){
     // Read the Switch position
     Switch_TV=digitalRead(TV_PIN);
-    
+    Serial.println("on est pas la");
     // Variables are updated
     // If CAN0_INT pin is low, read receive buffer
     if(!digitalRead(CAN0_INT)){   
 
         // Variables are received and processed
         Recieve();
-
+        Serial.println("on est la");
         Engine_Failure(W_Temp,A_Temp,O_Press);
         Tachometer(Rpm,Gear);
         Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
+        Gear_Update(Gear,Error);
         
         State_LC(Kph);
 

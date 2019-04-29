@@ -40,9 +40,9 @@
           VCC                                                            
           RESET     Reset                                                 
                                                                          
-      DISPONIBLE
-      18  motorSTATE0  Motor State 1 (Error,Stop,Moving)         Digital INPUT
-      19  motorSTATE1  Motor State 2 (Error,Stop,Moving)         Digital INPUT
+      USED
+      A1  motorSTATE0  Motor State 1 (Error,Stop,Moving)         Digital INPUT
+      A0  motorSTATE1  Motor State 2 (Error,Stop,Moving)         Digital INPUT
                                                                              
        0  motorInput0  Motor Input 0                            Digital OUTPUT
        1  motorInput1  Motor Input 1                            Digital OUTPUT
@@ -50,21 +50,31 @@
        3  motorInput3  Motor Input 3                            Digital OUTPUT
        4  motorInput4  Motor Input 4                            Digital OUTPUT
        7  shiftCut     Cut the injection                        Digital OUTPUT
-       6  shiftPot     Inform Gear (Digital PWM)                 Analog OUTPUT
+       A3  gearPot     Inform DTA of the engaged gear            Analog OUTPUT
+       8  neutre       Set the motor to neutre                   Digital INPUT
       13  paletteIncrease Pallete for increasing the speed       Digital INPUT
       12  paletteDencrease Pallete for increasing the speed      Digital INPUT
-                                                                              */
-const int motorState1 = 18; //A4
-const int motorState2 = 19; //A5
+      10  chipSelect    chip select for can                      Digital INPUT                                                                     
+      9  intPinCan      linked to the can                       Digital INPUT
+      
+      TODO
+      Speak we Arthur about intPinCan
+      */
+      
+const int motorState1 = A1; 
+const int motorState2 = A0; 
 const int motorInput0 = 0;
 const int motorInput1 = 1;
 const int motorInput2 = 2;
 const int motorInput3 = 3;
 const int motorInput4 = 4;
 const int shiftCut = 7; 
-const int shiftPot = 6; //(Digital PWM - Analog OUTPUT)
+const int gearPot = A3;
 const int paletteIncrease = 13;
 const int paletteDecrease = 12;
+const int neutre = 8; //A définir 
+const int chipSelect = 10;
+const int intPinCAN = 9;
 
 #endif  /* inclusion guards - INC_PROJECTCONFIG_H */ 
 
