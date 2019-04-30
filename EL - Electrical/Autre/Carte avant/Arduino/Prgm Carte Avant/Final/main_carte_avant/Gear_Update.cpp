@@ -63,6 +63,7 @@ void Gear_Update(signed Gear, signed Error){
     Serial.println("Gear : ");
     Serial.println(Gear);
     if(Error==0){
+      digitalWrite(A0,LOW);
         mcp.begin(0);
         for(int i=0;i<=6;i++){
             mcp.pinMode(i,OUTPUT);
