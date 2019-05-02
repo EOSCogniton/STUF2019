@@ -30,9 +30,9 @@
 // Led constants
 const int Bright=255;
 const int NUM_PIXELS = 16; // Defines the number of pixels in the strip
-const int RPM_MIN_MAX[2][5] = {
-  {    0, 9800, 9800, 9800, 9800},
-  {12000,13500,12000,12000,12000}
+const int RPM_MIN_MAX[2][7] = {
+  {    0, 9800, 9800, 9800, 9800, 9800, 9800},
+  {12000,13500,12000,12000,12000,12000,12000}
 }; // Matrix with the min/max rpm to change gear
 
 // Led variables

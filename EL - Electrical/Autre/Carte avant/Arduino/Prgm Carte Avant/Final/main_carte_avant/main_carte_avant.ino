@@ -75,7 +75,7 @@ signed O_Temp;
 signed Volts; // x10
 
 //    R_ID=0x1002
-signed Gear;
+signed Gear=0;
 signed Error;
 
 //    R_ID=0x2007
