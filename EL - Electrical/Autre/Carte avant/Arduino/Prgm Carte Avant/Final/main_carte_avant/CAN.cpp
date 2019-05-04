@@ -37,6 +37,8 @@ unsigned long tmillis=millis();
 unsigned long T_D_Millis=millis();
 int T_Time=1000;
 
+// Calc
+int LC_Calc;
 
 
 /**************************************************************************/
@@ -64,10 +66,10 @@ void Recieve(){
 
 void Data_Update(unsigned char Data[8]){  
     if(R_ID==0x2000){
-        Rpm=Data[1]+256*Data[0];
-        TPS=Data[3]+256*Data[2];
-        W_Temp=Data[5]+256*Data[4];
-        A_Temp=Data[7]+256*Data[6];
+        Rpm=Data[0]+256*Data[1];
+        TPS=Data[2]+256*Data[3];
+        W_Temp=Data[4]+256*Data[5];
+        A_Temp=Data[6]+256*Data[7];
         
         sprintf(Print, "RPM = %5d   Throttle = %3d   Water Temp = %3d    Air Temp = %3d", Rpm, TPS, W_Temp, A_Temp);
         Serial.print("\n");
@@ -76,9 +78,9 @@ void Data_Update(unsigned char Data[8]){
         Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
     }
     if(R_ID==0x2001){
-        Lambda=Data[3]+256*Data[2];
-        Kph=Data[5]+256*Data[4];
-        O_Press=Data[7]+256*Data[6];
+        Lambda=Data[2]+256*Data[3];
+        Kph=Data[4]+256*Data[5];
+        O_Press=Data[6]+256*Data[7];
         
         sprintf(Print, "Lambda = %3d   KPH = %3d   Oil Press = %3d", Lambda, Kph, O_Press);
         Serial.print("\n");
@@ -86,9 +88,9 @@ void Data_Update(unsigned char Data[8]){
     }
     
     if(R_ID==0x2002){
-        F_Press=Data[1]+256*Data[0];
-        O_Temp=Data[3]+256*Data[2];
-        Volts=Data[5]+256*Data[4];
+        F_Press=Data[0]+256*Data[1];
+        O_Temp=Data[2]+256*Data[3];
+        Volts=Data[4]+256*Data[5];
         
         sprintf(Print, "Fuel Press = %3d   Oil Temp = %3d   Volts = %3d", F_Press, O_Temp, Volts);
         Serial.print("\n");
@@ -96,14 +98,35 @@ void Data_Update(unsigned char Data[8]){
         
         Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
     }
-    if(R_ID==0x1002){
-        Gear=Data[0];
+//  Si la vitesse engagée provient de la carte arrière
+//  if(R_ID==0x1002){
+//      Gear=Data[0];
+//      Error=Data[1];
+//       
+//      sprintf(Print, "Gear = %1d", Gear);
+//      Serial.print("\n");
+//      Serial.print(Print);
+//
+//      Gear_Update(Gear, Error);
+//  }
+
+//  Si la vitesse engagée vient du DTA
+    if(R_ID==0x2003){
+        Gear=Data[0]+256*Data[1];
+        
         
         sprintf(Print, "Gear = %1d", Gear);
         Serial.print("\n");
         Serial.print(Print);
 
-        Gear_Update(Gear);
+        Gear_Update(Gear, Error);
+    }
+    
+    if(R_ID==0x2007){
+        ECU=Data[6]+256*Data[7];
+        LC_Calc=(ECU%100)/10;
+
+        State_LC(Led_LC);
     }
     return;
 }
