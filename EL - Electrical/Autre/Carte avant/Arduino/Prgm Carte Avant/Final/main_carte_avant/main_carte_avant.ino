@@ -75,7 +75,7 @@ signed O_Temp;
 signed Volts; // x10
 
 //    R_ID=0x1002
-signed Gear;
+signed Gear=0;
 signed Error;
 
 //    R_ID=0x2007
@@ -87,6 +87,9 @@ int Init_Seven_Segments;
 
 //  Temp Voltage (TV) display
 int Switch_TV;
+
+// Led Strip Display
+int Count=0;
 
 /**************************************************************************/
 //    Setup and loop
@@ -146,13 +149,17 @@ void loop(){
 
         // Variables are received and processed
         Recieve();
-        Serial.println("on est la");
-        Engine_Failure(W_Temp,A_Temp,O_Press);
-        Tachometer(Rpm,Gear);
-        Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
-        Gear_Update(Gear,Error);
+
+        // Led Strip Maj
+        Count++;
+        if(Count==5){
+            Count=0;
+            Engine_Failure(W_Temp,A_Temp,O_Press);
+            Tachometer(Rpm,Gear);
+        }
         
-        State_LC(Kph);
+        
+        Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
 
         Send_CA();
         
