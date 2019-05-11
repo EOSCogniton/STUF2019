@@ -99,28 +99,29 @@ void Data_Update(unsigned char Data[8]){
         Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
     }
 //  Si la vitesse engagée provient de la carte arrière
-//  if(R_ID==0x1002){
-//      Gear=Data[0];
-//      Error=Data[1];
-//       
-//      sprintf(Print, "Gear = %1d", Gear);
-//      Serial.print("\n");
-//      Serial.print(Print);
-//
-//      Gear_Update(Gear, Error);
-//  }
+  if(R_ID==0x1002){
+      Gear=Data[0];
+      Error=Data[1];
+       
+      sprintf(Print, "Gear = %1d", Gear);
+      Serial.print("\n");
+      Serial.print(Print);
+      
+      Gear_Update(Gear, Error);
+      
+  }
 
 //  Si la vitesse engagée vient du DTA
-    if(R_ID==0x2003){
-        Gear=Data[0]+256*Data[1];
-        
-        
-        sprintf(Print, "Gear = %1d", Gear);
-        Serial.print("\n");
-        Serial.print(Print);
-
-        Gear_Update(Gear, Error);
-    }
+//    if(R_ID==0x2003){
+//        Gear=Data[0]+256*Data[1];
+//        
+//        
+//        sprintf(Print, "Gear = %1d", Gear);
+//        Serial.print("\n");
+//        Serial.print(Print);
+//
+//        Gear_Update(Gear, Error);
+//    }
     
     if(R_ID==0x2007){
         ECU=Data[6]+256*Data[7];

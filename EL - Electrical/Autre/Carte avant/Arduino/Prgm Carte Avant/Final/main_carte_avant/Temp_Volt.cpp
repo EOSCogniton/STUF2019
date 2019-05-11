@@ -52,7 +52,9 @@ const boolean PINS_R2[10][8]{
 // B A 1 F G C D E      Pins of the 7 segments corresponding to the x10 (1 is the 1 of the x100)
 };
 
-
+//
+int W_Temp_B;
+int Volts_B;
 
 /**************************************************************************/
 //    Functions
@@ -61,14 +63,20 @@ const boolean PINS_R2[10][8]{
 void Seven_Seg_Calc(int Switch_Temp_Volt,int W_Temp,int Volts){
     switch(Switch_Temp_Volt){
         case 0:                           //Water Temperature
-            TV_Update(1,W_Temp%10,6);
-            W_Temp=W_Temp/10;
-            TV_Update(2,W_Temp,6);
+            if(!W_Temp==W_Temp_B){
+                W_Temp_B=W_Temp;
+                TV_Update(1,W_Temp%10,6);
+                W_Temp=W_Temp/10;
+                TV_Update(2,W_Temp,6);
+            }
             break;
         case 1:                           //Voltage
-            TV_Update(1,Volts%10,7);
-            Volts=Volts/10;
-            TV_Update(2,Volts,7);
+            if(!Volts==Volts_B){
+                Volts_B=Volts;
+                TV_Update(1,Volts%10,7);
+                Volts=Volts/10;
+                TV_Update(2,Volts,7);
+            }
             break;
     }
 }
