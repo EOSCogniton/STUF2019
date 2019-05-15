@@ -24,6 +24,7 @@ extern MCP_CAN CAN0;
 
 // R_ID=0x2000
 extern signed Rpm;
+extern bool Data_Rpm;
 extern signed TPS; // %
 extern signed W_Temp;
 extern signed A_Temp;

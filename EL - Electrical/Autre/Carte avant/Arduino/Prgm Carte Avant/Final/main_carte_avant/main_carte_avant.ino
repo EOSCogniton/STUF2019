@@ -60,6 +60,7 @@ Adafruit_MCP23008 mcp;
 //  Data variables
 //    R_ID=0x2000
 signed Rpm;
+bool Data_Rpm;
 signed TPS; // %
 signed W_Temp;
 signed A_Temp;
@@ -151,11 +152,12 @@ void loop(){
         Recieve();
 
         // Led Strip Maj
-        Count++;
-        if(Count==5){
-            Count=0;
+        if(Data_Rpm==1){
+            Serial.println("\n");
+            Serial.println("RPM : ");
+            Serial.println(abs(Rpm));
             Engine_Failure(W_Temp,A_Temp,O_Press);
-            Tachometer(Rpm,Gear);
+            Tachometer(abs(Rpm),Gear);
         }
         
         
