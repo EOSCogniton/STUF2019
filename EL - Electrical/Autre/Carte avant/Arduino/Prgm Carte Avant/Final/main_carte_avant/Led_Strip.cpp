@@ -28,7 +28,7 @@
 /**************************************************************************/
 
 // Led constants
-const int Bright=255;
+const int Bright=20;
 const int NUM_PIXELS = 16; // Defines the number of pixels in the strip
 const int RPM_MIN_MAX[2][7] = {
   {    0, 9800, 9800, 9800, 9800, 9800, 9800},
