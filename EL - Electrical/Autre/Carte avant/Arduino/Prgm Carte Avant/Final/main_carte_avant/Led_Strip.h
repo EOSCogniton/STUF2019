@@ -21,6 +21,7 @@ extern signed Gear;
 extern signed W_Temp;
 extern signed A_Temp;
 extern signed O_Press;
+extern signed Auto;
 
 
 
@@ -41,7 +42,7 @@ void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press);
     @return     Calls Led_Update.
 */
 
-void Tachometer (int Rpm,int Gear);
+void Tachometer (int Rpm,int Gear,bool Auto);
 /*
     @brief      Tachometer calculates from the limits set in RPM_MIN_MAX 
                 and the gear engaged, the number of LEDs to be lit and 
@@ -51,7 +52,7 @@ void Tachometer (int Rpm,int Gear);
     @return     Calls Led_Update.
 */
 
-void Led_Update (int Led_Number,int Gear,boolean Engine_Fail);
+void Led_Update (int Led_Number,int Gear,boolean Engine_Fail,bool Auto);
 /*
     @brief      Led_Update receives the number of LEDs to illuminate, as
                 well as the gear the vehicle is in and if there is an 

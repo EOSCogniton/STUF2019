@@ -106,6 +106,7 @@ void Data_Update(unsigned char Data[8]){
         Data_Rpm=0;
         Gear=Data[0];
         Error=Data[1];
+        Auto=Data[2];
        
         sprintf(Print, "Gear = %1d", Gear);
         Serial.print("\n");

@@ -86,22 +86,22 @@ void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press){
     }
 }
 
-void Tachometer (int Rpm,int Gear){
+void Tachometer (int Rpm,int Gear,bool Auto){
     Rpm_Ratio = (RPM_MIN_MAX[1][Gear]-RPM_MIN_MAX[0][Gear])/(NUM_PIXELS+1);
     Rpm_Ratio_Corr = Rpm-RPM_MIN_MAX[0][Gear];
     if(Rpm_Ratio_Corr>(NUM_PIXELS+1)*Rpm_Ratio){
-        Led_Update(NUM_PIXELS+1,Gear,0);
+        Led_Update(NUM_PIXELS+1,Gear,0,Auto);
     }
     else{
         for(int i=0 ; i<=NUM_PIXELS ; i++){
             if(i*Rpm_Ratio<=Rpm_Ratio_Corr && Rpm_Ratio_Corr<=(i+1)*Rpm_Ratio){
-                Led_Update(i,Gear,0);
+                Led_Update(i,Gear,0,Auto);
             }
         }
     }
 }
 
-void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
+void Led_Update (int Led_Number,int Gear,boolean Engine_Fail,bool Auto){
     
     Serial.print("\n");
     Serial.print("Fail_Disp = ");
@@ -226,6 +226,9 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
                 STRIP.setPixelColor(i,0,0,0);
             }
         }
+    }
+    if (Auto){
+      STRIP.setPixelColor(16,254,115,248);
     }
     STRIP.show();
 
