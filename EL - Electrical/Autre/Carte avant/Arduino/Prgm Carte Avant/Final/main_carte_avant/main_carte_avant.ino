@@ -162,7 +162,6 @@ void loop(){
         
         
         Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
-
         Send_CA();
         
     }
