@@ -78,6 +78,7 @@ signed Volts; // x10
 //    R_ID=0x1002
 signed Gear=0;
 signed Error;
+signed Auto;
 
 //    R_ID=0x2007
 signed ECU;
@@ -100,14 +101,14 @@ void setup(){
 
    
   
-    // PIN Settup
+    // PIN Setup
     pinMode(TV_PIN,INPUT_PULLUP);
 
     pinMode(H_PIN,INPUT_PULLUP);
     pinMode(N_PIN,INPUT_PULLUP);
 
-    pinMode(LC_SWITCH_PIN,INPUT_PULLUP);
     pinMode(LC_LED_PIN,OUTPUT);
+    pinMode(MOTORED_FAIL_LED_PIN,OUTPUT);
 
     
     // CAN Init
@@ -132,7 +133,9 @@ void setup(){
         }
         Serial.println("7 Segment Init Successfully!");
     }
-
+    if(!digitalRead(CAN0_INT)){ 
+      Send_CA();
+    }
     Led_Init();
      // Gear Init
     Gear_Init();
@@ -157,7 +160,7 @@ void loop(){
             Serial.println("RPM : ");
             Serial.println(abs(Rpm));
             Engine_Failure(W_Temp,A_Temp,O_Press);
-            Tachometer(abs(Rpm),Gear);
+            Tachometer(abs(Rpm),Gear,Auto);
         }
         
         
