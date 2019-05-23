@@ -228,7 +228,10 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail,bool Auto){
         }
     }
     if (Auto){
-      STRIP.setPixelColor(16,254,115,248);
+      STRIP.setBrightness(Bright);
+      for(int i=0 ; i<6 ; i++){
+            STRIP.setPixelColor(i,255,255,255);
+        }
     }
     STRIP.show();
 
