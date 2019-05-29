@@ -28,11 +28,11 @@
 /**************************************************************************/
 
 // Led constants
-const int Bright=255;
+const int Bright=20;
 const int NUM_PIXELS = 16; // Defines the number of pixels in the strip
-const int RPM_MIN_MAX[2][5] = {
-  {    0, 9800, 9800, 9800, 9800},
-  {12000,13500,12000,12000,12000}
+const int RPM_MIN_MAX[2][7] = {
+  {    0, 2000, 2000, 2000, 2000, 2000, 2000},
+  {14000,13300,13100,12900,12800,12700,12000}
 }; // Matrix with the min/max rpm to change gear
 
 // Led variables
@@ -86,22 +86,22 @@ void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press){
     }
 }
 
-void Tachometer (int Rpm,int Gear){
+void Tachometer (int Rpm,int Gear,bool Auto){
     Rpm_Ratio = (RPM_MIN_MAX[1][Gear]-RPM_MIN_MAX[0][Gear])/(NUM_PIXELS+1);
     Rpm_Ratio_Corr = Rpm-RPM_MIN_MAX[0][Gear];
     if(Rpm_Ratio_Corr>(NUM_PIXELS+1)*Rpm_Ratio){
-        Led_Update(NUM_PIXELS+1,Gear,0);
+        Led_Update(NUM_PIXELS+1,Gear,0,Auto);
     }
     else{
         for(int i=0 ; i<=NUM_PIXELS ; i++){
             if(i*Rpm_Ratio<=Rpm_Ratio_Corr && Rpm_Ratio_Corr<=(i+1)*Rpm_Ratio){
-                Led_Update(i,Gear,0);
+                Led_Update(i,Gear,0,Auto);
             }
         }
     }
 }
 
-void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
+void Led_Update (int Led_Number,int Gear,boolean Engine_Fail,bool Auto){
     
     Serial.print("\n");
     Serial.print("Fail_Disp = ");
@@ -150,10 +150,10 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
             }
             STRIP.show();
         }
-        else if(Led_Number>=12 && Led_Number<=16){
+        else if(Led_Number>=15 && Led_Number<=16){
             STRIP.setBrightness(Bright);
             Gear_Blink_Count=0;
-            for(int i=0 ; i<6 ; i++){
+            for(int i=0 ; i<10 ; i++){
                 if(i<=Led_Number){
                     STRIP.setPixelColor(i,255,0,0);
                 }
@@ -161,7 +161,7 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
                     STRIP.setPixelColor(i,0,0,0);
                 }
             }
-            for(int i=6 ; i<12 ; i++){
+            for(int i=10 ; i<115 ; i++){
                 if(i<=Led_Number){
                     STRIP.setPixelColor(i,255,255,0);
                 }
@@ -169,7 +169,7 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
                     STRIP.setPixelColor(i,0,0,0);
                 }
             }
-            for(int i=12 ; i<NUM_PIXELS ; i++){
+            for(int i=15 ; i<NUM_PIXELS ; i++){
                 if(i<=Led_Number){
                     STRIP.setPixelColor(i,0,255,0);
                 }
@@ -178,9 +178,9 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
                 }
             }
         }
-        else if(Led_Number>=6 && Led_Number<=11){
+        else if(Led_Number>=10 && Led_Number<=14){
             STRIP.setBrightness(Bright);
-            for(int i=0 ; i<6 ; i++){
+            for(int i=0 ; i<10 ; i++){
                 if(i<=Led_Number){
                     STRIP.setPixelColor(i,255,0,0);
                 }
@@ -188,7 +188,7 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
                     STRIP.setPixelColor(i,0,0,0);
                 }
             }
-            for(int i=6 ; i<NUM_PIXELS ; i++){
+            for(int i=10 ; i<NUM_PIXELS ; i++){
                 if(i<=Led_Number){
                     STRIP.setPixelColor(i,255,255,0);
                 }
@@ -197,7 +197,7 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
                 }
             }
         }
-        else if(Led_Number<=5){
+        else if(Led_Number<=9){
             STRIP.setBrightness(Bright);
             Gear_Blink_Count=0;
             for(int i=0 ; i<NUM_PIXELS ; i++){
@@ -225,6 +225,12 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail){
             else{
                 STRIP.setPixelColor(i,0,0,0);
             }
+        }
+    }
+    if (Auto){
+      STRIP.setBrightness(Bright);
+      for(int i=0 ; i<6 ; i++){
+            STRIP.setPixelColor(i,255,255,255);
         }
     }
     STRIP.show();

@@ -60,6 +60,7 @@ Adafruit_MCP23008 mcp;
 //  Data variables
 //    R_ID=0x2000
 signed Rpm;
+bool Data_Rpm;
 signed TPS; // %
 signed W_Temp;
 signed A_Temp;
@@ -75,8 +76,9 @@ signed O_Temp;
 signed Volts; // x10
 
 //    R_ID=0x1002
-signed Gear;
+signed Gear=0;
 signed Error;
+signed Auto;
 
 //    R_ID=0x2007
 signed ECU;
@@ -88,6 +90,9 @@ int Init_Seven_Segments;
 //  Temp Voltage (TV) display
 int Switch_TV;
 
+// Led Strip Display
+int Count=0;
+
 /**************************************************************************/
 //    Setup and loop
 /**************************************************************************/
@@ -96,14 +101,14 @@ void setup(){
 
    
   
-    // PIN Settup
+    // PIN Setup
     pinMode(TV_PIN,INPUT_PULLUP);
 
     pinMode(H_PIN,INPUT_PULLUP);
     pinMode(N_PIN,INPUT_PULLUP);
 
-    pinMode(LC_SWITCH_PIN,INPUT_PULLUP);
     pinMode(LC_LED_PIN,OUTPUT);
+    pinMode(MOTORED_FAIL_LED_PIN,OUTPUT);
 
     
     // CAN Init
@@ -128,7 +133,9 @@ void setup(){
         }
         Serial.println("7 Segment Init Successfully!");
     }
-
+    if(!digitalRead(CAN0_INT)){ 
+      Send_CA();
+    }
     Led_Init();
      // Gear Init
     Gear_Init();
@@ -146,14 +153,18 @@ void loop(){
 
         // Variables are received and processed
         Recieve();
-        Serial.println("on est la");
-        Engine_Failure(W_Temp,A_Temp,O_Press);
-        Tachometer(Rpm,Gear);
-        Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
-        Gear_Update(Gear,Error);
-        
-        State_LC(Kph);
 
+        // Led Strip Maj
+        if(Data_Rpm==1){
+            Serial.println("\n");
+            Serial.println("RPM : ");
+            Serial.println(abs(Rpm));
+            Engine_Failure(W_Temp,A_Temp,O_Press);
+            Tachometer(abs(Rpm),Gear,Auto);
+        }
+        
+        
+        Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
         Send_CA();
         
     }

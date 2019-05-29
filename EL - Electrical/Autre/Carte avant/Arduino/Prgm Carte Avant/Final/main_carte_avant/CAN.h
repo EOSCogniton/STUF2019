@@ -24,6 +24,7 @@ extern MCP_CAN CAN0;
 
 // R_ID=0x2000
 extern signed Rpm;
+extern bool Data_Rpm;
 extern signed TPS; // %
 extern signed W_Temp;
 extern signed A_Temp;
@@ -41,6 +42,7 @@ extern signed Volts; // x10
 //    R_ID=0x1002
 extern signed Gear;
 extern signed Error;
+extern signed Auto;
 
 //    R_ID=0x2007
 extern signed ECU;

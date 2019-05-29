@@ -17,7 +17,7 @@
 /**************************************************************************/
 
 extern Adafruit_MCP23008 mcp;
-extern const boolean PINS_GEAR[5][7];
+extern const boolean PINS_GEAR[7][7];
 
 
 
