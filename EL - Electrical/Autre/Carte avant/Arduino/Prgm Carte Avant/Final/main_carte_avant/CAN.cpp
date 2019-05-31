@@ -52,15 +52,15 @@ void Recieve(){
 
     // Determine if R_ID_Mask is standard (11 bits) or extended (29 bits)
     if((R_ID_Mask & 0x80000000) == 0x80000000){
-        Serial.print("\n");
-        Serial.print("Extended ");
+//        Serial.print("\n");
+//        Serial.print("Extended ");
         R_ID=(R_ID_Mask & 0x0000FFFF);
-        Serial.print(R_ID);
+//        Serial.print(R_ID);
         Data_Update(Data);
     }
     else{
-        Serial.print("\n");
-        Serial.print("Standart");
+//        Serial.print("\n");
+//        Serial.print("Standart");
     }
 }
 
@@ -72,9 +72,9 @@ void Data_Update(unsigned char Data[8]){
         W_Temp=Data[4]+256*Data[5];
         A_Temp=Data[6]+256*Data[7];
         
-        sprintf(Print, "RPM = %5d   Throttle = %3d   Water Temp = %3d    Air Temp = %3d", Rpm, TPS, W_Temp, A_Temp);
-        Serial.print("\n");
-        Serial.print(Print);
+//        sprintf(Print, "RPM = %5d   Throttle = %3d   Water Temp = %3d    Air Temp = %3d", Rpm, TPS, W_Temp, A_Temp);
+//        Serial.print("\n");
+//        Serial.print(Print);
         
         Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
     }
@@ -84,9 +84,9 @@ void Data_Update(unsigned char Data[8]){
         Kph=Data[4]+256*Data[5];
         O_Press=Data[6]+256*Data[7];
         
-        sprintf(Print, "Lambda = %3d   KPH = %3d   Oil Press = %3d", Lambda, Kph, O_Press);
-        Serial.print("\n");
-        Serial.print(Print);
+//        sprintf(Print, "Lambda = %3d   KPH = %3d   Oil Press = %3d", Lambda, Kph, O_Press);
+//        Serial.print("\n");
+//        Serial.print(Print);
     }
     
     if(R_ID==0x2002){
@@ -95,24 +95,26 @@ void Data_Update(unsigned char Data[8]){
         O_Temp=Data[2]+256*Data[3];
         Volts=Data[4]+256*Data[5];
         
-        sprintf(Print, "Fuel Press = %3d   Oil Temp = %3d   Volts = %3d", F_Press, O_Temp, Volts);
-        Serial.print("\n");
-        Serial.print(Print);
+//        sprintf(Print, "Fuel Press = %3d   Oil Temp = %3d   Volts = %3d", F_Press, O_Temp, Volts);
+//        Serial.print("\n");
+//        Serial.print(Print);
         
         Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
     }
 //  Si la vitesse engagée provient de la carte arrière
     if(R_ID==0x1002){
         Data_Rpm=0;
-        Gear=Data[0];
-        Error=Data[1];
         Auto=Data[2];
        
-        sprintf(Print, "Gear = %1d", Gear);
-        Serial.print("\n");
-        Serial.print(Print);
-      
-        Gear_Update(Gear, Error);
+//        sprintf(Print, "Gear = %1d", Gear);
+//        Serial.print("\n");
+//        Serial.print(Print);
+        if (Data[0]!=Gear or Error!=Data[1]) {
+          Gear = Data[0];
+          Error=Data[1];
+          Gear_Update(Gear, Error);
+        }
+        
       
   }
 
@@ -142,7 +144,7 @@ void Data_Update(unsigned char Data[8]){
 void Send_CA(){
     Switch_H=digitalRead(H_PIN);
     Switch_N=digitalRead(N_PIN);
-
+//
     sprintf(Print, "Switch_H = %1d   Switch_N = %1d", Switch_H, Switch_N);
     Serial.print("\n");
     Serial.print(Print);
