@@ -146,7 +146,9 @@ void setup(){
 void loop(){
     // Read the Switch position
     Switch_TV=digitalRead(TV_PIN);
-    Serial.println("on est pas la");
+//    Serial.println("\n");
+//    Serial.println("TV :" );
+//    Serial.println(Switch_TV);
     // Variables are updated
     // If CAN0_INT pin is low, read receive buffer
     if(!digitalRead(CAN0_INT)){   
@@ -156,9 +158,9 @@ void loop(){
 
         // Led Strip Maj
         if(Data_Rpm==1){
-            Serial.println("\n");
-            Serial.println("RPM : ");
-            Serial.println(abs(Rpm));
+//            Serial.println("\n");
+//            Serial.println("RPM : ");
+//            Serial.println(abs(Rpm));
             Engine_Failure(W_Temp,A_Temp,O_Press);
             Tachometer(abs(Rpm),Gear,Auto);
         }

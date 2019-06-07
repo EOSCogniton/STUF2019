@@ -29,9 +29,8 @@ const boolean PINS_GEAR[7][7]={
 };
 
 // Error display
-const boolean PINS_ERROR[1][7]={
-  {0,1,1,0,1,1,0}
-};
+const boolean PINS_ERROR[7]=
+  {1,0,0,0,0,0,1};
 
 // EPSA display
 
@@ -67,22 +66,22 @@ void Gear_Update(signed Gear, signed Error){
     Serial.println("Gear : ");
     Serial.println(Gear);
     if(Error==0){
-        if(!Gear==Gear_B){
-            Gear_B=Gear;
+            Serial.println("\n");
+            Serial.println("Gear Display : ");
+            Serial.println(Gear);
             digitalWrite(A0,LOW);
             mcp.begin(0);
             for(int i=0;i<=6;i++){
                 mcp.pinMode(i,OUTPUT);
                 mcp.digitalWrite(i,PINS_GEAR[Gear][i]);
             }
-        }
     }
     else{
         digitalWrite(A0,HIGH);
         mcp.begin(0);
         for(int i=0;i<=6;i++){
             mcp.pinMode(i,OUTPUT);
-            mcp.digitalWrite(i,PINS_ERROR[1][i]);
+            mcp.digitalWrite(i,PINS_ERROR[i]);
         }
     }
     
