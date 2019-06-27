@@ -52,7 +52,7 @@ void Tachometer (int Rpm,int Gear,bool Auto);
     @return     Calls Led_Update.
 */
 
-void Led_Update (int Led_Number,int Gear,boolean Engine_Fail,bool Auto);
+void Led_Update (int Led_Number,int Gear,bool Auto);
 /*
     @brief      Led_Update receives the number of LEDs to illuminate, as
                 well as the gear the vehicle is in and if there is an 

@@ -39,7 +39,6 @@ const int RPM_MIN_MAX[2][7] = {
 int Led_Number;
 int Led_Number_B;
 int Rpm_Ratio;
-int Rpm_Ratio_Corr;
 int Blink_Time=200;
 int Gear_Blink_Count=0;
 int Gear_Blink_Led; // 0=off - 1=on
@@ -64,11 +63,12 @@ Adafruit_DotStar STRIP = Adafruit_DotStar(NUM_PIXELS, DATAPIN, CLOCKPIN, DOTSTAR
 
 void Led_Init(){
     STRIP.begin();
+    STRIP.setBrightness(Bright);
     STRIP.show();
 }
 
 void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press){
-    if(W_Temp>135 || A_Temp>60 || O_Press<1){
+    if(W_Temp>110 || A_Temp>60 || O_Press<1){
         if(Fail_Init==0){
             Start_Fail_Millis=millis();
             Fail_Disp=1;
@@ -88,91 +88,60 @@ void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press){
 }
 
 void Tachometer (int Rpm,int Gear,bool Auto){
-    Rpm_Ratio = (RPM_MIN_MAX[1][Gear]-RPM_MIN_MAX[0][Gear])/(NUM_PIXELS+1);
-    Rpm_Ratio_Corr = Rpm-RPM_MIN_MAX[0][Gear];
-    if(Rpm_Ratio_Corr>(NUM_PIXELS+1)*Rpm_Ratio){
-        Led_Update(NUM_PIXELS+1,Gear,0,Auto);
+    if (Rpm>RPM_MIN_MAX[0][Gear]) {
+      Rpm_Ratio = int( (Rpm-RPM_MIN_MAX[0][Gear])/(RPM_MIN_MAX[1][Gear]-RPM_MIN_MAX[0][Gear])*(NUM_PIXELS+1));
     }
-    else{
-        for(int i=0 ; i<=NUM_PIXELS ; i++){
-            if(i*Rpm_Ratio<=Rpm_Ratio_Corr && Rpm_Ratio_Corr<=(i+1)*Rpm_Ratio){
-                Led_Update(i,Gear,0,Auto);
-            }
-        }
+    else {
+      Rpm_Ratio = 0;
+      }
+    if (Rpm_Ratio > (NUM_PIXELS+1)) {
+      Rpm_Ratio =  NUM_PIXELS+1;         
     }
+    Led_Update (Rpm_Ratio,Gear,Auto);
 }
 
-void Led_Update (int Led_Number,int Gear,boolean Engine_Fail,bool Auto){
+void Led_Update (int Led_Number,int Gear,bool Auto){
     
-    Serial.print("\n");
-    Serial.print("Fail_Disp = ");
-    Serial.print(Fail_Disp);
+    //Serial.print("\n");
+    //Serial.print("Fail_Disp = ");
+    //Serial.print(Fail_Disp);
 
-    Serial.print("\n");
-    Serial.print("Led_Disp = ");
-    Serial.print(Led_Number);
-    if (Led_Number!=Led_Number_B){
-        Led_Number_B=Led_Number;
-        STRIP.setBrightness(Bright);
-        if(Gear==0){
-            for(int i=0 ; i<NUM_PIXELS ; i++){
-                if(i<=Led_Number){
-                    STRIP.setPixelColor(i,255,255,255);
-                }
-                else{
-                    STRIP.setPixelColor(i,0,0,0);
-                }
-            }
-        } else if(Gear>0){
-            if {Led_Number==0){
-                for(int i=0; i<NUM_PIXELS ; i++){
-                    STRIP.setPixelColor(i,0,0,0);
-                }
-            }
-            for(int i=0; i<10; i++){
-                if(i<=Led_Number){
-                    STRIP.setPixelColor(i,255,0,0);
-                }
-                else{
-                    STRIP.setPixelColor(i,0,0,0);
-                }
-            }
-            for(i=10;i<15;i++){
-                if(i<=Led_Number){
-                    STRIP.setPixelColor(i,255,255,0);
-                }
-                else{
-                    STRIP.setPixelColor(i,0,0,0);
-                }
-            }
-            for(i=16;i<17;i++){
-                if(i<=Led_Number){
-                    STRIP.setPixelColor(i,0,255,0);
-                }
-                else{
-                    STRIP.setPixelColor(i,0,0,0);
-                }
-            }
-        }
+    //Serial.print("\n");
+    //Serial.print("Led_Disp = ");
+    //Serial.print(Led_Number);
+    if(Gear==0){
+        STRIP.fill(0x00FFFFFF,0, Led_Number); //On allume en blanc les LED en dessous de LED Number
+        STRIP.fill(0x00000000,Led_Number,NUM_PIXELS); //on éteint les autres
     }
+    else if(Gear>0){
+          if (Led_Number<10){
+            STRIP.fill(0x0000FF00,0, Led_Number); //on allume les LED en vert
+            STRIP.fill(0x00000000,Led_Number,NUM_PIXELS); //on éteint les autres
+          }
+          else if (Led_Number<15)   {        // En jaune
+            STRIP.fill(0x0000FF00,0, 10); //on allume les LED en vert jusqu'a la dixième
+            STRIP.fill(0x00FFFF00,10, Led_Number); //on allume entre 10 et LED_number en jaune
+            STRIP.fill(0x00000000,Led_Number,NUM_PIXELS); //on éteint les autres
+          }
+          else {                            
+            STRIP.fill(0x0000FF00,0, 10); //on allume les LED en vert jusqu'a la dixième
+            STRIP.fill(0x00FFFF00,10, 15); //on allume entre 10 et 15 en jaune
+            STRIP.fill(0x00FF0000,15, Led_Number); //on allume entre 15 et LED_Number en rouge
+            STRIP.fill(0x00000000,Led_Number,NUM_PIXELS); //on éteint les autres
+          }
+        }
+
 
     // Affichage d'une erreur
     if(Fail_Disp==1){
-        STRIP.setBrightness(Bright);
         Gear_Blink_Count=0;
-        for(int i=0 ; i<NUM_PIXELS ; i++){
-            STRIP.setPixelColor(i,0,255,0); 
-        }
-        STRIP.show();
+        STRIP.fill(0x00FF0000,0,NUM_PIXELS); 
     }
 
     // Clignotement du bandeau = Shift Light
     if (Led_Number<17) {Gear_Blink_Count=0;}
     if(Led_Number==17){
-        for(int i=0 ; i<NUM_PIXELS ; i++){
-            STRIP.setPixelColor(i,255,255,255); 
-        }
-        STRIP.show();
+        STRIP.fill(0x00FFFFFF,0,NUM_PIXELS); 
         if(Gear_Blink_Count==0){
             Start_Gear_Millis=millis();
             Gear_Blink_Led=1;
@@ -186,13 +155,11 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail,bool Auto){
                 Gear_Blink_Count++;
                 if(Gear_Blink_Led==0){
                     STRIP.setBrightness(0);
-                    Serial.print("Led Off");
-                    STRIP.show();
+                   //Serial.print("Led Off");
                 }
                 else if(Gear_Blink_Led==1){
                     STRIP.setBrightness(Bright);
-                    Serial.print("Led On");
-                    STRIP.show();
+                    //Serial.print("Led On");
                 }
             }
         }
@@ -201,14 +168,10 @@ void Led_Update (int Led_Number,int Gear,boolean Engine_Fail,bool Auto){
     if (Auto){
       Serial.print("\n");
       Serial.print("Auto");
-      STRIP.setBrightness(Bright);
-      for(int i=0 ; i<6 ; i++){
-            STRIP.setPixelColor(i,255,0,255);
-        }
+      STRIP.fill(0x00FF00FF,0,6); 
     }
-    STRIP.show();
+   STRIP.show();
 }
-
 
 /***************************************************************************
   END FILE

@@ -63,6 +63,7 @@ signed Rpm;
 bool Data_Rpm;
 signed TPS; // %
 signed W_Temp;
+signed W_Temp_B;
 signed A_Temp;
 
 //    R_ID=0x2001
@@ -74,6 +75,7 @@ signed O_Press=2;
 signed F_Press;
 signed O_Temp;
 signed Volts; // x10
+signed Volts_B; // x10
 
 //    R_ID=0x1002
 signed Gear=0;
@@ -89,6 +91,7 @@ int Init_Seven_Segments;
 
 //  Temp Voltage (TV) display
 int Switch_TV;
+int Switch_TV_B;
 
 // Led Strip Display
 int Count=0;
@@ -164,10 +167,12 @@ void loop(){
             Engine_Failure(W_Temp,A_Temp,O_Press);
             Tachometer(abs(Rpm),Gear,Auto);
         }
-        
-        
-        Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
+        if (Switch_TV != Switch_TV_B || W_Temp != W_Temp_B || Volts != Volts_B){
+          Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
+          Switch_TV_B = Switch_TV;
+          W_Temp_B = W_Temp;
+          Volts_B = Volts;
+        }
         Send_CA();
-        
     }
 }
