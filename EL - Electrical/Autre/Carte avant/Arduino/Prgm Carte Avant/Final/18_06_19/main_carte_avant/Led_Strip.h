@@ -42,7 +42,7 @@ void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press);
     @return     Calls Led_Update.
 */
 
-void Tachometer (int Rpm,int Gear,bool Auto);
+void Tachometer (double Rpm,int Gear,bool Auto);
 /*
     @brief      Tachometer calculates from the limits set in RPM_MIN_MAX 
                 and the gear engaged, the number of LEDs to be lit and 

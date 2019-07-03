@@ -30,7 +30,7 @@
 // Led constants
 const int Bright=20;
 const int NUM_PIXELS = 16; // Defines the number of pixels in the strip
-const int RPM_MIN_MAX[2][7] = {
+const double RPM_MIN_MAX[2][7] = {
   {    0, 2000, 2000, 2000, 2000, 2000, 2000},
   {14000,13300,13100,12900,12800,12700,12000}
 }; // Matrix with the min/max rpm to change gear
@@ -38,7 +38,7 @@ const int RPM_MIN_MAX[2][7] = {
 // Led variables
 int Led_Number;
 int Led_Number_B;
-int Rpm_Ratio;
+double Rpm_Ratio;
 int Blink_Time=200;
 int Gear_Blink_Count=0;
 int Gear_Blink_Led; // 0=off - 1=on
@@ -62,9 +62,12 @@ Adafruit_DotStar STRIP = Adafruit_DotStar(NUM_PIXELS, DATAPIN, CLOCKPIN, DOTSTAR
 /**************************************************************************/
 
 void Led_Init(){
-    STRIP.begin();
-    STRIP.setBrightness(Bright);
-    STRIP.show();
+  #if defined(__AVR_ATtiny85__) && (F_CPU == 16000000L)
+    clock_prescale_set(clock_div_1); // Enable 16 MHz on Trinket
+  #endif
+  STRIP.setBrightness(Bright);
+  STRIP.begin(); // Initialize pins for output
+  STRIP.show();  // Turn all LEDs off ASAP
 }
 
 void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press){
@@ -87,13 +90,25 @@ void Engine_Failure (signed W_Temp,signed A_Temp,signed O_Press){
     }
 }
 
-void Tachometer (int Rpm,int Gear,bool Auto){
+void Tachometer (double Rpm,int Gear,bool Auto){
+    Serial.print("\n");
+    Serial.println(Rpm);
+    Serial.print("\n");
+    Serial.println(RPM_MIN_MAX[0][Gear]);
+    Serial.print("\n");
+    Serial.println((RPM_MIN_MAX[1][Gear]));
+    Serial.print("\n");
+    Serial.println(NUM_PIXELS+1);
     if (Rpm>RPM_MIN_MAX[0][Gear]) {
-      Rpm_Ratio = int( (Rpm-RPM_MIN_MAX[0][Gear])/(RPM_MIN_MAX[1][Gear]-RPM_MIN_MAX[0][Gear])*(NUM_PIXELS+1));
+      Rpm_Ratio = ((Rpm-RPM_MIN_MAX[0][Gear])/(RPM_MIN_MAX[1][Gear]-RPM_MIN_MAX[0][Gear])*(NUM_PIXELS+1)); ;
     }
     else {
       Rpm_Ratio = 0;
       }
+    Serial.print("\n");
+    Serial.println(Rpm_Ratio);
+    Serial.print("\n");
+    Serial.println(Gear);
     if (Rpm_Ratio > (NUM_PIXELS+1)) {
       Rpm_Ratio =  NUM_PIXELS+1;         
     }
@@ -115,18 +130,18 @@ void Led_Update (int Led_Number,int Gear,bool Auto){
     }
     else if(Gear>0){
           if (Led_Number<10){
-            STRIP.fill(0x0000FF00,0, Led_Number); //on allume les LED en vert
+            STRIP.fill(0x00FF0000,0, Led_Number); //on allume les LED en vert
             STRIP.fill(0x00000000,Led_Number,NUM_PIXELS); //on éteint les autres
           }
           else if (Led_Number<15)   {        // En jaune
-            STRIP.fill(0x0000FF00,0, 10); //on allume les LED en vert jusqu'a la dixième
+            STRIP.fill(0x00FF0000,0, 10); //on allume les LED en vert jusqu'a la dixième
             STRIP.fill(0x00FFFF00,10, Led_Number); //on allume entre 10 et LED_number en jaune
             STRIP.fill(0x00000000,Led_Number,NUM_PIXELS); //on éteint les autres
           }
           else {                            
-            STRIP.fill(0x0000FF00,0, 10); //on allume les LED en vert jusqu'a la dixième
+            STRIP.fill(0x00FF0000,0, 10); //on allume les LED en vert jusqu'a la dixième
             STRIP.fill(0x00FFFF00,10, 15); //on allume entre 10 et 15 en jaune
-            STRIP.fill(0x00FF0000,15, Led_Number); //on allume entre 15 et LED_Number en rouge
+            STRIP.fill(0x0000FF00,15, Led_Number); //on allume entre 15 et LED_Number en rouge
             STRIP.fill(0x00000000,Led_Number,NUM_PIXELS); //on éteint les autres
           }
         }
