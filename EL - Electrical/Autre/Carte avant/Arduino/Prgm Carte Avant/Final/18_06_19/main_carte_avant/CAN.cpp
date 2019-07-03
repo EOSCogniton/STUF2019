@@ -72,9 +72,9 @@ void Data_Update(unsigned char Data[8]){
         W_Temp=Data[4]+256*Data[5];
         A_Temp=Data[6]+256*Data[7];
         
-//        sprintf(Print, "RPM = %5d   Throttle = %3d   Water Temp = %3d    Air Temp = %3d", Rpm, TPS, W_Temp, A_Temp);
-//        Serial.print("\n");
-//        Serial.print(Print);
+       sprintf(Print, "RPM = %5d   Throttle = %3d   Water Temp = %3d    Air Temp = %3d", Rpm, TPS, W_Temp, A_Temp);
+        Serial.print("\n");
+      Serial.print(Print);
         
         Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
     }
@@ -106,9 +106,9 @@ void Data_Update(unsigned char Data[8]){
         Data_Rpm=0;
         Auto=Data[2];
        
-        sprintf(Print, "Gear = %1d", Gear);
-        Serial.print("\n");
-        Serial.print(Print);
+//        sprintf(Print, "Gear = %1d", Gear);
+//        Serial.print("\n");
+//        Serial.print(Print);
         if (Data[0]!=Gear or Error!=Data[1]) {
           Gear = Data[0];
           Error=Data[1];
@@ -145,9 +145,9 @@ void Send_CA(){
     Switch_H=digitalRead(H_PIN);
     Switch_N=digitalRead(N_PIN);
 //
-    sprintf(Print, "Switch_H = %1d   Switch_N = %1d", Switch_H, Switch_N);
-    Serial.print("\n");
-    Serial.print(Print);
+//    sprintf(Print, "Switch_H = %1d   Switch_N = %1d", Switch_H, Switch_N);
+//    Serial.print("\n");
+//    Serial.print(Print);
     
     // Def des messages
     byte Modif[8]={0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};

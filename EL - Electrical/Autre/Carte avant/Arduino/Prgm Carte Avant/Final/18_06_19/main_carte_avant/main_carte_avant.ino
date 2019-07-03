@@ -165,7 +165,7 @@ void loop(){
 //            Serial.println("RPM : ");
 //            Serial.println(abs(Rpm));
             Engine_Failure(W_Temp,A_Temp,O_Press);
-            Tachometer(abs(Rpm),Gear,Auto);
+            Tachometer(abs(Rpm),1,Auto);
         }
         if (Switch_TV != Switch_TV_B || W_Temp != W_Temp_B || Volts != Volts_B){
           Seven_Seg_Calc(Switch_TV,W_Temp,Volts);
